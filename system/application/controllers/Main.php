@@ -4,6 +4,7 @@ class Login extends Controller
     {
     function index()
         {
+        $this->load->view("Main", array("xPage" => "Login"));
         }
 
     function Validate()

@@ -2,7 +2,7 @@
 
 class Gamer extends Model
     {
-    function validate()
+    function Validate()
         {
         $this->db->where("Handle", $this->input->post("xHandle"));
 		$this->db->where("Barcode", $this->input->post("xBarcode"));
