@@ -4,23 +4,25 @@ class Login extends Controller
     {
     function index()
         {
-        $this->load->views("Main", array("xPage" => "Login"));
+            $xPage = $this->load->view("Login",'',true);
+            $this->mysmarty->view('main/index',array("xPage" => $xPage));
         }
 
-    function Validate()
+    function validate()
         {
-		$this->load->model("Gamer");
+            $this->load->model("Gamer");
 
-		if ( $this->Gamer->Exists() )
+            if ( $this->Gamer->Exists() )
             {
 			$xData = array("Handle" => $this->input->post('xHandle'),
                            "IsLoggedIn" => true);
 
 			$this->session->set_userdata($xData);
-			redirect("Main");
+			redirect("/main");
             }
-		else
+            else
             {
+
 			$this->index();
             }
         }
