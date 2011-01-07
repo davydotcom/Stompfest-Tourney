@@ -1,6 +1,6 @@
 <?php
 
-class Main extends Controller
+class MainController extends Controller
     {
     function  __construct()
         {
@@ -15,8 +15,10 @@ class Main extends Controller
         $xLogIn = $this->session->userdata("IsLoggedIn");
 
         if ( !isset($xLogIn) || $xLogIn !== true )
-            $xPage = "Login";
-
-        $this->load->view("Main", array("xPage" => $xPage));
+        {
+            $xPage = $this->load->view("Login",'',true);
+        }
+            
+        $this->mysmarty->view('main/index',array("xPage" => $xPage));
         }
     }
