@@ -6,5 +6,5 @@ Stompfest Tournament Manager
 {block name=main_content}
 <h2>Overview</h2>
 <p>Welcome to Stompfest Tournament Manager</p>
-{$xPage}
+
 {/block}

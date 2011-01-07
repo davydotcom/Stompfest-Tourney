@@ -4,8 +4,7 @@ class Login extends Controller
     {
     function index()
         {
-            $xPage = $this->load->view("Login",'',true);
-            $this->mysmarty->view('main/index',array("xPage" => $xPage));
+            $this->mysmarty->view('login/index');
         }
 
     function validate()
@@ -18,7 +17,7 @@ class Login extends Controller
                            "IsLoggedIn" => true);
 
 			$this->session->set_userdata($xData);
-			redirect("/main");
+			redirect("/");
             }
             else
             {

@@ -11,7 +11,7 @@
 
 		<div id="header">
 			<ul id="user_navigation">
-				<li><a href="#">Login</a></li>
+				<li><a href="/login">Login</a></li>
 				<li><a href="#">Register</a></li>
 			</ul>
 			<h1>Stompfest <span class="smaller_header">Tournament Manager</span></h1>
