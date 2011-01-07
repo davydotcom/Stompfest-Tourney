@@ -1,6 +1,6 @@
 <?php
-
-class Main extends Controller
+require_once(APPPATH . "/controllers/application.php");
+class Main extends ApplicationController
     {
     function  __construct()
         {
