@@ -4,7 +4,7 @@ class Main extends ApplicationController
     {
     function  __construct()
         {
-   		parent::Controller();
+   		parent::__construct();
 
         $this->load->library('session');
         }
