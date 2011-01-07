@@ -7,10 +7,20 @@ class ApplicationController extends Controller
                 
    		parent::Controller();
                 
-                $this->load->model("Gamer");
-                $handle = $this->session->userdata('Handle');
+                
+                
+                //Filters That Run on Every Action
+                $this->loadCurrentGamer();
+        }
+
+
+
+    function loadCurrentGamer()
+    {
+        $this->load->model("Gamer");
+        $handle = $this->session->userdata('Handle');
                 $this->mysmarty->assign('isLoggedIn', false);
-                if($handle != null)
+        if($handle != null)
                 {
                     $this->currentGamer = $this->Gamer->findByHandle($handle);
                     if($this->currentGamer != null)
@@ -18,7 +28,7 @@ class ApplicationController extends Controller
                         $this->mysmarty->assign('isLoggedIn', true);
                     }
                 }
-        }
+    }
 
 
     }
