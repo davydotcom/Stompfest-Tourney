@@ -25,4 +25,8 @@ class Login extends Controller
 			$this->index();
             }
         }
+     function destroy()
+     {
+
+     }
     }
