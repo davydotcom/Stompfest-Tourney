@@ -11,8 +11,13 @@
 
 		<div id="header">
 			<ul id="user_navigation">
-				<li><a href="/login">Login</a></li>
-				<li><a href="#">Register</a></li>
+                            {if $isLoggedIn eq true}
+                                <li><a href="/logout">Logout</a></li>
+                            {else}
+                                <li><a href="/login">Login</a></li>
+                            {/if}
+			
+				
 			</ul>
 			<h1>Stompfest <span class="smaller_header">Tournament Manager</span></h1>
 
@@ -34,7 +39,7 @@
 					</div>
 					<div id="main_content_right">
 						{block name=main_content_right}Right Bar Content Here!{/block}
-
+                                                 
 					</div>
 				</div>
 			</div>

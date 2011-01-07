@@ -92,6 +92,8 @@ Red Gradient Colors: #E80000 - #820000
 	font-size:1.25em;
 	padding:5px 10px;
 	background:;
+        border-top: 2px solid transparent;
+	border-bottom:2px solid transparent;
 }
 #left_navigation li a:hover,
 #left_navigation li a.active
