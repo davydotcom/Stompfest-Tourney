@@ -14,4 +14,17 @@ class Gamer extends Model
 
         return false;
         }
+
+     function findByHandle($handle)
+     {
+        $this->db->where("Handle", $handle);
+
+        $xQuery = $this->db->get("gamers");
+        if ( $xQuery->num_rows == 1 )
+	{
+            return $xQuery->result();
+        }
+        return null;
+     }
+     
     }
