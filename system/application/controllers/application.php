@@ -11,10 +11,10 @@ class ApplicationController extends Controller
 
 
         //Filters That Run on Every Action
-        $this->loadCurrentGamer();
+        $this->loadCurrentUser();
         }
 
-    function loadCurrentGamer()
+    function loadCurrentUser()
         {
         $this->load->model("User");
         $userID = $this->session->userdata('userID');
