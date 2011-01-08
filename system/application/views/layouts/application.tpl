@@ -11,7 +11,7 @@
 
 		<div id="header">
 			<ul id="user_navigation">
-                            {if $isLoggedIn eq true}
+                            {if $isLoggedIn == true}
                                 <li><a href="/logout">Logout</a></li>
                             {else}
                                 <li><a href="/login">Login</a></li>
@@ -27,6 +27,9 @@
 			<div id="left_navigation_wrapper" class="grid_2">
 				<ul id="left_navigation">
 					<li><a href="#" class="active">Overview</a></li>
+                    {if $isLoggedIn == true}
+                        <li><a href="/profile">Profile</a></li>
+                    {/if}
 					<li><a href="#">Tournaments</a></li>
 					<li><a href="#">Support</a></li>
 				</ul>
