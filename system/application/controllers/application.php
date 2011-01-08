@@ -8,10 +8,20 @@ class ApplicationController extends Controller
 
         parent::Controller();
 
-
-
         //Filters That Run on Every Action
         $this->loadCurrentUser();
+        }
+
+    function requireUser()
+        {
+        if ( empty($this->currentUser) )
+            {
+            redirect("/login");
+
+            return false;
+            }
+
+        return true;
         }
 
     function loadCurrentUser()

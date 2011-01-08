@@ -12,7 +12,7 @@
 		<div id="header">
 			<ul id="user_navigation">
                             {if $isLoggedIn == true}
-                                <li><a href="/logout">Logout</a></li>
+                                <li><a href="/login/destroy">Logout</a></li>
                             {else}
                                 <li><a href="/login">Login</a></li>
                             {/if}

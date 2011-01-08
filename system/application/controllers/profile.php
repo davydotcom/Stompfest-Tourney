@@ -7,7 +7,7 @@ class Profile extends ApplicationController
         {
    		parent::__construct();
 
-
+        $this->requireUser();
         }
 
     function index()
@@ -17,5 +17,10 @@ class Profile extends ApplicationController
 
     function view()
         {
+        }
+
+    function update()
+        {
+//            $this->currentUser->
         }
     }

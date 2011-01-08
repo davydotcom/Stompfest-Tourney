@@ -1,10 +1,11 @@
 <?php
 require_once(APPPATH . "/controllers/application.php");
+
 class Login extends ApplicationController
     {
     function index()
         {
-            $this->mysmarty->view('login/index');
+        $this->mysmarty->view('login/index');
         }
 
     function validate()
@@ -25,8 +26,11 @@ class Login extends ApplicationController
 			$this->index();
             }
         }
-     function destroy()
-     {
 
-     }
+     function destroy()
+         {
+         $this->session->sess_destroy();
+
+         redirect("/");
+         }
     }
