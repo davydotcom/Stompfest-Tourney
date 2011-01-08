@@ -1,6 +1,6 @@
 <?php
 require_once(APPPATH . "/controllers/application.php");
-class Login extends Controller
+class Login extends ApplicationController
     {
     function index()
         {
