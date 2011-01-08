@@ -11,14 +11,6 @@ class Main extends ApplicationController
 
     function index()
         {
-        $xPage = "Home";
-        $xLogIn = $this->session->userdata("IsLoggedIn");
-
-        if ( !isset($xLogIn) || $xLogIn !== true )
-        {
-            $xPage = $this->load->view("Login",'',true);
-        }
-            
-        $this->mysmarty->view('main/index',array("xPage" => $xPage));
+            $this->mysmarty->view('main/index');
         }
     }

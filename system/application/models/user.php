@@ -11,7 +11,7 @@ class User extends Model {
         if ($xQuery->num_rows == 1) {
             $result = $xQuery->row(0);
 
-            return $result['userID'];
+            return $result->userID;
         }
 
 
