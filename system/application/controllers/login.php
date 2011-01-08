@@ -9,11 +9,11 @@ class Login extends Controller
 
     function validate()
         {
-            $this->load->model("Gamer");
-
-            if ( $this->Gamer->Exists() )
+            $this->load->model("User");
+            $userID = $this->User->Exists();
+            if ( !empty($userID) )
             {
-			$xData = array("Handle" => $this->input->post('xHandle'),
+			$xData = array("userID" => $userID,
                            "IsLoggedIn" => true);
 
 			$this->session->set_userdata($xData);

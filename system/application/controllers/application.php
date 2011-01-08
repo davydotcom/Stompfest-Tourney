@@ -16,13 +16,13 @@ class ApplicationController extends Controller
 
     function loadCurrentGamer()
         {
-        $this->load->model("Gamer");
-        $handle = $this->session->userdata('Handle');
+        $this->load->model("User");
+        $userID = $this->session->userdata('userID');
         $this->mysmarty->assign('isLoggedIn', false);
         if ( $handle != null )
             {
-            $this->currentGamer = $this->Gamer->findByHandle($handle);
-            if ( $this->currentGamer != null )
+            $this->currentUser = $this->User->findByUserID($userID);
+            if ( $this->currentUser != null )
                 {
                 $this->mysmarty->assign('isLoggedIn', true);
                 }
