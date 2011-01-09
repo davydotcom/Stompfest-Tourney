@@ -46,7 +46,31 @@ class SFModel extends Model
 
         return $this;
     }
+    function create($options = array())
+    {
+        $this->db->insert($this->tableName,$options);
 
+        return $this->db->insert_id();
+    }
+
+    function update($id=null,$attributes = array())
+    {
+        if(empty($attributes) || empty($id))
+        {
+            return false;
+        }
+        $this->db->where($this->primaryKeyName,$id);
+        $this->db->update($this->tableName,$attributes);
+        return $this->db->affected_rows();
+    }
+    function destroy($options = array())
+    {
+       if(!empty ($options))
+       {
+            $this->applyOptions($options);
+       }
+       $this->db->delete($this->tableName);
+    }
 
    function find($options = array())
    {
@@ -68,7 +92,7 @@ class SFModel extends Model
         $this->db->where($this->primaryKeyName,$id);
         $query = $this->db->get($this->tableName);
 
-        if($query->numrows > 0)
+        if($query->num_rows > 0)
         {
             return $query->row(0);
         }
@@ -84,7 +108,7 @@ class SFModel extends Model
     {
         $query = $this->db->get($this->tableName);
 
-        if($query->numrows > 0)
+        if($query->num_rows > 0)
         {
             return $query->row(0);
         }

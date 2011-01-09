@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>{block name=title}Stompfest Tournament Manager{/block}</title>
+		<title>{block name=title}Admin | Stompfest Tournament Manager{/block}</title>
 
 		<link href="/stylesheets/960.css" media="screen" rel="stylesheet" type="text/css" />
 		<link href="/stylesheets/application.css" media="screen" rel="stylesheet" type="text/css" />
-        <link href="/stylesheets/temp.css" media="screen" rel="stylesheet" type="text/css" />
         <script LANGUAGE="JavaScript" SRC="/javascripts/JQuery.js"></script>
 	</head>
 
@@ -18,9 +17,8 @@
                     <li><a href="/login">Login</a></li>
                 {/if}
 			</ul>
-			<h1>Stompfest <span class="smaller_header">Tournament Manager</span></h1>
+			<h1>Stompfest <span class="smaller_header">Administrator</span></h1>
 		</div>
-
                 {if isset($flashNotice)}
                     <div class="flash notice">
                         <p>{$flashNotice}</p>
@@ -39,21 +37,22 @@
 		<div id="content_wrapper" class="container_12">
 			<div id="left_navigation_wrapper" class="grid_2">
 				<ul id="left_navigation">
-					<li><a href="#" class="active">Overview</a></li>
-                    {if $isLoggedIn == true}
-                        <li><a href="/profile">Profile</a></li>
-                    {/if}
-					<li><a href="#">Tournaments</a></li>
-					<li><a href="#">Support</a></li>
+					<li><a href="/admin/" class="{if $controllerName == 'Overview'}active{/if}">Overview</a></li>
+					<li><a href="/admin/tourneys" class="{if $controllerName == 'Tourneys'}active{/if}">Tournaments</a></li>
+					<li><a href="/admin/games"  class="{if $controllerName == 'Games'}active{/if}">Games</a></li>
+                                        <li><a href="/admin/servers" class="{if $controllerName == 'Servers'}active{/if}">Servers</a></li>
+                                        <li><a href="/admin/users">Users</a></li>
+                                        <li><a href="/admin/announcements">Announcements</a></li>
 				</ul>
 			</div>
+                 
 			<div id="main_content_wrapper" class="grid_10">
 				<div id="main_content">
 					<div id="main_content_left">
-						{block name=main_content}Main Content Goes Here!{/block}
+						{block name=main_content}{/block}
 					</div>
 					<div id="main_content_right">
-						{block name=main_content_right}Right Bar Content Here!{/block}
+						{block name=main_content_right}{/block}
 					</div>
 				</div>
 			</div>
