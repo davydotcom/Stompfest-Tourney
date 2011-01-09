@@ -18,12 +18,14 @@ class Login extends ApplicationController
                            "IsLoggedIn" => true);
 
 			$this->session->set_userdata($xData);
+                        $this->session->set_flashdata('notice','Login Successful!');
 			redirect("/");
             }
             else
             {
-
-			$this->index();
+                        $this->session->set_flashdata('error','Invalid username / barcode combination!');
+                        redirect("/login");
+//			$this->index();
             }
         }
 

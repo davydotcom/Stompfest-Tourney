@@ -19,9 +19,10 @@ class Games extends AdminApplicationController
         $this->mysmarty->view('admin/games/index',array('games' => $games));
     }
 
-    function show()
+    function show($id)
     {
-
+        $this->load_model_or_fail($id);
+        $this->mysmarty->view('admin/games/show',array('game' => $this->currentGame));
     }
 
 
@@ -35,19 +36,43 @@ class Games extends AdminApplicationController
     {
     }
 
-    function edit()
+    function edit($id)
     {
+        $this->load_model_or_fail($id);
+    }
+
+    function update($id)
+    {
+        $this->load_model_or_fail($id);
 
     }
 
-    function update()
+    function destroy($id)
     {
+        $this->load_model_or_fail($id);
 
     }
 
-    function destroy()
+
+    protected function load_model_or_fail($id=null)
     {
+        
+        if(empty($id))
+        {
+            $this->session->set_flashdata('error','Game ID Must be specified!');
+            redirect("/admin/games");
+            return false;
+        }
 
+        $this->load->model('game');
+        $this->currentGame = $this->game->findByID($id);
+
+        if(empty($this->currentGame))
+        {
+            $this->session->set_flashdata('error','Unable to find the requested Game');
+            redirect("/admin/games");
+            return false;
+        }
+        return true;
     }
-
 }

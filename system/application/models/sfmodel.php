@@ -68,7 +68,7 @@ class SFModel extends Model
         $this->db->where($this->primaryKeyName,$id);
         $query = $this->db->get($this->tableName);
 
-        if($query->numrows > 0)
+        if($query->num_rows > 0)
         {
             return $query->row(0);
         }
@@ -84,7 +84,7 @@ class SFModel extends Model
     {
         $query = $this->db->get($this->tableName);
 
-        if($query->numrows > 0)
+        if($query->num_rows > 0)
         {
             return $query->row(0);
         }

@@ -53,6 +53,41 @@ body
 	text-decoration:none;
 }
 
+/*Flash Message Style*/
+.flash
+{
+
+        background:#C9D0B6;
+        -moz-border-radius:5px;
+    -webkit-border-radius:5px;
+    border-radius: 5px;
+        margin: 20px auto;
+        padding:15px 0px;
+        font-size:13px;
+        color:#333;
+        width:960px;
+        clear:both;
+        font-size:16px;
+        text-align:center;
+}
+
+.error
+{
+        color:#fff;
+        background:#AA0000;
+}
+.notice
+{
+        color:#fff;
+        background:#0F0;
+        background: #0F0 -webkit-gradient(linear, left top, left bottom, from(#00FF00), to(#00AA00)) ;
+    background: -moz-linear-gradient(top, #00FF00 0%, #00AA00 100%);
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#ff00FF00,endColorstr=#ff00AA00);
+    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#ff00FF00,endColorstr=#ff00AA00)";
+}
+
+
+/*End Flash Message Styling*/
 #left_navigation
 {
 	background:#900;

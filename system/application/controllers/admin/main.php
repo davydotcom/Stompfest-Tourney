@@ -11,6 +11,6 @@ class Main extends AdminApplicationController
 
     function index()
         {
-            $this->mysmarty->view('admin/overview/index');
+            $this->mysmarty->view('admin/main/index');
         }
     }

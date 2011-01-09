@@ -1,31 +1,35 @@
 <?php
 
 class ApplicationController extends Controller
-    {
+{
 
     function __construct()
-        {
+    {
 
         parent::Controller();
+        $this->controllerName = get_class($this);
+        $this->mysmarty->assign('controllerName', $this->controllerName);
+        $this->loadFlashMessages();
 
+        
         //Filters That Run on Every Action
         $this->loadCurrentUser();
-        }
+    }
 
     function requireUser()
+    {
+        if (empty($this->currentUser))
         {
-        if ( empty($this->currentUser) )
-            {
             redirect("/login");
 
             return false;
-            }
-
-        return true;
         }
 
+        return true;
+    }
+
     function loadCurrentUser()
-        {
+    {
         $this->load->model("User");
 
         $userID = $this->session->userdata('userID');
@@ -33,16 +37,30 @@ class ApplicationController extends Controller
 
         $this->mysmarty->assign('isLoggedIn', false);
 
-        if ( !empty($userID) )
-            {
+        if (!empty($userID))
+        {
             $this->currentUser = $this->User->findByUserID($userID);
 
-            if ( !empty($this->currentUser))
-                {
-                    $this->mysmarty->assign('isLoggedIn', true);
-                    $this->isLoggedIn = true;
-                }
+            if (!empty($this->currentUser))
+            {
+                $this->mysmarty->assign('isLoggedIn', true);
+                $this->isLoggedIn = true;
             }
         }
-
     }
+    
+    protected function loadFlashMessages()
+    {
+        $notice = $this->session->flashdata('notice');
+        $warning = $this->session->flashdata('warning');
+        $error = $this->session->flashdata('error');
+
+        if(!empty($notice))
+            $this->mysmarty->assign('flashNotice',$notice);
+        if(!empty($warning))
+            $this->mysmarty->assign('flashError',$warning);
+        if(!empty($error))
+            $this->mysmarty->assign('flashWarning',$error);
+    }
+
+}
