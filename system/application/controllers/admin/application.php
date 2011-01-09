@@ -6,7 +6,7 @@ class AdminApplicationController extends ApplicationController
         {
    		parent::__construct();
 
-                requireAdministrator();
+                $this->requireAdministrator();
         }
 
     function requireAdministrator()
