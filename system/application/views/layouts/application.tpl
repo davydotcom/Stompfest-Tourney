@@ -5,6 +5,7 @@
 
 		<link href="/stylesheets/960.css" media="screen" rel="stylesheet" type="text/css" />
 		<link href="/stylesheets/application.css" media="screen" rel="stylesheet" type="text/css" />
+        <link href="/stylesheets/temp.css" media="screen" rel="stylesheet" type="text/css" />
         <script LANGUAGE="JavaScript" SRC="/javascripts/JQuery.js"></script>
 	</head>
 

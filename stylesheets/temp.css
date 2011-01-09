@@ -1,0 +1,27 @@
+.DataLabel
+    {
+    font-weight: bold;
+    text-align: right;
+    }
+
+.MyButton
+    {
+    cursor: pointer;
+    font-weight: bold;
+    background: #600 -webkit-gradient(linear, left top, left bottom, from(#F2F2F2), to(#BDBDBD)) ;
+    border: 2px solid #666666;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    }
+
+.Instructions
+    {
+    font-size: .75em;
+    font-style: italic;
+    }
+
+.DataDisplay td
+    {
+    vertical-align: top;
+    }
