@@ -5,7 +5,10 @@ class SFModel extends Model
 
     function __construct()
     {
+       parent::__construct();
+       
        $this->tableName = SFModel::pluralize(strtolower(get_class($this)));
+       $this->primaryKeyName = 'id';
     }
 
     function applyOptions($options = array())
@@ -32,10 +35,25 @@ class SFModel extends Model
             $this->db->order_by($options['order'][0],$options['order'][1]);
         }
     }
-    
+
+    function where($optons = array())
+    {
+        if(empty($options))
+        {
+            return self;
+        }
+        $this->applyOptions(array('conditions' => $options));
+
+        return $this;
+    }
+
+
    function find($options = array())
    {
-        $this->applyOptions($options);
+       if(!empty ($options))
+       {
+            $this->applyOptions($options);
+       }
 
         $query = $this->db->get($this->tableName);
 
@@ -47,7 +65,7 @@ class SFModel extends Model
         {
             return null;
         }
-
+        $this->db->where($this->primaryKeyName,$id);
         $query = $this->db->get($this->tableName);
 
         if($query->numrows > 0)
@@ -57,6 +75,22 @@ class SFModel extends Model
         return null;
     }
 
+    function count()
+    {
+        $this->db->count_all_results($this->tableName);
+    }
+
+    function first()
+    {
+        $query = $this->db->get($this->tableName);
+
+        if($query->numrows > 0)
+        {
+            return $query->row(0);
+        }
+        return null;
+    }
+    
 
     public static function pluralize( $string )
     {
