@@ -12,11 +12,17 @@ class Profile extends ApplicationController
 
     function index()
         {
+        $this->mysmarty->assign("Handle", $this->currentUser->handle);
         $this->mysmarty->view('profile/index');
         }
 
     function view()
         {
+        }
+
+    function edit()
+        {
+        $this->mysmarty->view("profile/edit");
         }
 
     function update()

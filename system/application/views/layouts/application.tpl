@@ -11,16 +11,13 @@
 
 		<div id="header">
 			<ul id="user_navigation">
-                            {if $isLoggedIn == true}
-                                <li><a href="/login/destroy">Logout</a></li>
-                            {else}
-                                <li><a href="/login">Login</a></li>
-                            {/if}
-			
-				
+                {if $isLoggedIn == true}
+                    <li><a href="/login/destroy">Logout</a></li>
+                {else}
+                    <li><a href="/login">Login</a></li>
+                {/if}
 			</ul>
 			<h1>Stompfest <span class="smaller_header">Tournament Manager</span></h1>
-
 		</div>
 
 		<div id="content_wrapper" class="container_12">
@@ -37,12 +34,10 @@
 			<div id="main_content_wrapper" class="grid_10">
 				<div id="main_content">
 					<div id="main_content_left">
-					
 						{block name=main_content}Main Content Goes Here!{/block}
 					</div>
 					<div id="main_content_right">
 						{block name=main_content_right}Right Bar Content Here!{/block}
-                                                 
 					</div>
 				</div>
 			</div>

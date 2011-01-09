@@ -2,7 +2,6 @@
 
 class User extends Model
     {
-
     function Exists()
         {
         $this->db->where("Handle", $this->input->post("xHandle"));
@@ -27,7 +26,7 @@ class User extends Model
         $xQuery = $this->db->get("users");
         if ( $xQuery->num_rows == 1 )
             {
-            return $xQuery->row(0);
+            return $xQuery->row();
             }
         return null;
         }

@@ -53,12 +53,6 @@ body
 	text-decoration:none;
 }
 
-/*End Header Style Information*/
-
-/*Navigation Style Information*/
-/*
-Red Gradient Colors: #E80000 - #820000
-*/
 #left_navigation
 {
 	background:#900;
@@ -91,8 +85,7 @@ Red Gradient Colors: #E80000 - #820000
 	text-decoration:none;
 	font-size:1.25em;
 	padding:5px 10px;
-	background:;
-        border-top: 2px solid transparent;
+    border-top: 2px solid transparent;
 	border-bottom:2px solid transparent;
 }
 #left_navigation li a:hover,
@@ -103,12 +96,8 @@ Red Gradient Colors: #E80000 - #820000
 	border-bottom:2px solid #400;
 }
 
-/*End Navigation Style Information*/
-
-/*Main Content Style Information*/
 #main_content
-{
-
+    {
 	min-height:300px;
 	background:#eeefeb;
 	border: 1px solid #eee;
@@ -134,12 +123,37 @@ Red Gradient Colors: #E80000 - #820000
 	float:left;
 }
 #main_content_right
-{
+    {
 	width:170px;
-	border-left:1px solid #999;
 	padding-left:10px;
 	margin-left:10px;
-	float:left;
-	
-}
-/*End Main Content Style Information*/
+	float: left;
+    background: #600 -webkit-gradient(linear, left top, left bottom, from(#dddeda), to(#eeefeb)) ;
+    background: -moz-linear-gradient(top,  #dddeda,  #eeefeb);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#dddeda', endColorstr='#eeefeb');
+    font-weight: bold;
+    }
+
+.DataLabel
+    {
+    font-weight: bold;
+    text-align: right;
+    }
+
+.MyButton
+    {
+    cursor: pointer;
+    color: #ffffff;
+    font-weight: bold;
+    background: #600 -webkit-gradient(linear, left top, from(#660000), to(#330000)) ;
+    border: 3px solid #400;
+    -moz-border-radius:5px;
+    -webkit-border-radius:5px;
+    border-radius: 5px;
+    }
+
+.Instructions
+    {
+    font-size: .75em;
+    font-style: italic;
+    }
