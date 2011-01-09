@@ -32,7 +32,15 @@ class SFModel extends Model
             $this->db->order_by($options['order'][0],$options['order'][1]);
         }
     }
+    
+   function find($options = array())
+   {
+        $this->applyOptions($options);
 
+        $query = $this->db->get($this->tableName);
+
+        return $query->result();
+   }
    function findByID($id=0)
     {
         if(empty($id))

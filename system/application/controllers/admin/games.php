@@ -15,7 +15,7 @@ class Games extends AdminApplicationController
     function index()
     {
         $this->load->model('game');
-        $games = $this->game->findGames();
+        $games = $this->game->find();
         $this->mysmarty->view('admin/games/index',array('games' => $games));
     }
 
