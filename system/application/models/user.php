@@ -25,9 +25,8 @@ class User extends Model
 
         $xQuery = $this->db->get("users");
         if ( $xQuery->num_rows == 1 )
-            {
             return $xQuery->row();
-            }
+
         return null;
         }
 

@@ -12,7 +12,7 @@ class Profile extends ApplicationController
 
     function index()
         {
-        $this->mysmarty->assign("Handle", $this->currentUser->handle);
+        $this->mysmarty->assign("UserData", get_object_vars($this->currentUser));
         $this->mysmarty->view('profile/index');
         }
 
@@ -22,6 +22,7 @@ class Profile extends ApplicationController
 
     function edit()
         {
+        $this->mysmarty->assign("UserData", get_object_vars($this->currentUser));
         $this->mysmarty->view("profile/edit");
         }
 

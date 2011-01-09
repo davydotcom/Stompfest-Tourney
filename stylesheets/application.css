@@ -147,8 +147,8 @@ body
     font-weight: bold;
     background: #600 -webkit-gradient(linear, left top, from(#660000), to(#330000)) ;
     border: 3px solid #400;
-    -moz-border-radius:5px;
-    -webkit-border-radius:5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
     border-radius: 5px;
     }
 
@@ -156,4 +156,9 @@ body
     {
     font-size: .75em;
     font-style: italic;
+    }
+
+.DataDisplay td
+    {
+    vertical-align: top;
     }
