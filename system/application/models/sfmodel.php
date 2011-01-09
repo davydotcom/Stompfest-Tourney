@@ -46,7 +46,31 @@ class SFModel extends Model
 
         return $this;
     }
+    function create($options = array())
+    {
+        $this->db->insert($this->tableName,$options);
 
+        return $this->db->insert_id();
+    }
+
+    function update($id=null,$attributes = array())
+    {
+        if(empty($attributes) || empty($id))
+        {
+            return false;
+        }
+        $this->db->where($this->primaryKeyName,$id);
+        $this->db->update($this->tableName,$attributes);
+        return $this->db->affected_rows();
+    }
+    function destroy($options = array())
+    {
+       if(!empty ($options))
+       {
+            $this->applyOptions($options);
+       }
+       $this->db->delete($this->tableName);
+    }
 
    function find($options = array())
    {

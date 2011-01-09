@@ -19,7 +19,21 @@
 			</ul>
 			<h1>Stompfest <span class="smaller_header">Administrator</span></h1>
 		</div>
-
+                {if isset($flashNotice)}
+                    <div class="flash notice">
+                        <p>{$flashNotice}</p>
+                    </div>
+                {/if}
+                {if isset($flashWarning)}
+                    <div class="flash warning">
+                        <p>{$flashWarning}</p>
+                    </div>
+                {/if}
+                {if isset($flashError)}
+                    <div class="flash error">
+                        <p>{$flashError}</p>
+                    </div>
+                {/if}
 		<div id="content_wrapper" class="container_12">
 			<div id="left_navigation_wrapper" class="grid_2">
 				<ul id="left_navigation">
@@ -31,6 +45,7 @@
                                         <li><a href="/admin/announcements">Announcements</a></li>
 				</ul>
 			</div>
+                 
 			<div id="main_content_wrapper" class="grid_10">
 				<div id="main_content">
 					<div id="main_content_left">
