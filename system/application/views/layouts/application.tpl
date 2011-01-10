@@ -58,6 +58,7 @@
 				</div>
 			</div>
 		</div>
-	</body>
+        <div class="Footer">Stompfest Tournament Manager was designed and written by Brad Worrell-Smith, David Estes and Ron Rebennack</div
 
+    </body>
 </html>

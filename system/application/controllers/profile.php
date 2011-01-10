@@ -28,8 +28,10 @@ class Profile extends ApplicationController
 
     function update()
         {
-        $this->currentUser->update($_POST);
+ echo("---> " . $this->UserID . " - " . var_dump($this->currentUser));
 
-        redirect("/profile/index");
+ //     $this->currentUser->update($_POST);
+
+ //       redirect("/profile/index");
         }
     }

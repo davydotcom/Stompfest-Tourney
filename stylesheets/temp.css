@@ -1,3 +1,12 @@
+.Footer
+    {
+    left: 0px;
+    bottom: 5px;
+    position: absolute;
+    font-size: 8pt;
+    color: #2a0000;
+    }
+
 .DataLabel
     {
     font-weight: bold;
