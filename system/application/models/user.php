@@ -1,6 +1,6 @@
 <?php
 
-class User extends Model
+class User extends SFModel
     {
     function Exists()
         {
