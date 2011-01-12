@@ -30,7 +30,7 @@ class Profile extends ApplicationController
         {
  echo("---> " . $this->UserID . " - " . var_dump($this->currentUser));
 
- //     $this->currentUser->update($_POST);
+      $this->currentUser->update($_POST);
 
  //       redirect("/profile/index");
         }

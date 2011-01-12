@@ -7,6 +7,7 @@
 		<link href="/stylesheets/application.css" media="screen" rel="stylesheet" type="text/css" />
         <link href="/stylesheets/temp.css" media="screen" rel="stylesheet" type="text/css" />
         <script LANGUAGE="JavaScript" SRC="/javascripts/JQuery.js"></script>
+        <script LANGUAGE="JavaScript" SRC="/javascripts/SF.js"></script>
 	</head>
 
 	<body>
@@ -22,9 +23,11 @@
 		</div>
 
                 {if isset($flashNotice)}
-                    <div class="flash notice">
+                    <div id="xFlashNotice" class="flash notice">
                         <p>{$flashNotice}</p>
                     </div>
+
+                    <script>FadeItOut("xFlashNotice");</script>
                 {/if}
                 {if isset($flashWarning)}
                     <div class="flash warning">

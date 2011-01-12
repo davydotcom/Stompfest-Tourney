@@ -14,11 +14,12 @@
 <script>
     function AbleNotify()
         {
-        var xWho = $("input[name='notification']:checked").val();
+        var xCell = $("#xTB_NoteSMS:checked").val();
+        var xMail = $("#xTB_NoteEMail:checked").val();
 
-        $("#eMail").attr("disabled", xWho != "E");
-        $("#cellNumber").attr("disabled", xWho != "S");
-        $("#cellCarrier").attr("disabled", xWho != "S");
+        $("#eMail").attr("disabled", xMail == undefined);
+        $("#cellNumber").attr("disabled", xCell == undefined);
+        $("#cellCarrier").attr("disabled", xCell == undefined);
         }
 </script>
 
@@ -37,26 +38,22 @@
             <td>
                 <table cellpadding="0" cellspacing="0">
                     <tr>
-                        <td><input type="radio" id="xRB_NoteNone" value="N" name="notification" {if $UserData.notification == 0}checked{/if} onchange="AbleNotify();" /></td>
-                        <td><label for="xRB_NoteNone"><b>None</b></label></td>
-                    </tr>
-                    <tr>
-                        <td><input type="radio" id="xRB_NoteEMail" value="E" name="notification" {if $UserData.notification == 1}checked{/if} onchange="AbleNotify();" /></td>
-                        <td><label for="xRB_NoteEMail">E-Mail</label></td>
+                        <td><input type="checkbox" id="xTB_NoteEMail" {if !empty($UserData.eMail)}checked{/if} onchange="AbleNotify();" /></td>
+                        <td><label for="xTB_NoteEMail">E-Mail</label></td>
                     </tr>
                     <tr>
                         <td>&nbsp;</td>
-                        <td><input type="text" id="eMail" name="eMail" value="{$UserData.eMail}" maxlength="100" size="40"></td>
+                        <td><input type="text" id="eMail" name="eMail" value="{$UserData.eMail}" maxlength="100" size="40" {if empty($UserData.eMail)}disabled="disabled"{/if}></td>
                     </tr>
                     <tr>
-                        <td><input type="radio" id="xRB_NoteSMS" value="S" name="notification" {if $UserData.notification == 2}checked{/if} onchange="AbleNotify();" /></td>
-                        <td><label for="xRB_NoteSMS">Text Message</label></td>
+                        <td><input type="checkbox" id="xTB_NoteSMS" {if !empty($UserData.cellNumber)}checked{/if} onchange="AbleNotify();" /></td>
+                        <td><label for="xTB_NoteSMS">Text Message</label></td>
                     </tr>
                     <tr>
                         <td>&nbsp;</td>
                         <td>
-                            <input type="text" id="cellNumber" name="cellNumber" value="{$UserData.cellNumber}" maxlength="12" size="10">
-                            <select id="cellCarrier" name="cellCarrier">
+                            <input type="text" id="cellNumber" name="cellNumber" value="{$UserData.cellNumber}" maxlength="12" size="10" {if empty($UserData.cellNumber)}disabled="disabled"{/if}>
+                            <select id="cellCarrier" name="cellCarrier" {if empty($UserData.cellNumber)}disabled="disabled"{/if}>
                                 <option value="ATT">AT&amp;T</option>
                                 <option value="Verizon">Verizon</option>
                                 <option value="Sprint">Sprint</option>
