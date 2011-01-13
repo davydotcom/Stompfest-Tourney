@@ -1,7 +1,16 @@
 <?php
 
+require_once(APPPATH . "/models/sfmodel.php");
+
 class User extends SFModel
     {
+    function __construct()
+        {
+        parent::__construct();
+
+        $this->primaryKeyName = "userID";
+        }
+
     function Exists()
         {
         $this->db->where("Handle", $this->input->post("xHandle"));
@@ -29,11 +38,4 @@ class User extends SFModel
 
         return null;
         }
-
-    function update($options = array())
-        {
-        $this->db->where("userID", $this->userID);
-        $this->db->update($options);
-        }
-
     }

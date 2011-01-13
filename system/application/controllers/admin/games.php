@@ -78,7 +78,6 @@ class Games extends AdminApplicationController
 
     protected function load_model_or_fail($id=null)
         {
-
         if ( empty($id) )
             {
             $this->session->set_flashdata('error', 'Game ID Must be specified!');
@@ -95,6 +94,7 @@ class Games extends AdminApplicationController
             redirect("/admin/games");
             return false;
             }
+
         return true;
         }
 

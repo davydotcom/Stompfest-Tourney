@@ -28,10 +28,17 @@ class Profile extends ApplicationController
 
     function update()
         {
- echo("---> " . $this->UserID . " - " . var_dump($this->currentUser));
+        $this->load->model("user");
 
-      $this->currentUser->update($_POST);
-
- //       redirect("/profile/index");
+        if ( $this->user->update($this->currentUser->userID, $_POST) )
+            {
+            $this->session->set_flashdata('notice', 'User information successfully saved.');
+            redirect("/profile");
+            }
+        else
+            {
+            $this->session->set_flashdata('error', 'Error saving User information!.');
+            $this->edit($id);
+            }
         }
     }

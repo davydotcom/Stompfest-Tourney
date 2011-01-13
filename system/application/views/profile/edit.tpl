@@ -21,6 +21,17 @@
         $("#cellNumber").attr("disabled", xCell == undefined);
         $("#cellCarrier").attr("disabled", xCell == undefined);
         }
+
+    function SetupStuff()
+        {
+        jQuery(function($)
+            {
+            $("#cellNumber").mask("(999) 999-9999");
+            });
+        }
+
+    $(document).ready(SetupStuff());
+
 </script>
 
 <form method="post" action="/profile/update">
@@ -54,9 +65,9 @@
                         <td>
                             <input type="text" id="cellNumber" name="cellNumber" value="{$UserData.cellNumber}" maxlength="12" size="10" {if empty($UserData.cellNumber)}disabled="disabled"{/if}>
                             <select id="cellCarrier" name="cellCarrier" {if empty($UserData.cellNumber)}disabled="disabled"{/if}>
-                                <option value="ATT">AT&amp;T</option>
-                                <option value="Verizon">Verizon</option>
-                                <option value="Sprint">Sprint</option>
+                                <option value="ATT" {if $UserData.cellCarrier == "ATT"}selected{/if}>AT&amp;T</option>
+                                <option value="Verizon" {if $UserData.cellCarrier == "Verizon"}selected{/if}>Verizon</option>
+                                <option value="Sprint" {if $UserData.cellCarrier == "Sprint"}selected{/if}>Sprint</option>
                             </select>
                         </td>
                     </tr>

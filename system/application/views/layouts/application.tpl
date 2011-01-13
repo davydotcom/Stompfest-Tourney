@@ -8,6 +8,7 @@
         <link href="/stylesheets/temp.css" media="screen" rel="stylesheet" type="text/css" />
         <script LANGUAGE="JavaScript" SRC="/javascripts/JQuery.js"></script>
         <script LANGUAGE="JavaScript" SRC="/javascripts/SF.js"></script>
+        <script LANGUAGE="JavaScript" SRC="/javascripts/MaskedInput.js"></script>
 	</head>
 
 	<body>
