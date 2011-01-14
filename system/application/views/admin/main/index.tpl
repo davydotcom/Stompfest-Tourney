@@ -6,6 +6,4 @@
 {block name=main_content}
     <h2>Administrative Dashboard</h2>
     <hr />
-
-
 {/block}

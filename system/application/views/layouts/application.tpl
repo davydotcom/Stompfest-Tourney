@@ -47,7 +47,7 @@
                     {if $isLoggedIn == true}
                         <li><a href="/profile">Profile</a></li>
                     {/if}
-					<li><a href="#">Tournaments</a></li>
+					<li><a href="/tourney/main">Tournaments</a></li>
 					<li><a href="#">Support</a></li>
 				</ul>
 			</div>

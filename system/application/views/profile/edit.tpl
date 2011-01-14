@@ -4,7 +4,7 @@
 
 {block name=main_content_right}
 <ul>
-    <li><a href="/profile/edit">Edit Profile</a></li>
+    <li><b>Edit Profile</b></li>
     <li><a href="">My Teams</a></li>
     <li><a href="">My Tournaments</a></li>
 </ul>
