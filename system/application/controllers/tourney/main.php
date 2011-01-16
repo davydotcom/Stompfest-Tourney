@@ -18,26 +18,40 @@ class Main extends ApplicationController
 
         foreach ( $xTourn as &$xI_Tourn )
             {
-            if ( $this->isLoggedIn &&
-                 $xNow >= strtotime($xI_Tourn->registrationOpensAt) &&
-                 $xNow <= strtotime($xI_Tourn->registrationClosesAt) )
+            if ( $this->isLoggedIn === false )
                 {
-                if ( $this->IAmRegistered($xI_Tourn->tourneyID) )
-                    {
-                    $xI_Tourn->Status = "";
-                    }
-                else
-                    {
-                    if ( !empty($xI_Tourn->maxTeams) && $xI_Tourn->maxTeams >= $this->tourney->TeamsRegistered($xI_Tourn->tourneyID) )
-                        {
-                        $xI_Tourn->Status = "<b>Full</b>";
-                        }
-                    else
-                        {
-                        $xI_Tourn->Status = sprintf('<a href="/tourney/main/register/%s">Register</a>', $xI_Tourn->tourneyID);
-                        }
-                    }
+                $xI_Tourn->Status = "";
+                continue;
                 }
+
+            if ( $this->IAmRegistered($xI_Tourn->tourneyID) )
+                {
+                $xI_Tourn->Status = "";
+                continue;
+                }
+
+            $xOpen = strtotime($xI_Tourn->registrationOpensAt);
+            $xClos = strtotime($xI_Tourn->registrationClosesAt);
+
+            if ( $xNow < $xOpen )
+                {
+                $xI_Tourn->Status = "Opens at " . date("j/n/Y @ g:i A", $xOpen);
+                continue;
+                }
+
+            if ( $xNow > $xClos )
+                {
+                $xI_Tourn->Status = "Closed";
+                continue;
+                }
+
+            if ( !empty($xI_Tourn->maxTeams) && $xI_Tourn->maxTeams >= $this->tourney->TeamsRegistered($xI_Tourn->tourneyID) )
+                {
+                $xI_Tourn->Status = "<b>Full</b>";
+                continue;
+                }
+
+            $xI_Tourn->Status = sprintf('<a href="/tourney/main/register/%s">Register</a>', $xI_Tourn->tourneyID);
             }
 
         $this->mysmarty->view("tourney/main/index", array("Tourneys" => $xTourn));
@@ -57,7 +71,7 @@ class Main extends ApplicationController
         {
         $this->load->model("tourney");
 
-        $xTourn = $this->tourney->findByID($iTourneyID);
+        $xTourn = $this->tourney->GetFullTourney($iTourneyID);
         if ( empty($xTourn) )
             {
             $this->index();

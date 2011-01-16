@@ -11,6 +11,20 @@ class Tourney extends SFModel
         $this->primaryKeyName = 'tourneyID';
         }
 
+    function GetFullTourney($iTourneyID)
+        {
+        $xSQL = "SELECT *
+                   FROM tourneys
+             INNER JOIN games ON games.gameID = tourneys.gameID
+                  WHERE tourneys.tourneyID = ?";
+
+        $xQuery = $this->db->query($xSQL, array($iTourneyID));
+        if ( $xQuery->num_rows == 0 )
+            return null;
+
+        return $xQuery->row();
+        }
+
     function TeamsRegistered($iTourneyID)
         {
         $this->db->where("tourneyID", $iTourneyID);
