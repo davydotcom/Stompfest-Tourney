@@ -2,7 +2,6 @@
 
 class SFModel extends Model
     {
-
     function __construct()
         {
         parent::__construct();
@@ -39,7 +38,7 @@ class SFModel extends Model
     function where($optons = array())
         {
         if ( empty($options) )
-            return self;
+            return $this;
 
         $this->applyOptions(array('conditions' => $options));
 
@@ -105,10 +104,20 @@ class SFModel extends Model
         {
         $query = $this->db->get($this->tableName, 1);
 
-        if ( $query->num_rows != 0 )
-            return $query->row();
+        if ( $query->num_rows == 0 )
+            return null;
 
-        return null;
+        return $query->row();
+        }
+
+    function CanFind($iWhere = null)
+        {
+        if ( !empty($iWhere) )
+            $this->where($iWhere);
+
+        $xDude = $this->first();
+
+        return !empty($xDude);
         }
 
     public static function pluralize($string)
