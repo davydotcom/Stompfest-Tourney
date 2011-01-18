@@ -15,4 +15,8 @@ class tourney_team extends SFModel
         {
         return $this->find();
         }
+
+    function GetMyTeams()
+        {
+        }
     }

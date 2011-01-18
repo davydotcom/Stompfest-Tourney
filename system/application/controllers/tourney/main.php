@@ -62,9 +62,9 @@ class Main extends ApplicationController
         if ( $this->isLoggedIn === false )
             return false;
 
-        $this->load->model("tourney");
+        $this->load->model("tourney_gamer");
 
-        return !$this->tourney->CanFind(array("tourneyID" => $iTournyID, "userID" => $this->currentUser->userID));
+        return $this->tourney_gamer->CanFind(array("tourneyID" => $iTournyID, "userID" => $this->currentUser->userID));
         }
 
     function register($iTourneyID)

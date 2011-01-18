@@ -4,8 +4,10 @@
 {block name=main_content_right}
 <ul>
     <li><a href="/profile/edit">Edit Profile</a></li>
-    <li><a href="">My Teams</a></li>
-    <li><a href="">My Tournaments</a></li>
+    {if !empty($UserData.IAmCaptain)}
+        <li><a href="/profile/myTeams">My Teams</a></li>
+    {/if}
+    <li><a href="/profile/myTourney">My Tournaments</a></li>
 </ul>
 {/block}
 {block name=main_content}

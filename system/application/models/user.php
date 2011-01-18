@@ -28,13 +28,22 @@ class User extends SFModel
         return null;
         }
 
-    function findByUserID($userID)
+    function findByUserID($iUserID)
         {
-        $this->db->where("userID", $userID);
+        $this->db->where("userID", $iUserID);
 
         $xQuery = $this->db->get("users");
         if ( $xQuery->num_rows == 1 )
-            return $xQuery->row();
+            {
+            $xUser = $xQuery->row();
+
+            $this->db->where("captainID", $iUserID);
+            $this->db->from("tourney_teams");
+
+            $xUser->IAmCaptain = ($this->db->count_all_results() != 0);
+
+            return $xUser;
+            }
 
         return null;
         }

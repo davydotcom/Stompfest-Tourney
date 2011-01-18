@@ -45,7 +45,7 @@
 				<ul id="left_navigation">
 					<li><a href="#" class="active">Overview</a></li>
                     {if $isLoggedIn == true}
-                        <li><a href="/profile">Profile</a></li>
+                        <li><a href="/profile/main">Profile</a></li>
                     {/if}
 					<li><a href="/tourney/main">Tournaments</a></li>
 					<li><a href="#">Support</a></li>

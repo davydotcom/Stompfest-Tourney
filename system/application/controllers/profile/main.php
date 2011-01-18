@@ -1,7 +1,7 @@
 <?php
 require_once(APPPATH . "/controllers/application.php");
 
-class Profile extends ApplicationController
+class Main extends ApplicationController
     {
     function  __construct()
         {
@@ -33,7 +33,7 @@ class Profile extends ApplicationController
         if ( $this->user->update($this->currentUser->userID, $_POST) )
             {
             $this->session->set_flashdata('notice', 'User information successfully saved.');
-            redirect("/profile");
+            redirect("/profile/main");
             }
         else
             {

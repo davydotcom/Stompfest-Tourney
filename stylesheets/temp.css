@@ -20,18 +20,18 @@
     font-size: 14px;
 	color: #000000;
 	padding: 2px 8px;
-	background: -moz-linear-gradient(top, #ededed 0%, #aaaaad);
-	background: -webkit-gradient(linear, left top, left bottom, from(#ededed), to(#aaaaad));
+	background: -moz-linear-gradient(top, #ededed 0%, #ff3333);
+	background: -webkit-gradient(linear, left top, left bottom, from(#ededed), to(#ff3333));
 	border-radius: 6px;
 	-moz-border-radius: 10px;
 	-webkit-border-radius: 10px;
 	border: 2px solid #8d8f8c;
-    }
+}
 
 .MyButton:hover
     {
-	background: -moz-linear-gradient(top, #aaaaad, #ededed 0%);
-	background: -webkit-gradient(linear, left top, left bottom, from(#aaaaad), to(#ededed));
+	background: -moz-linear-gradient(top, #ff3333, #ededed 0%);
+	background: -webkit-gradient(linear, left top, left bottom, from(#ff3333), to(#ededed));
     }
 
 .Instructions

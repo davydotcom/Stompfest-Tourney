@@ -94,12 +94,12 @@ class Team extends ApplicationController
     function Honk($iMessage)
         {
         $this->session->set_flashdata('error', $iMessage);
-        redirect("/profile");
+        redirect("/profile/main");
         }
 
     function GoodToGo($iMessage)
         {
         $this->session->set_flashdata("notice", $iMessage);
-        redirect("/profile");
+        redirect("/profile/main");
         }
     }

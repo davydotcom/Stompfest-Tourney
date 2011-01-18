@@ -22,7 +22,7 @@
         <h3>{$Tourney->name}</h3>
         <hr />
         <form action="/tourney/team/DoIt" method="post">
-            <input type="hidden" id="tourneyID" value="{$Tourney->tourneyID}" />
+            <input type="hidden" id="tourneyID" name="tourneyID" value="{$Tourney->tourneyID}" />
             <table>
                 {if !empty($Tourney->photo_file_name)}
                     <tr><td colspan="2"><img src="{$Tourney->photo_file_name}" /></td></tr>
