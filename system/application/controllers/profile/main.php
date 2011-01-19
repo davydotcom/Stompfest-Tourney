@@ -13,7 +13,7 @@ class Main extends ApplicationController
     function index()
         {
         $this->mysmarty->assign("UserData", get_object_vars($this->currentUser));
-        $this->mysmarty->view('profile/index');
+        $this->mysmarty->view('/profile/index');
         }
 
     function view()
@@ -23,7 +23,7 @@ class Main extends ApplicationController
     function edit()
         {
         $this->mysmarty->assign("UserData", get_object_vars($this->currentUser));
-        $this->mysmarty->view("profile/edit");
+        $this->mysmarty->view("/profile/edit");
         }
 
     function update()

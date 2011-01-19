@@ -2,7 +2,7 @@
 
 require_once(APPPATH . "/controllers/application.php");
 
-class MyTourney extends ApplicationController
+class MyTeams extends ApplicationController
     {
     function  __construct()
         {
