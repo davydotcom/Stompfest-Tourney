@@ -8,7 +8,15 @@ body
     min-width:960px;
 }
 
-
+a, a:visited
+{
+    color:#700;
+    text-decoration:none
+}
+a:hover
+{
+    color:#f00;
+}
 /*Header Style Information*/
 #header 
 {
@@ -223,4 +231,68 @@ label
 {
     font-weight:bold;
     color:#333;
+}
+
+.admin_table
+{
+	margin-top:10px;
+	width:100%;
+	border-spacing: 0;
+	background:#ccc;
+
+	border:1px solid #eee;
+	-moz-border-radius:10px;
+    -webkit-border-radius:10px;
+	border-radius: 10px;
+}
+
+.admin_table th,
+.admin_table td
+{
+	padding-left:5px;
+}
+.admin_table thead th
+{
+	margin:0;
+
+	height:25px;
+	color:#000;
+	text-align:left;
+	padding-left:5px;
+
+}
+.admin_table thead tr
+{
+/*	background:#bbb;
+	background: #bbb -webkit-gradient(linear, left top, left bottom, from(#ddd), to(#bbbbbb)) ;
+    background: -moz-linear-gradient(top, #ddd 0%, #bbbbbb 100%);
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#ffcccccc,endColorstr=#ffbbbbbb);
+    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#ffcccccc,endColorstr=#ffbbbbbb)";*/
+
+}
+
+.admin_table tfoot tr td
+{
+	height:20px;
+}
+.admin_table tbody tr
+{
+	background:#fff;
+}
+.admin_table tbody td
+{
+	padding-top:10px;
+	padding-bottom:10px;
+	min-height:30px;
+	font-size:12px;
+	vertical-align:top;
+}
+.admin_table tbody tr:nth-child(even) {
+    color: #000;
+    background: #eef;
+}
+
+.admin_table tbody tr:hover
+{
+	background:#efe;
 }
