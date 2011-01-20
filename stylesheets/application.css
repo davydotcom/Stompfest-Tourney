@@ -163,8 +163,64 @@ body
 	padding-left:10px;
 	margin-left:10px;
 	float: left;
-    background: #600 -webkit-gradient(linear, left top, left bottom, from(#dddeda), to(#eeefeb)) ;
-    background: -moz-linear-gradient(top,  #dddeda,  #eeefeb);
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#dddeda', endColorstr='#eeefeb');
+/*    background: #600 -webkit-gradient(linear, left top, left bottom, from(#dddeda), to(#eeefeb)) ;
+    background: -moz-linear-gradient(top,  #dddeda,  #eeefeb);*/
+/*    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#dddeda', endColorstr='#eeefeb');*/
+    border-left: 1px solid #ddd;
     font-weight: bold;
     }
+
+
+/*Admin Navigation*/
+#contextual_actions
+{
+	list-style-type:none;
+        padding:5px;
+}
+#contextual_actions a,
+#contextual_actions a:visited
+{
+	color:#fff;
+	display:block;
+	text-decoration:none;
+	padding: 10px 10px 10px 10px;
+	margin-top:5px;
+	font-weight:normal;
+	font-size:14px;
+	/*text-shadow: 0px 1px 2px #000;*/
+	text-align:center;
+	-moz-border-radius:5px;
+    -webkit-border-radius:5px;
+    border-radius: 5px;
+
+	background: #666;
+	background: #666 -webkit-gradient(linear, left top, left bottom, from(#999), to(#333)) ;
+    background: -moz-linear-gradient(top, #999 0%, #333 100%);
+}
+#contextual_actions a.active,
+#contextual_actions a:hover
+{
+	background:#333;
+	background: #333 -webkit-gradient(linear, left top, left bottom, from(#666), to(#000)) ;
+    background: -moz-linear-gradient(top, #666666 0%, #000000 100%);
+
+}
+#contextual_actions a img
+{
+	float:left;
+}
+
+.right_floated
+{
+    float:right;
+}
+.left_floated
+{
+    float:left;
+}
+
+label
+{
+    font-weight:bold;
+    color:#333;
+}

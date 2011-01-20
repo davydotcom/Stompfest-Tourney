@@ -3,8 +3,8 @@
 {block name=title}Stompfest Tournament | {$UserData.handle}{/block}
 
 {block name=main_content_right}
-<ul>
-    <li><b>Edit Profile</b></li>
+<ul id="contextual_actions">
+    <li><a href="#" class="active">Edit Profile</a></li>
     {if !empty($UserData.IAmCaptain)}
         <li><a href="/profile/myTeams">My Teams</a></li>
     {/if}
@@ -36,7 +36,7 @@
 
 </script>
 
-<form method="post" action="/profile/update">
+<form method="post" action="/profile/main/update">
     <table class="DataDisplay">
         <tr>
             <td class="DataLabel">Handle:</td>

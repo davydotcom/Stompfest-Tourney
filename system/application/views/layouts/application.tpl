@@ -59,9 +59,12 @@
 					<div id="main_content_right">
 						{block name=main_content_right}Right Bar Content Here!{/block}
 					</div>
+                                    <br style="clear:both;"/>
 				</div>
 			</div>
+                    <br style="clear:both;"/>
 		</div>
+
         <div class="Footer">Stompfest Tournament Manager was designed and written by Brad Worrell-Smith, David Estes and Ron Rebennack</div
 
     </body>
