@@ -4,7 +4,7 @@
 
 {block name=main_content_right}
 <ul>
-    <li><a href="/profile/edit">Edit Profile</a></li>
+    <li><a href="/profile/main/edit">Edit Profile</a></li>
     {if !empty($UserData.IAmCaptain)}
         <li><a href="/profile/myTeams">My Teams</a></li>
     {/if}
@@ -14,5 +14,18 @@
 {/block}
 
 {block name=main_content}
-
+{if empty($MyTeams)}
+    <div class="GamerNoTourney">You have not registered for any tournaments.</div>
+{else}
+    {foreach $MyTeams as $xTeam}
+        <div class="GamerTourney">
+            {$xTeam.name}
+            {if $xTeam.lookingForTeam == 0}
+                
+            {else}
+                <p>Looking for a Team... <a href="/profile/myTourney/dropOut/{$xTeam.tourneyID}">Cancel</a></p>
+            {/if}
+        </div>
+    {/foreach}
+{/if}
 {/block}
