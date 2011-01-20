@@ -68,7 +68,7 @@ class Games extends AdminApplicationController
             }
         }
 
-    function delete($id)
+    function destroy($id)
         {
         $this->load_model_or_fail($id);
 

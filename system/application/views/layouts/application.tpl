@@ -7,7 +7,7 @@
 		<link href="/stylesheets/application.css" media="screen" rel="stylesheet" type="text/css" />
         <link href="/stylesheets/temp.css" media="screen" rel="stylesheet" type="text/css" />
         <script LANGUAGE="JavaScript" SRC="/javascripts/JQuery.js"></script>
-        <script LANGUAGE="JavaScript" SRC="/javascripts/SF.js"></script>
+        
         <script LANGUAGE="JavaScript" SRC="/javascripts/MaskedInput.js"></script>
 	</head>
 
@@ -28,7 +28,6 @@
                         <p>{$flashNotice}</p>
                     </div>
 
-                    <script>FadeItOut("xFlashNotice");</script>
                 {/if}
                 {if isset($flashWarning)}
                     <div class="flash warning">
@@ -66,6 +65,6 @@
 		</div>
 
         <div class="Footer">Stompfest Tournament Manager was designed and written by Brad Worrell-Smith, David Estes and Ron Rebennack</div
-
+<script LANGUAGE="JavaScript" SRC="/javascripts/SF.js"></script>
     </body>
 </html>
