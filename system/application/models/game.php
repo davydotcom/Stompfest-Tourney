@@ -10,6 +10,12 @@ class Game extends SFModel
         parent::__construct();
 
         $this->primaryKeyName = 'gameID';
+
+        $this->required('name');
+        $this->required('genre');
+        $this->required('short_name');
+        $this->protectedAttribute('gameID');
+        
         }
 
     }

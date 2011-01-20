@@ -40,8 +40,11 @@ class Games extends AdminApplicationController
             }
         else
             {
-            $this->session->set_flashdata('error', 'Error saving game information!.');
-            $this->add();
+            $errors = implode('<br/>',$this->game->errors);
+            $this->session->set_flashdata('error', 'Error saving game information!:<br/>' . $errors);
+            redirect("/admin/games/add");
+
+            //$this->add();
             }
         }
 
