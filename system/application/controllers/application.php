@@ -60,10 +60,10 @@ class ApplicationController extends Controller
             $this->mysmarty->assign('flashNotice', $notice);
 
         if ( !empty($warning) )
-            $this->mysmarty->assign('flashError', $warning);
+            $this->mysmarty->assign('flashWarning', $warning);
 
         if ( !empty($error) )
-            $this->mysmarty->assign('flashWarning', $error);
+            $this->mysmarty->assign('flashError', $error);
         }
 
     }

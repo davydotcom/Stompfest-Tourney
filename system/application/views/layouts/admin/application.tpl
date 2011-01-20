@@ -54,6 +54,7 @@
 					<div id="main_content_right">
 						{block name=main_content_right}{/block}
 					</div>
+                                        <br style="clear:both;"/>
 				</div>
 			</div>
 		</div>

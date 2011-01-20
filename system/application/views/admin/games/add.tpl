@@ -10,7 +10,7 @@
     <form class="sf_form" action="/admin/games/create" method="post">
         {include file="admin/games/_form.tpl"}
 
-        <input type="submit" value="Create new game."/>
+        <input type="submit" value="Create new game."/> or <a href="/admin/games">cancel</a>
     </form>
 
 

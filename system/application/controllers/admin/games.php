@@ -55,6 +55,7 @@ class Games extends AdminApplicationController
     function update($id)
         {
         $this->load_model_or_fail($id);
+        $_POST['description'] = trim($_POST['description']);
         if ( $this->game->update($this->currentGame->gameID, $_POST) )
             {
             $this->session->set_flashdata('notice', 'Game information successfully saved.');

@@ -1,5 +1,5 @@
 {extends file="layouts/admin/application.tpl"}
-{block name=title}New Game | Stompfest Tournament Manager{/block}
+{block name=title}Edit Game | Stompfest Tournament Manager{/block}
 {block name=main_content_right}
 
 {/block}
@@ -10,7 +10,7 @@
     <form class="sf_form" action="/admin/games/update/{$game->gameID}" method="post">
         {include file="admin/games/_form.tpl" game=$game}
 
-        <input type="submit" value="Save game."/>
+        <input type="submit" value="Save game."/> or <a href="/admin/games/show/{$game->gameID}">cancel</a>
     </form>
 
 

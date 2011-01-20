@@ -2,8 +2,8 @@
 
 {block name=title}Stompfest Tournament | {$UserData.handle}{/block}
 {block name=main_content_right}
-<ul>
-    <li><a href="/profile/edit">Edit Profile</a></li>
+<ul id="contextual_actions">
+    <li><a href="/profile/main/edit">Edit Profile</a></li>
     {if !empty($UserData.IAmCaptain)}
         <li><a href="/profile/myTeams">My Teams</a></li>
     {/if}
