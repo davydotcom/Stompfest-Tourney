@@ -1,8 +1,12 @@
 {extends file="layouts/application.tpl"}
 
-{block name=title}Stompfest Tournament | {$UserData.handle}{/block}
+{block name=title}Stompfest Tournament: {$UserData.handle}{/block}
 {block name=main_content_right}
+<<<<<<< HEAD
+<ul>
+=======
 <ul id="contextual_actions">
+>>>>>>> 771039689ca30bd3932adc4a2fb5719f1180746b
     <li><a href="/profile/main/edit">Edit Profile</a></li>
     {if !empty($UserData.IAmCaptain)}
         <li><a href="/profile/myTeams">My Teams</a></li>

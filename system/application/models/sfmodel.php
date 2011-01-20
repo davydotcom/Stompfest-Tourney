@@ -63,7 +63,7 @@ class SFModel extends Model
         return $this->db->affected_rows();
         }
 
-    function destroy($options = array())
+    function delete($options = array())
         {
         if ( !empty($options) )
             $this->applyOptions($options);
