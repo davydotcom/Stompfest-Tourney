@@ -3,7 +3,7 @@
 {block name=title}Stompfest Tournament: My Tournaments{/block}
 
 {block name=main_content_right}
-<ul>
+<ul id="contextual_actions">
     <li><a href="/profile/main/edit">Edit Profile</a></li>
     {if !empty($UserData.IAmCaptain)}
         <li><a href="/profile/myTeams">My Teams</a></li>
