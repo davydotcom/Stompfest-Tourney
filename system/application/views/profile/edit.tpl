@@ -3,13 +3,7 @@
 {block name=title}Stompfest Tournament | {$UserData.handle}{/block}
 
 {block name=main_content_right}
-<ul id="contextual_actions">
-    <li><a href="#" class="active">Edit Profile</a></li>
-    {if !empty($UserData.IAmCaptain)}
-        <li><a href="/profile/myTeams">My Teams</a></li>
-    {/if}
-    <li><a href="/profile/myTourney">My Tournaments</a></li>
-</ul>
+    {include file="profile/links.tpl" xPage="Edit"}
 {/block}
 
 {block name=main_content}
