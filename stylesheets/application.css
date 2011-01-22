@@ -4,14 +4,14 @@ body
     padding: 0;
     font-family: 'Helvetica Neue', Arial, Verdana, sans-serif;
     font-size:13px;
-	background:#333;
+    background:#333;
     min-width:960px;
 }
 
 a, a:visited
 {
-    color:#700;
-    text-decoration:none
+    color: #700;
+    text-decoration: none;
 }
 a:hover
 {
@@ -20,32 +20,32 @@ a:hover
 /*Header Style Information*/
 #header 
 {
-	position:relative;
-	color:#fff;
-	width:940px;
-	margin:10px auto;
-	padding:0px 10px;
+    position:relative;
+    color:#fff;
+    width:940px;
+    margin:10px auto;
+    padding:0px 10px;
 }
 #header h1
 {
-	text-shadow: 0px 2px 2px #000;
+    text-shadow: 0px 2px 2px #000;
 }
 #header h1 span.smaller_header
 {
-	font-size:0.7em;
-	color:#999;
+    font-size:0.7em;
+    color:#999;
 }
 #header #user_navigation
 {
-	position:absolute;
-	top:-18px;
-	background:#fff;
-	list-style-type:none;
-	padding:10px;
-	margin:0 0;
-	right:10px;
-	width:110px;
-	-moz-border-radius-bottomleft:5px;
+    position:absolute;
+    top:-18px;
+    background:#fff;
+    list-style-type:none;
+    padding:10px;
+    margin:0 0;
+    right:10px;
+    width:110px;
+    -moz-border-radius-bottomleft:5px;
     -webkit-border-bottom-left-radius:5px;
     -moz-border-radius-bottomright:5px;
     -webkit-border-bottom-right-radius:5px;
@@ -54,41 +54,40 @@ a:hover
 #header #user_navigation a,
 #header #user_navigation a:visited
 {
-	display:block;
-	float:left;
-	color:#900;
-	padding:2px 5px;
-	text-decoration:none;
+    display:block;
+    float:left;
+    color:#900;
+    padding:2px 5px;
+    text-decoration:none;
 }
 
 /*Flash Message Style*/
 .flash
-{
-
-        background:#C9D0B6;
-        -moz-border-radius:5px;
-    -webkit-border-radius:5px;
+    {
+    background: #C9D0B6;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
     border-radius: 5px;
-        margin: 20px auto;
-        padding:5px 0px;
-        font-size:13px;
-        color:#333;
-        width:960px;
-        clear:both;
-        font-size:16px;
-        text-align:center;
-}
+    margin: 20px auto;
+    padding: 5px 0px;
+    font-size: 13px;
+    color: #333;
+    width: 960px;
+    clear: both;
+    font-size: 16px;
+    text-align: center;
+    }
 
 .error
 {
-        color:#fff;
-        background:#AA0000;
+    color:#fff;
+    background:#AA0000;
 }
 .notice
 {
-        color:#fff;
-        background:#0F0;
-        background: #0F0 -webkit-gradient(linear, left top, left bottom, from(#00FF00), to(#00AA00)) ;
+    color:#fff;
+    background:#0F0;
+    background: #0F0 -webkit-gradient(linear, left top, left bottom, from(#00FF00), to(#00AA00)) ;
     background: -moz-linear-gradient(top, #00FF00 0%, #00AA00 100%);
     filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#ff00FF00,endColorstr=#ff00AA00);
     -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#ff00FF00,endColorstr=#ff00AA00)";
@@ -98,124 +97,131 @@ a:hover
 /*End Flash Message Styling*/
 #left_navigation
 {
-	background:#900;
+    background:#900;
     background: #900 -webkit-gradient(linear, left top, 100% 0%, from(#990000), to(#660000)) ;
 
-	min-height:225px;
-	width:160px;
-	margin-top:5px;
-	-moz-border-radius-topleft:5px;
+    min-height:225px;
+    width:160px;
+    margin-top:5px;
+    -moz-border-radius-topleft:5px;
     -webkit-border-top-left-radius:5px;
     -moz-border-radius-bottomleft:5px;
     -webkit-border-bottom-left-radius:5px;
     border-radius: 5px 0px 0 5px;
-	-moz-box-shadow: 3px 3px 10px #000;
-	/* WebKit */
-	-webkit-box-shadow: -3px 3px 10px #000;
-	/* Standard */
-	box-shadow: 3px 3px 10px #000;
-	color:#fff;
-	list-style-type:none;
-	font-weight:bold;
-	font-size:1em;
-	padding: 5px 0px;
+    -moz-box-shadow: 3px 3px 10px #000;
+    /* WebKit */
+    -webkit-box-shadow: -3px 3px 10px #000;
+    /* Standard */
+    box-shadow: 3px 3px 10px #000;
+    color:#fff;
+    list-style-type:none;
+    font-weight:bold;
+    font-size:1em;
+    padding: 5px 0px;
 }
 #left_navigation li a,
 #left_navigation li a:visited
 {
-	display:block;
-	color:#fff;
-	text-decoration:none;
-	font-size:1.25em;
-	padding:5px 10px;
+    display:block;
+    color:#fff;
+    text-decoration:none;
+    font-size:1.25em;
+    padding:5px 10px;
     border-top: 2px solid transparent;
-	border-bottom:2px solid transparent;
+    border-bottom:2px solid transparent;
 }
 #left_navigation li a:hover,
 #left_navigation li a.active
 {
-	background: #600 -webkit-gradient(linear, left top, 100% 0%, from(#660000), to(#330000)) ;
+    background: #600 -webkit-gradient(linear, left top, 100% 0%, from(#660000), to(#330000)) ;
     border-top: 2px solid #400;
-	border-bottom:2px solid #400;
+    border-bottom:2px solid #400;
 }
 
 #main_content
-    {
-	min-height:300px;
-	background:#eeefeb;
-	border: 1px solid #eee;
+{
+    min-height:300px;
+    background:#eeefeb;
+    border: 1px solid #eee;
     -moz-border-radius:5px;
     -webkit-border-radius:5px;
     border-radius: 5px;
-	/* For IE 5.5 - 7 */
+    /* For IE 5.5 - 7 */
 
-	filter: progid:DXImageTransform.Microsoft.Shadow(Strength=10, Direction=135, Color='#000000');
-	/* For IE 8 */
-	-ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=10, Direction=135, Color='#000000')";
-	padding: 10px 15px;
-	/* Firefox */
-	-moz-box-shadow: 3px 3px 10px #000;
-	/* WebKit */
-	-webkit-box-shadow: -3px 3px 10px #000;
-	/* Standard */
-	box-shadow: 3px 3px 10px #000;
+    filter: progid:DXImageTransform.Microsoft.Shadow(Strength=10, Direction=135, Color='#000000');
+    /* For IE 8 */
+    -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=10, Direction=135, Color='#000000')";
+    padding: 10px 15px;
+    /* Firefox */
+    -moz-box-shadow: 3px 3px 10px #000;
+    /* WebKit */
+    -webkit-box-shadow: -3px 3px 10px #000;
+    /* Standard */
+    box-shadow: 3px 3px 10px #000;
 }
 #main_content_left
 {
-	width:550px;
-	float:left;
+    width:550px;
+    float:left;
 }
 #main_content_right
-    {
-	width:170px;
-	padding-left:10px;
-	margin-left:10px;
-	float: left;
-/*    background: #600 -webkit-gradient(linear, left top, left bottom, from(#dddeda), to(#eeefeb)) ;
-    background: -moz-linear-gradient(top,  #dddeda,  #eeefeb);*/
-/*    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#dddeda', endColorstr='#eeefeb');*/
+{
+    width:170px;
+    padding-left:10px;
+    margin-left:10px;
+    float: left;
+    /*    background: #600 -webkit-gradient(linear, left top, left bottom, from(#dddeda), to(#eeefeb)) ;
+        background: -moz-linear-gradient(top,  #dddeda,  #eeefeb);*/
+    /*    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#dddeda', endColorstr='#eeefeb');*/
     border-left: 1px solid #ddd;
     font-weight: bold;
-    }
+}
 
 
 /*Admin Navigation*/
 #contextual_actions
 {
-	list-style-type:none;
-        padding:5px;
+    list-style-type:none;
+    padding:5px;
 }
+
 #contextual_actions a,
 #contextual_actions a:visited
 {
-	color:#fff;
-	display:block;
-	text-decoration:none;
-	padding: 10px 10px 10px 10px;
-	margin-top:5px;
-	font-weight:normal;
-	font-size:14px;
-	/*text-shadow: 0px 1px 2px #000;*/
-	text-align:center;
-	-moz-border-radius:5px;
+    color:#fff;
+    display:block;
+    text-decoration:none;
+    padding: 5px 5px 5px 5px;
+    margin-top:5px;
+    font-size:14px;
+    /*text-shadow: 0px 1px 2px #000;*/
+    text-align:center;
+    -moz-border-radius:5px;
     -webkit-border-radius:5px;
+    border-color: #330000;
+    border-style: solid;
+    border-width: 2px;
     border-radius: 5px;
-
-	background: #666;
-	background: #666 -webkit-gradient(linear, left top, left bottom, from(#999), to(#333)) ;
+    background: #666;
+    background: #666 -webkit-gradient(linear, left top, left bottom, from(#999), to(#333)) ;
     background: -moz-linear-gradient(top, #999 0%, #333 100%);
 }
+
 #contextual_actions a.active,
 #contextual_actions a:hover
 {
-	background:#333;
-	background: #333 -webkit-gradient(linear, left top, left bottom, from(#666), to(#000)) ;
+    background:#333;
+    background: #333 -webkit-gradient(linear, left top, left bottom, from(#666), to(#000)) ;
     background: -moz-linear-gradient(top, #666666 0%, #000000 100%);
-
+    border-style: solid;
+    border-color: #ff0000;
+    border-width: 2px;
+    font-weight: bold;
 }
+
 #contextual_actions a img
 {
-	float:left;
+    float:left;
 }
 
 .right_floated
@@ -235,57 +241,57 @@ label
 
 .admin_table
 {
-	margin-top:10px;
-	width:100%;
-	border-spacing: 0;
-	background:#ccc;
+    margin-top:10px;
+    width:100%;
+    border-spacing: 0;
+    background:#ccc;
 
-	border:1px solid #eee;
-	-moz-border-radius:10px;
+    border:1px solid #eee;
+    -moz-border-radius:10px;
     -webkit-border-radius:10px;
-	border-radius: 10px;
+    border-radius: 10px;
 }
 
 .admin_table th,
 .admin_table td
 {
-	padding-left:5px;
+    padding-left:5px;
 }
 .admin_table thead th
 {
-	margin:0;
+    margin:0;
 
-	height:25px;
-	color:#000;
-	text-align:left;
-	padding-left:5px;
+    height:25px;
+    color:#000;
+    text-align:left;
+    padding-left:5px;
 
 }
 .admin_table thead tr
 {
-/*	background:#bbb;
+    /*	background:#bbb;
 	background: #bbb -webkit-gradient(linear, left top, left bottom, from(#ddd), to(#bbbbbb)) ;
-    background: -moz-linear-gradient(top, #ddd 0%, #bbbbbb 100%);
-    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#ffcccccc,endColorstr=#ffbbbbbb);
-    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#ffcccccc,endColorstr=#ffbbbbbb)";*/
+        background: -moz-linear-gradient(top, #ddd 0%, #bbbbbb 100%);
+        filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#ffcccccc,endColorstr=#ffbbbbbb);
+        -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#ffcccccc,endColorstr=#ffbbbbbb)";*/
 
 }
 
 .admin_table tfoot tr td
 {
-	height:20px;
+    height:20px;
 }
 .admin_table tbody tr
 {
-	background:#fff;
+    background:#fff;
 }
 .admin_table tbody td
 {
-	padding-top:10px;
-	padding-bottom:10px;
-	min-height:30px;
-	font-size:12px;
-	vertical-align:top;
+    padding-top:10px;
+    padding-bottom:10px;
+    min-height:30px;
+    font-size:12px;
+    vertical-align:top;
 }
 .admin_table tbody tr:nth-child(even) {
     color: #000;
@@ -294,5 +300,5 @@ label
 
 .admin_table tbody tr:hover
 {
-	background:#efe;
+    background:#efe;
 }

@@ -8,12 +8,41 @@ class Tourney extends SFModel
         {
         parent::__construct();
  
-        $this->primaryKeyName = 'tourneyID';
+        $this->primaryKeyName = "tourneyID";
+        }
+
+    function GetList()
+        {
+        $xSQL = "SELECT games.description AS gameDesc,
+                        games.short_name,
+                        games.genre,
+                        games.parentGameID,
+                        games.photo_file_name,
+                        games.active,
+                        IF(tourneys.name IS NULL, games.name, tourneys.name) AS showName,
+                        tourneys.*
+                   FROM tourneys
+             INNER JOIN games ON games.gameID = tourneys.gameID
+                  WHERE tourneys.eventID = ? AND
+                        games.active = 1";
+
+        $xQuery = $this->db->query($xSQL, array($this->session->eventID));
+        if ( $xQuery->num_rows == 0 )
+            return null;
+
+        return $xQuery->result();
         }
 
     function GetFullTourney($iTourneyID)
         {
-        $xSQL = "SELECT *
+        $xSQL = "SELECT games.description AS gameDesc,
+                        games.short_name,
+                        games.genre,
+                        games.parentGameID,
+                        games.photo_file_name,
+                        games.active,
+                        IF(tourneys.name IS NULL, games.name, tourneys.name) AS name,
+                        tourneys.*
                    FROM tourneys
              INNER JOIN games ON games.gameID = tourneys.gameID
                   WHERE tourneys.tourneyID = ?";

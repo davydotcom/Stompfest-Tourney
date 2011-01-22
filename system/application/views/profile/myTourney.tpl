@@ -7,16 +7,16 @@
 {/block}
 
 {block name=main_content}
-{if empty($MyTeams)}
+{if empty($MyTourney)}
     <div class="GamerNoTourney">You have not registered for any tournaments.</div>
 {else}
-    {foreach $MyTeams as $xTeam}
+    {foreach $MyTourney as $xTourney}
         <div class="GamerTourney">
-            {$xTeam.name}
-            {if $xTeam.lookingForTeam == 0}
+            {$xTourney->name}
+            {if $xTourney->lookingForTeam == 0}
                 
             {else}
-                <p>Looking for a Team... <a href="/profile/myTourney/dropOut/{$xTeam.tourneyID}">Cancel</a></p>
+                <p>Looking for a Team... <a href="/profile/myTourney/dropOut/{$xTourney->tourneyID}">Cancel</a></p>
             {/if}
         </div>
     {/foreach}

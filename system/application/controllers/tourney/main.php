@@ -14,7 +14,7 @@ class Main extends ApplicationController
         $this->load->model("tourney");
 
         $xNow = time();
-        $xTourn = $this->tourney->find();
+        $xTourn = $this->tourney->GetList();
 
         foreach ( $xTourn as &$xI_Tourn )
             {

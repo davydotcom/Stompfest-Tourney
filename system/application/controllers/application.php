@@ -9,7 +9,7 @@ class ApplicationController extends Controller
 
         date_default_timezone_set("America/Indiana/Indianapolis");
 
-        $this->EventID = 201105;            //  TODO: Get the current event
+        $this->session->eventID = 1;            //  TODO: Get the current event
         $this->controllerName = get_class($this);
         $this->mysmarty->assign('controllerName', $this->controllerName);
 

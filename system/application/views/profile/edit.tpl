@@ -67,6 +67,10 @@
                             </select>
                         </td>
                     </tr>
+                    <tr>
+                        <td>&nbsp;</td>
+                        <td><div class="Instructions">Please consult with your cellular/mobile communications carrier to learn more about the capabilities of your device, web data plans, and charges that may apply to your mobile internet use.</div></td>
+                    </tr>
                 </table>
             </td>
         </tr>

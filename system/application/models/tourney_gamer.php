@@ -34,6 +34,6 @@ class tourney_gamer extends SFModel
         if ( $xQuery->num_rows == 0 )
             return null;
 
-        return $xQuery->row();
+        return $xQuery->result();
         }
     }

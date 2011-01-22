@@ -15,7 +15,7 @@ class MyTourney extends ApplicationController
         {
         $this->load->model("tourney_gamer");
 
-        $this->mysmarty->assign("MyTeams", $this->tourney_gamer->GetMyTourneys());
+        $this->mysmarty->assign("MyTourney", $this->tourney_gamer->GetMyTourneys());
         $this->mysmarty->view("/profile/myTourney");
         }
 

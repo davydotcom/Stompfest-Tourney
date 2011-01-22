@@ -20,7 +20,7 @@
                     <li><a href="/login">Login</a></li>
                 {/if}
 			</ul>
-			<h1>Stompfest <span class="smaller_header">Tournament Manager</span></h1>
+            <h1 onclick="location.href='/'">Stompfest <span class="smaller_header">Tournament Manager</span></h1>
 		</div>
 
                 {if isset($flashNotice)}
