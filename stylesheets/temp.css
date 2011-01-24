@@ -1,65 +1,98 @@
 .Footer
-    {
+{
     left: 0px;
     bottom: 5px;
     position: absolute;
     font-size: 8pt;
     color: #2a0000;
-    }
+}
 
 .DataLabel
     {
     font-weight: bold;
     text-align: right;
     vertical-align: top;
+    padding-right: 5px;
     }
 
 .MyButton
-    {
+{
+    color:#fff;
     cursor: pointer;
-    font-size: 14px;
-	color: #000000;
-	padding: 2px 8px;
-	background: -moz-linear-gradient(top, #ededed 0%, #ff3333);
-	background: -webkit-gradient(linear, left top, left bottom, from(#ededed), to(#ff3333));
-	border-radius: 6px;
-	-moz-border-radius: 10px;
-	-webkit-border-radius: 10px;
-	border: 2px solid #8d8f8c;
+    padding: 5px 5px 5px 5px;
+    font-size:14px;
+    text-align:center;
+    -moz-border-radius:5px;
+    -webkit-border-radius:5px;
+    border-color: #330000;
+    border-style: solid;
+    border-width: 2px;
+    border-radius: 5px;
+    background: #666;
+    background: #666 -webkit-gradient(linear, left top, left bottom, from(#999), to(#333)) ;
+    background: -moz-linear-gradient(top, #999 0%, #333 100%);
 }
 
 .MyButton:hover
-    {
-	background: -moz-linear-gradient(top, #ff3333, #ededed 0%);
-	background: -webkit-gradient(linear, left top, left bottom, from(#ff3333), to(#ededed));
-    }
+{
+    background:#333;
+    background: #333 -webkit-gradient(linear, left top, left bottom, from(#666), to(#000)) ;
+    background: -moz-linear-gradient(top, #666666 0%, #000000 100%);
+    border-style: solid;
+    border-color: #ff0000;
+    border-width: 2px;
+}
 
 .Instructions
-    {
+{
     font-size: .75em;
     font-style: italic;
-    }
+}
 
 .DataDisplay td
-    {
+{
     vertical-align: top;
-    }
+}
 
 .GamerNoTourney
-    {
-    
-    }
+{
+
+}
 
 .TourneyList, .GamerTourney
-    {
+{
     margin-top: 5px;
-	display: block;
+    display: block;
     padding: 3px;
-	-moz-border-radius: 5px;
+    -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
     border-radius: 5px;
-	background: #666 -webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#999999)) ;
+    background: #666 -webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#999999)) ;
     background: -moz-linear-gradient(top, #ffffff 0%, #999999 100%);
     border-style: solid;
     border-width: 1px;
+}
+
+.GamerTourney
+    {
+    margin-top: 5px;
+    display: block;
+    padding: 3px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    background: #666 -webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#999999)) ;
+    background: -moz-linear-gradient(top, #ffffff 0%, #999999 100%);
+    border-style: solid;
+    border-width: 1px;
+    }
+
+.TourneyListDesc
+    {
+    width: 90%;
+    height: 75px;
+    overflow: auto;
+    border-style: inset;
+    border-width: 2px;
+    vertical-align: top;
     }

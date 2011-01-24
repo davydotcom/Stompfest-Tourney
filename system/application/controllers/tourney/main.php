@@ -18,6 +18,32 @@ class Main extends ApplicationController
 
         foreach ( $xTourn as &$xI_Tourn )
             {
+            switch ( $xI_Tourn->tourneyType )
+                {
+                case 0:
+                    $xI_Tourn->Type = "Free For All";
+                    break;
+
+                case 1:
+                    $xI_Tourn->Type = "Team Based";
+                    break;
+
+                case 2:
+                    $xI_Tourn->Type = "1 vs 1";
+                    break;
+                }
+
+            $xOpen = strtotime($xI_Tourn->registrationOpensAt);
+            $xClos = strtotime($xI_Tourn->registrationClosesAt);
+
+            if ( !empty($xOpen) )
+                {
+                $xI_Tourn->Reggy = date("n/j/Y @ g:i A", $xOpen);
+
+                if ( !empty($xClos) )
+                    $xI_Tourn->Reggy .= " - " . date("n/j/Y @ g:i A", $xClos);
+                }
+
             if ( $this->isLoggedIn === false )
                 {
                 $xI_Tourn->Status = "";
@@ -26,16 +52,13 @@ class Main extends ApplicationController
 
             if ( $this->IAmRegistered($xI_Tourn->tourneyID) )
                 {
-                $xI_Tourn->Status = "";
+                $xI_Tourn->Status = "Already reggy";
                 continue;
                 }
 
-            $xOpen = strtotime($xI_Tourn->registrationOpensAt);
-            $xClos = strtotime($xI_Tourn->registrationClosesAt);
-
             if ( $xNow < $xOpen )
                 {
-                $xI_Tourn->Status = "Opens at " . date("j/n/Y @ g:i A", $xOpen);
+                $xI_Tourn->Status = "Opens at " . date("n/j/Y @ g:i A", $xOpen);
                 continue;
                 }
 
