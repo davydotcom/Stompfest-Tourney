@@ -36,4 +36,22 @@ class tourney_gamer extends SFModel
 
         return $xQuery->result();
         }
+
+    function IAmRegistered($iTournyID)
+        {
+        if ( $this->isLoggedIn === false )
+            return 0;
+
+        $this->where(array("tourneyID" => $iTournyID, "userID" => $this->currentUser->userID));
+        $xDude = $this->first();
+
+        if ( empty($xDude) )
+            return 0;
+
+        if ( $xDude->lookingForTeam == 0 )
+            return 1;
+
+        return 2;
+        }
+
     }

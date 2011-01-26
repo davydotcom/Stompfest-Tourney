@@ -12,6 +12,7 @@ class Main extends ApplicationController
     function index()
         {
         $this->load->model("tourney");
+        $this->load->model("tourney_gamer");
 
         $xNow = time();
         $xTourn = $this->tourney->GetList();
@@ -38,10 +39,10 @@ class Main extends ApplicationController
 
             if ( !empty($xOpen) )
                 {
-                $xI_Tourn->Reggy = date("n/j/Y @ g:i A", $xOpen);
+                $xI_Tourn->ReggyAt = date("n/j/Y @ g:i A", $xOpen);
 
                 if ( !empty($xClos) )
-                    $xI_Tourn->Reggy .= " - " . date("n/j/Y @ g:i A", $xClos);
+                    $xI_Tourn->ReggyAt .= " - " . date("n/j/Y @ g:i A", $xClos);
                 }
 
             if ( $this->isLoggedIn === false )
@@ -50,9 +51,21 @@ class Main extends ApplicationController
                 continue;
                 }
 
-            if ( $this->IAmRegistered($xI_Tourn->tourneyID) )
+            $xMyStat = $this->tourney_gamer->IAmRegistered($xI_Tourn->tourneyID);
+
+            if ( !empty($xMyStat) )
                 {
-                $xI_Tourn->Status = "Already reggy";
+                if ( $xMyStat == 1 )
+                    {
+                    $xI_Tourn->Next = "R";
+                    $xI_Tourn->Status = "Registered";
+                    }
+                else
+                    {
+                    $xI_Tourn->Next = "L";
+                    $xI_Tourn->Status = "Looking for a Team";
+                    }
+
                 continue;
                 }
 
@@ -68,26 +81,17 @@ class Main extends ApplicationController
                 continue;
                 }
 
-            if ( !empty($xI_Tourn->maxTeams) && $xI_Tourn->maxTeams >= $this->tourney->TeamsRegistered($xI_Tourn->tourneyID) )
+            if ( !empty($xI_Tourn->maxTeams) && $this->tourney->TeamsRegistered($xI_Tourn->tourneyID) >= $xI_Tourn->maxTeams )
                 {
                 $xI_Tourn->Status = "<b>Full</b>";
                 continue;
                 }
 
-            $xI_Tourn->Status = sprintf('<a href="/tourney/main/register/%s">Register</a>', $xI_Tourn->tourneyID);
+            $xI_Tourn->Next = "O";
+            $xI_Tourn->Status = "Open";
             }
 
         $this->mysmarty->view("tourney/main/index", array("Tourneys" => $xTourn));
-        }
-
-    function IAmRegistered($iTournyID)
-        {
-        if ( $this->isLoggedIn === false )
-            return false;
-
-        $this->load->model("tourney_gamer");
-
-        return $this->tourney_gamer->CanFind(array("tourneyID" => $iTournyID, "userID" => $this->currentUser->userID));
         }
 
     function register($iTourneyID)
@@ -125,4 +129,12 @@ class Main extends ApplicationController
             }
         }
 
+    function cancelReggy($iTourneyID)
+        {
+        $this->load->model("tourney_gamer");
+
+        $this->tourney_gamer->delete(array("tourneyID" => $iTourneyID, "userID" => $this->currentUser->userID));
+
+        $this->index();
+        }
     }

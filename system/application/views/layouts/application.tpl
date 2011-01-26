@@ -3,10 +3,10 @@
 	<head>
 		<title>{block name=title}Stompfest Tournament Manager{/block}</title>
 
+        <link href="/stylesheets/blitzer/jquery-ui.css" media="screen" rel="stylesheet" type="text/css" />
 		<link href="/stylesheets/960.css" media="screen" rel="stylesheet" type="text/css" />
 		<link href="/stylesheets/application.css" media="screen" rel="stylesheet" type="text/css" />
         <link href="/stylesheets/temp.css" media="screen" rel="stylesheet" type="text/css" />
-        <link href="/stylesheets/blitzer/jquery-ui.css" media="screen" rel="stylesheet" type="text/css" />
 
         <script LANGUAGE="JavaScript" SRC="/javascripts/JQuery.js"></script>
         <script LANGUAGE="JavaScript" SRC="/javascripts/jquery-ui.js"></script>

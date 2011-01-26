@@ -49,7 +49,7 @@ class SFModel extends Model
             }
         }
 
-    function where($optons = array())
+    function where($options = array())
         {
         if ( empty($options) )
             return $this;
@@ -138,8 +138,7 @@ class SFModel extends Model
 
     function first()
         {
-        $query = $this->db->get($this->tableName, 1);
-
+        $query = $this->db->get($this->tableName, 1, 0);
         if ( $query->num_rows == 0 )
             return null;
 
@@ -148,12 +147,9 @@ class SFModel extends Model
 
     function CanFind($iWhere = null)
         {
-        if ( !empty($iWhere) )
-            $this->where($iWhere);
+        $this->where($iWhere);
 
         $xDude = $this->first();
-
-        echo(var_dump($xDude));
 
         return !empty($xDude);
         }
