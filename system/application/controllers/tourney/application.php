@@ -6,7 +6,5 @@ class TourneyApplicationController extends ApplicationController
     function  __construct()
         {
    		parent::__construct();
-
- 
         }
     }

@@ -70,7 +70,8 @@ class Team extends ApplicationController
         $this->load->model("tourney_gamer");
 
         $xA_Team = $_POST;
-        $xA_Team["captainID"] = $this->currentUser->UserID;
+        $xA_Team["eventID"] = $this->session->eventID;
+        $xA_Team["captainID"] = $this->currentUser->userID;
 
         $xTeamID = $this->tourney_team->create($xA_Team);
         if ( empty($xTeamID) )

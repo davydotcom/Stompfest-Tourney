@@ -14,13 +14,12 @@ class tourney_gamer extends SFModel
     function GetMyTourneys()
         {
         $xSQL = "SELECT tourney_gamers.*,
-                        tourneys.name,
                         tourneys.tourneyType,
                         tourneys.description,
                         tourneys.endsAt,
                         tourneys.beginsAt,
                         tourneys.sponsoredBy,
-                        games.name AS gameName,
+                        IF(tourneys.name IS NULL, games.name, tourneys.name) AS showName,
                         games.short_name,
                         games.description AS gameDesc,
                         games.photo_file_name,
@@ -37,12 +36,12 @@ class tourney_gamer extends SFModel
         return $xQuery->result();
         }
 
-    function IAmRegistered($iTournyID)
+    function IAmRegistered($iTourneyID)
         {
         if ( $this->isLoggedIn === false )
             return 0;
 
-        $this->where(array("tourneyID" => $iTournyID, "userID" => $this->currentUser->userID));
+        $this->where(array("tourneyID" => $iTourneyID, "userID" => $this->currentUser->userID));
         $xDude = $this->first();
 
         if ( empty($xDude) )

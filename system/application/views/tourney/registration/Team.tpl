@@ -12,9 +12,9 @@
                 return;
 
             if ( xWhat == "T" )
-                xTeam.style.visibility = "visible"
+                xTeam.show();
             else
-                xTeam.style.visibility = "hidden"
+                xTeam.hide();
             }
     </script>
 
@@ -23,14 +23,14 @@
         <hr />
         <form action="/tourney/team/DoIt" method="post">
             <input type="hidden" id="tourneyID" name="tourneyID" value="{$Tourney->tourneyID}" />
-            <table>
+            <table width="100%">
                 {if !empty($Tourney->photo_file_name)}
                     <tr><td colspan="2"><img src="{$Tourney->photo_file_name}" /></td></tr>
                 {/if}
                 {if !empty($Tourney->description)}
                     <tr>
                         <td class="DataLabel">Description:</td>
-                        <td><textarea rows="4" cols="50" readonly="readonly">{$Tourney->description}</textarea></td>
+                        <td><span class="TourneyListDesc">{$Tourney->description}</span></td>
                     </tr>
                 {/if}
                 {if !empty($Tourney->genre)}
@@ -43,7 +43,6 @@
                     <td class="DataLabel">Current # of Team:</td>
                     <td>{$NumTeams}</td>
                 </tr>
-                <tr><td colspan="2"><hr /></td></tr>
                 <tr>
                     <td class="DataLabel">I want to:</td>
                     <td>
@@ -58,14 +57,15 @@
                         {if $NumTeams != 0}
                             <select id="teamID" name="teamID">
                                 {foreach $Teams as $xTeam}
-                                    <option value="{$xTeam.teamID}">{$xTeam.teamName}</option>
+                                    <option value="{$xTeam->teamID}">{$xTeam->teamName}</option>
                                 {/foreach}
                             </select>
                         {/if}
                     </td>
                 </tr>
+                <tr><td colspan="2"><hr /></td></tr>
                 <tr>
-                    <td colspan="2">
+                    <td colspan="2" align="center">
                         <input type="submit" class="MyButton" value="Go for It!" title="Go for it" />
                     </td>
                 </tr>

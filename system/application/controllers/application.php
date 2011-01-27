@@ -9,8 +9,12 @@ class ApplicationController extends Controller
 
         date_default_timezone_set("America/Indiana/Indianapolis");
 
-        $this->session->eventID = 1;            //  TODO: Get the current event
+        $xA_CurrPage = split("/", $_SERVER["REQUEST_URI"]);
+
+        $this->session->eventID = 1;                    //  TODO: Get the current event
         $this->controllerName = get_class($this);
+
+        $this->mysmarty->assign("CurrPage", $xA_CurrPage[1]);
         $this->mysmarty->assign('controllerName', $this->controllerName);
 
         $this->loadFlashMessages();

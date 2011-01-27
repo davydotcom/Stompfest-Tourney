@@ -108,11 +108,11 @@ class Main extends ApplicationController
         switch ( $xTourn->tourneyType )
             {
             case 0:
-                $this->mysmarty->view("tourney/register/FFA");
+                $this->mysmarty->view("/tourney/register/FFA");
                 break;
 
             case 2:
-                $this->mysmarty->view("tourney/register/1v1");
+                $this->mysmarty->view("/tourney/register/1v1");
                 break;
 
             default:
@@ -124,7 +124,7 @@ class Main extends ApplicationController
                                  "Tourney" => $xTourn,
                                  "NumTeams" => sizeof($xA_Teams));
 
-                $this->mysmarty->view("tourney/registration/Team", $xA_Data);
+                $this->mysmarty->view("/tourney/registration/Team", $xA_Data);
                 break;
             }
         }
@@ -135,6 +135,6 @@ class Main extends ApplicationController
 
         $this->tourney_gamer->delete(array("tourneyID" => $iTourneyID, "userID" => $this->currentUser->userID));
 
-        $this->index();
+        $this->mysmarty->view("/profile/index", $this->currentUser);
         }
     }

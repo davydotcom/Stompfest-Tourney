@@ -12,12 +12,17 @@
 {else}
     {foreach $MyTourney as $xTourney}
         <div class="GamerTourney">
-            {$xTourney->name}
-            {if $xTourney->lookingForTeam == 0}
-                
-            {else}
-                <p>Looking for a Team... <a href="/profile/myTourney/dropOut/{$xTourney->tourneyID}">Cancel</a></p>
-            {/if}
+            <table width="100%">
+                <tr>
+                    <td><b>{$xTourney->showName}</b></td>
+                    <td align="right">
+                        {if $xTourney->lookingForTeam == 0}
+                        {else}
+                            Looking for a Team... <a href="/profile/myTourney/dropOut/{$xTourney->tourneyID}">Cancel</a>
+                        {/if}
+                    </td>
+                </tr>
+            </table>
         </div>
     {/foreach}
 {/if}

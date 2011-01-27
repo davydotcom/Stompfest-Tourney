@@ -77,9 +77,8 @@ class SFModel extends Model
     function create($options = array())
         {
         if ( !$this->validate($options) )
-            {
             return false;
-            }
+
         $this->db->insert($this->tableName, $options);
 
         return $this->db->insert_id();
@@ -102,7 +101,7 @@ class SFModel extends Model
     function delete($options = array())
         {
         if ( !empty($options) )
-            $this->applyOptions($options);
+            $this->where($options);
 
         $this->db->delete($this->tableName);
         }

@@ -44,12 +44,12 @@
 		<div id="content_wrapper" class="container_12">
 			<div id="left_navigation_wrapper" class="grid_2">
 				<ul id="left_navigation">
-					<li><a href="#" class="active">Overview</a></li>
+					<li><a href="/" {if empty($CurrPage)}class="active"{/if}>Overview</a></li>
                     {if $isLoggedIn == true}
-                        <li><a href="/profile/main">Profile</a></li>
+                        <li><a href="/profile/main" {if $CurrPage == "profile"}class="active"{/if}>Profile</a></li>
                     {/if}
-					<li><a href="/tourney/main">Tournaments</a></li>
-					<li><a href="#">Support</a></li>
+					<li><a href="/tourney/main" {if $CurrPage == "tourney"}class="active"{/if}>Tournaments</a></li>
+					<li><a href="#" {if $CurrPage == "support"}class="active"{/if}>Support</a></li>
 				</ul>
 			</div>
 			<div id="main_content_wrapper" class="grid_10">
