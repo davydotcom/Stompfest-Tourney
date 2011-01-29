@@ -11,6 +11,7 @@
         <script LANGUAGE="JavaScript" SRC="/javascripts/JQuery.js"></script>
         <script LANGUAGE="JavaScript" SRC="/javascripts/jquery-ui.js"></script>
         <script LANGUAGE="JavaScript" SRC="/javascripts/MaskedInput.js"></script>
+        <script LANGUAGE="JavaScript" SRC="/javascripts/SF.js"></script>
 	</head>
 
 	<body>
@@ -67,6 +68,5 @@
 		</div>
 
         <div class="Footer">Stompfest Tournament Manager was designed and written by Brad Worrell-Smith, David Estes and Ron Rebennack</div
-<script LANGUAGE="JavaScript" SRC="/javascripts/SF.js"></script>
     </body>
 </html>

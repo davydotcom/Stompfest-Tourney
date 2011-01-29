@@ -19,7 +19,7 @@
     </script>
 
     <div class="TourneyShow">
-        <h3>{$Tourney->name}</h3>
+        <h3>{$Tourney->showName}</h3>
         <hr />
         <form action="/tourney/team/DoIt" method="post">
             <input type="hidden" id="tourneyID" name="tourneyID" value="{$Tourney->tourneyID}" />
@@ -72,7 +72,4 @@
             </table>
         </form>
     </div>
-    
-    <table>
-    </table>
 {/block}

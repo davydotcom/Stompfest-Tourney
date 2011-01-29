@@ -1,8 +1,37 @@
 {extends file="layouts/application.tpl"}
 
 {block name=title}Stompfest Tournament: Add Team{/block}
+
 {block name=main_content}
-    <h3>Add a Team - {$Tourney->name}</h3>
+<script>
+    function ValidateData()
+        {
+        var xTeam = $("#teamName");
+
+        if ( IsEmpty(xTeam.val()) )
+            {
+            ErrorShow(xTeam, "Team Name is required");
+
+            xTeam.focus();
+            return;
+            }
+
+        $.ajax(
+            {
+            url: "/tourney/team/ValidateTeam/",
+            type: "POST",
+            data: xTeam.val(),
+            success: function(iData){ ValidReturn(iData); }
+            });
+        }
+
+    function ValidReturn(iData)
+        {
+        alert(iData);
+        }
+</script>
+
+    <h3>Add a Team - {$Tourney->showName}</h3>
     <hr />
     <form action="/tourney/team/saveNew" method="post" enctype="multipart/form-data">
         <input type="hidden" id="tourneyID" name="tourneyID" value="{$Tourney->tourneyID}" />
@@ -20,7 +49,7 @@
                 <td><input type="file" id="teamIcon" name="teamIcon" maxlength="50" size="40" class="MyButton" /></td>
             </tr>
             <tr><td colspan="2"><hr /></td></tr>
-            <tr><td colspan="2" align="center"><input type="submit" value="Save" class="MyButton" title="Save this Team" /></td></tr>
+            <tr><td colspan="2" align="center"><input type="button" value="Save" class="MyButton" title="Save this Team" onclick="Javascript:ValidateData();" /></td></tr>
         </table>
     </form>
 {/block}

@@ -94,13 +94,16 @@
                         <td colspan="2" align="center">
                             {if $xTourney->Next == "L" || $xTourney->Next == "R"}
                                 <input type="hidden" id="TourneyID" name="TourneyID" value="{$xTourney->tourneyID}" />
-                                <input type="button" class="MyButton" value="Cancel" onclick="javascript:ConfirmCancel();" title="Cancel my register for this Tournament" />
+                                <input type="button" class="MyButton" value="Cancel Registration" onclick="javascript:ConfirmCancel();" title="Cancel my register for this Tournament" />
                             {/if}
                             {if $xTourney->Next == "L"}
-                                <input type="button" class="MyButton" value="I found a team" onclick="location.href='/tourney/main/register/{$xTourney->tourneyID}'" title="I found a team, let me see the list" /></td>
+                                {if $xTourney->NumTeams > 0}
+                                    <input type="button" class="MyButton" value="I found a team" onclick="location.href='/tourney/main/register/{$xTourney->tourneyID}'" title="I found a team, let me see the list" />
+                                {/if}
+                                <input type="button" class="MyButton" value="Create a new Team" onclick="location.href='/tourney/team/NewTeam/{$xTourney->tourneyID}'" title="Create a new team" />
                             {/if}
                             {if $xTourney->Next == "O"}
-                                <input type="button" class="MyButton" value="Register" onclick="location.href='/tourney/main/register/{$xTourney->tourneyID}'" title="Register for this Tournament" /></td>
+                                <input type="button" class="MyButton" value="Register" onclick="location.href='/tourney/main/register/{$xTourney->tourneyID}'" title="Register for this Tournament" />
                             {/if}
                         </td>
                     </tr>

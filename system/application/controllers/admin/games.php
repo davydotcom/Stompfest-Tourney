@@ -75,7 +75,7 @@ class Games extends AdminApplicationController
         {
         $this->load_model_or_fail($id);
 
-        $this->game->delete(array('conditions' => array('gameID' => $this->currentGame->gameID)));
+        $this->game->delete(array('gameID' => $this->currentGame->gameID));
         $this->session->set_flashdata('notice', 'Game Removed!');
         redirect("/admin/games");
         }

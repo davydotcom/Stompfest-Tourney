@@ -12,7 +12,7 @@ class Main extends ApplicationController
 
     function index()
         {
-        $this->mysmarty->assign("UserData", get_object_vars($this->currentUser));
+        $this->mysmarty->assign("UserData", $this->currentUser);
         $this->mysmarty->view('/profile/index');
         }
 

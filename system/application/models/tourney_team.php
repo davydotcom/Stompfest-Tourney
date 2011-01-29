@@ -11,9 +11,9 @@ class tourney_team extends SFModel
         $this->primaryKeyName = "teamID";
         }
 
-    function GetTeams()
+    function GetTeams($iTourneyID)
         {
-        $this->where(array("eventID" => $this->session->eventID));
+        $this->where(array("eventID" => $this->session->eventID, "tourneyID" => $iTourneyID));
 
         return $this->find();
         }

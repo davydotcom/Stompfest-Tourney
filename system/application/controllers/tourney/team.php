@@ -13,7 +13,7 @@ class Team extends ApplicationController
                 break;
 
             case "N":
-                $this->NewTeam();
+                $this->NewTeam($_POST["tourneyID"]);
                 break;
 
             case "L":
@@ -38,13 +38,14 @@ class Team extends ApplicationController
             $this->GoodToGo("Successfully added as a freelance player.");
         }
 
-    function NewTeam()
+    function NewTeam($iTourneyID)
         {
         $this->load->model("tourney");
 
-        $xTourney = $this->tourney->findByID($_POST["tourneyID"]);
+        $xTourney = $this->tourney->GetFullTourney($iTourneyID);
 
-        $this->mysmarty->view("/tourney/team/add", array("Tourney" => $xTourney));
+        $this->mysmarty->assign("Tourney", $xTourney);
+        $this->mysmarty->view("/tourney/team/add");
         }
 
     function Freelance()
@@ -102,5 +103,10 @@ class Team extends ApplicationController
         {
         $this->session->set_flashdata("notice", $iMessage);
         redirect("/profile/main");
+        }
+
+    function ValidateTeam()
+        {
+        echo(var_dump($_POST));
         }
     }

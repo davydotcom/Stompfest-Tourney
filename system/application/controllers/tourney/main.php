@@ -27,6 +27,7 @@ class Main extends ApplicationController
 
                 case 1:
                     $xI_Tourn->Type = "Team Based";
+                    $xI_Tourn->NumTeams = $this->tourney->TeamsRegistered($xI_Tourn->tourneyID);
                     break;
 
                 case 2:
@@ -81,7 +82,7 @@ class Main extends ApplicationController
                 continue;
                 }
 
-            if ( !empty($xI_Tourn->maxTeams) && $this->tourney->TeamsRegistered($xI_Tourn->tourneyID) >= $xI_Tourn->maxTeams )
+            if ( !empty($xI_Tourn->maxTeams) && $xI_Tourn->NumTeams >= $xI_Tourn->maxTeams )
                 {
                 $xI_Tourn->Status = "<b>Full</b>";
                 continue;
@@ -118,7 +119,7 @@ class Main extends ApplicationController
             default:
                 $this->load->model("tourney_team");
 
-                $xA_Teams = $this->tourney_team->GetTeams();
+                $xA_Teams = $this->tourney_team->GetTeams($iTourneyID);
 
                 $xA_Data = array("Teams" => $xA_Teams,
                                  "Tourney" => $xTourn,
@@ -135,6 +136,9 @@ class Main extends ApplicationController
 
         $this->tourney_gamer->delete(array("tourneyID" => $iTourneyID, "userID" => $this->currentUser->userID));
 
-        $this->mysmarty->view("/profile/index", $this->currentUser);
+        $this->session->set_flashdata("notice", "Your registration has been canceled");
+
+        $this->mysmarty->assign("UserData", $this->currentUser);
+        $this->mysmarty->view("/profile/index");
         }
     }

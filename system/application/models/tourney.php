@@ -41,7 +41,7 @@ class Tourney extends SFModel
                         games.parentGameID,
                         games.photo_file_name,
                         games.active,
-                        IF(tourneys.name IS NULL, games.name, tourneys.name) AS name,
+                        IF(tourneys.name IS NULL, games.name, tourneys.name) AS showName,
                         tourneys.*
                    FROM tourneys
              INNER JOIN games ON games.gameID = tourneys.gameID
