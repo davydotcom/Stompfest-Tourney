@@ -11,8 +11,13 @@ class tourney_gamer extends SFModel
         $this->primaryKeyName = "TTID";
         }
 
-    function GetMyTourneys()
+    function GetMyTourneys($iTeamOnly = false)
         {
+        if ( $iTeamOnly === true )
+            $xTeamFilt = " AND tourneys.tourneyType = 1";
+        else
+            $xTeamFilt = "";
+
         $xSQL = "SELECT tourney_gamers.*,
                         tourneys.tourneyType,
                         tourneys.description,
@@ -27,7 +32,7 @@ class tourney_gamer extends SFModel
                    FROM tourney_gamers
              INNER JOIN tourneys ON tourneys.tourneyID = tourney_gamers.tourneyID
              INNER JOIN games ON games.gameID = tourneys.gameID
-                  WHERE tourney_gamers.userID = ?";
+                  WHERE tourney_gamers.userID = ? $xTeamFilt";
 
         $xQuery = $this->db->query($xSQL, array($this->currentUser->userID));
         if ( $xQuery->num_rows == 0 )

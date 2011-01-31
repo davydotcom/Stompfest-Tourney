@@ -45,7 +45,7 @@ a:hover
     margin:0 0;
     right:10px;
     width:110px;
-    -moz-border-radius-bottomleft:5px;
+    font-size: 12px;
     -webkit-border-bottom-left-radius:5px;
     -moz-border-radius-bottomright:5px;
     -webkit-border-bottom-right-radius:5px;

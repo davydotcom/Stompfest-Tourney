@@ -13,5 +13,9 @@ class MyTeams extends ApplicationController
 
     function index()
         {
+        $this->load->model("tourney_gamer");
+
+        $this->mysmarty->assign("MyTeams", $this->tourney_gamer->GetMyTourneys(true));
+        $this->mysmarty->view('/profile/myTeams');
         }
     }

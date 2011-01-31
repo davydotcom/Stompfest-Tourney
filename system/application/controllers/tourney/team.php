@@ -107,6 +107,14 @@ class Team extends ApplicationController
 
     function ValidateTeam()
         {
-        echo(var_dump($_POST));
+        $this->load->model("tourney_team");
+
+        if ( $this->tourney_team->TeamExists($_POST["tourneyID"], $_POST["teamName"]) )
+            {
+            echo("Team already exists for this tournament");
+            return;
+            }
+
+        echo("GOOD");
         }
     }

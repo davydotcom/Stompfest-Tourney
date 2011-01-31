@@ -37,14 +37,7 @@ class Main extends ApplicationController
 
             $xOpen = strtotime($xI_Tourn->registrationOpensAt);
             $xClos = strtotime($xI_Tourn->registrationClosesAt);
-
-            if ( !empty($xOpen) )
-                {
-                $xI_Tourn->ReggyAt = date("n/j/Y @ g:i A", $xOpen);
-
-                if ( !empty($xClos) )
-                    $xI_Tourn->ReggyAt .= " - " . date("n/j/Y @ g:i A", $xClos);
-                }
+            $xI_Tourn->ReggyAt = $this->tourney->BuildRegistrationDates($xOpen, $iClos);
 
             if ( $this->isLoggedIn === false )
                 {

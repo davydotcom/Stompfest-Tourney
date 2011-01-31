@@ -25,7 +25,8 @@ function DoFade(iWho)
 function ErrorShow(iWho, iMessage)
     {
     iWho.addClass("TBError");
-    iWho.append('<span class="TBErrorText"><br />' + iMessage + '</span>');
+
+    alert(iMessage + "\n\nAdd a fancy Balloon or CSS error message thingy later.  Haven't had much luck. :(");
     }
 
 function ErrorClear(iWho)

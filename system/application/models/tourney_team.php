@@ -17,4 +17,10 @@ class tourney_team extends SFModel
 
         return $this->find();
         }
+
+    function TeamExists($iTourneyID, $iTeamName)
+        {
+        return $this->CanFind(array("eventID" => $this->session->eventID, "tourneyID" => $iTourneyID, "teamName" => $iTeamName));
+        }
+
     }

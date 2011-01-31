@@ -61,4 +61,17 @@ class Tourney extends SFModel
 
         return $this->db->count_all_results();
         }
+
+    function BuildRegistrationDates($iBegAt, $iEndAt)
+        {
+        if ( empty($iBegAt) )
+            return null;
+
+        $xDate = date("n/j/Y @ g:i A", $xOpen);
+
+        if ( !empty($iEndAt) )
+            $xDate .= " - " . date("n/j/Y @ g:i A", $iEndAt);
+
+        return $xDate;
+        }
     }
