@@ -38,6 +38,21 @@
                             <td>{$xTeam->playersPerTeam}</td>
                         </tr>
                     {/if}
+                    {if}
+                        <tr>
+                            <td class="DataLabel">Members:</td>
+                            <td>
+                                <table>
+                                    <thead>
+                                        <th></th>
+                                    </thead>
+                                    <tbody>
+                                        
+                                    </tbody>
+                                </table>
+                            </td>
+                        </tr>
+                    {/if}
                 </table>
             </div>
         {/foreach}
