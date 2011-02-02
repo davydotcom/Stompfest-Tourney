@@ -18,23 +18,31 @@ class tourney_team extends SFModel
         return $this->find();
         }
 
-    function TeamExists($iTourneyID, $iTeamName)
+    function TeamExists($iTourneyID, $iTeamName, $iTeamID = 0)
         {
-        return $this->CanFind(array("eventID" => $this->session->eventID, "tourneyID" => $iTourneyID, "teamName" => $iTeamName));
+        $xA_Cond = array("eventID" => $this->session->eventID, "tourneyID" => $iTourneyID, "teamName" => $iTeamName);
+
+        if ( !empty($iTeamID) )
+            $xA_Cond["teamID <>"] = $iTeamID;
+
+        return $this->CanFind($xA_Cond);
         }
 
     function TeamMembers($iTeamID)
         {
         $xSQL = "SELECT users.*,
                         tourney_gamers.TTID,
+                        (users.userID = ?) AS ThisIsMe,
                         EXISTS(SELECT *
                                  FROM tourney_teams
                                 WHERE tourney_teams.teamID = tourney_gamers.teamID AND
                                       tourney_teams.tourneyID = tourney_gamers.tourneyID AND
-                                      tourney_teams.captainID = ?) AS IsCaptain
+                                      tourney_teams.captainID = tourney_gamers.userID) AS IsCaptain
                    FROM tourney_gamers
              INNER JOIN users ON users.userID = tourney_gamers.userID
-                  WHERE tourney_gamers.teamID = ?";
+                  WHERE tourney_gamers.teamID = ?
+               ORDER BY IsCaptain DESC,
+                        users.handle";
 
         $xQuery = $this->db->query($xSQL, array($this->currentUser->userID, $iTeamID));
         if ( $xQuery->num_rows == 0 )

@@ -106,8 +106,9 @@
     }
 
 
-.DG table
+.DG
     {
+    border: 1px solid #990000;
     border-collapse: collapse;
     }
 

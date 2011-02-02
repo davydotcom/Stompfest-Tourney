@@ -33,12 +33,12 @@ class Team extends ApplicationController
         $xDude = $this->tourney_gamer->create($xA_Dude);
 
         if ( empty($xDude) )
-            $this->Honk("Failed to place Gamer as a freelance player.");
+            $this->Honk("Failed to join team.");
         else
-            $this->GoodToGo("Successfully added as a freelance player.");
+            $this->GoodToGo("Successfully added to team.");
         }
 
-    function RemoveFromTeam($iTTID)
+    function RemoveTeamMember($iTTID)
         {
         $this->load->model("tourney_gamer");
 
@@ -114,6 +114,9 @@ class Team extends ApplicationController
         redirect("/profile/main");
         }
 
+    /***
+     * This is used in an AJAX call
+     */
     function ValidateTeam()
         {
         $this->load->model("tourney_team");
@@ -125,5 +128,50 @@ class Team extends ApplicationController
             }
 
         echo("GOOD");
+        }
+
+    /***
+     * This is used in an AJAX call
+     */
+    function SaveChanges()
+        {
+        $this->load->model("tourney_team");
+
+        $xTeamID = $_POST["teamID"];
+        if ( empty($xTeamID) )
+            {
+            echo("TeamID is required to save changes");
+            return;
+            }
+
+        if ( $this->tourney_team->TeamExists($_POST["tourneyID"], $_POST["teamName"], $xTeamID) )
+            {
+            echo("Team already exists for this tournament");
+            return;
+            }
+
+        $xA_Ass = array("teamURL" => $_POST["teamURL"],
+                        "teamName" => $_POST["teamName"]);
+
+        if ( empty($_POST["Captain"]) )
+            {
+            $xCapChanged = false;
+            }
+        else
+            {
+            $xCapChanged = true;
+            $xA_Ass["captainID"] = $_POST["Captain"];
+            }
+
+        if ( !$this->tourney_team->update($xTeamID, $xA_Ass) )
+            {
+            echo("Failed to save team changes");
+            return;
+            }
+
+        if ( $xCapChanged )
+            echo("CAP");
+        else
+            echo("GOOD");
         }
     }

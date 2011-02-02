@@ -12,7 +12,10 @@
         </tr>
         <tr>
             <td class="DataLabel">Barcode:</td>
-            <td><input type="text" name="xBarcode" value="" maxlength="10" size="10" /></td>
+            <td>
+                <input type="text" name="xBarcode" value="" maxlength="10" size="10" />
+                <img src="/images/Help.png" title="Barcode?" />
+            </td>
         </tr>
         <tr>
             <td colspan="2" align="center"><input type="submit" name="submit" value="Login" title="Login" size="15" class="MyButton"/></td>

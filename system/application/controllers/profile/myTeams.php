@@ -19,14 +19,31 @@ class MyTeams extends ApplicationController
 
         $xA_Teams = $this->tourney_gamer->GetMyTourneys(1);
 
-        foreach ( $xA_Teams as &$xI_Team )
+        if ( !empty($xA_Teams) )
             {
-            $xI_Team->Members = $this->tourney_team->TeamMembers($xI_Team->teamID);
-            $xI_Team->ReggyAt = $this->tourney->BuildRegistrationDates($xI_Team->registrationOpensAt, $xI_Team->registrationClosesAt);
-            $xI_Team->IAmTeamCaptain = $this->tourney_team->IAmTeamCaptain($xI_Team->teamID);
+            foreach ( $xA_Teams as &$xI_Team )
+                {
+                $xI_Team->Members = $this->tourney_team->TeamMembers($xI_Team->teamID);
+                $xI_Team->ReggyAt = $this->tourney->BuildRegistrationDates($xI_Team->registrationOpensAt, $xI_Team->registrationClosesAt);
+                $xI_Team->IAmTeamCaptain = ($xI_Team->captainID == $this->currentUser->userID);
+                }
             }
 
         $this->mysmarty->assign("MyTeams", $xA_Teams);
         $this->mysmarty->view("/profile/myTeams");
         }
+
+    /**
+     * This is used in an AJAX call
+     *
+     * @param <int> $iTTID tourney_gamers.TTID
+     */
+    function RemoveMe($iTTID)
+        {
+        $this->load->model("tourney_gamer");
+        $this->tourney_gamer->delete(array("TTID" => $iTTID));
+
+        echo("GOOD");
+        }
+
     }

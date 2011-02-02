@@ -11,7 +11,7 @@ class tourney_gamer extends SFModel
         $this->primaryKeyName = "TTID";
         }
 
-    function GetMyTourneys($iTourneyType)
+    function GetMyTourneys($iTourneyType = null)
         {
         if ( empty($iTourneyType) )
             $xTeamFilt = "";
@@ -31,9 +31,11 @@ class tourney_gamer extends SFModel
                         games.short_name,
                         games.description AS gameDesc,
                         games.photo_file_name,
-                        games.genre
+                        games.genre,
+                        tourney_teams.*
                    FROM tourney_gamers
              INNER JOIN tourneys ON tourneys.tourneyID = tourney_gamers.tourneyID
+             INNER JOIN tourney_teams ON tourney_teams.teamID = tourney_gamers.teamID
              INNER JOIN games ON games.gameID = tourneys.gameID
                   WHERE tourney_gamers.userID = ? $xTeamFilt";
 
