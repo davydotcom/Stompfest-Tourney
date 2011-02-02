@@ -16,6 +16,25 @@
             active: false
             });
         });
+
+    function RemoveFromTeam(iTTID)
+        {
+        var xDel = confirm("For rizzle?");
+        if ( !xDel )
+            return;
+
+        $.ajax(
+            {
+            url: "/tourney/team/RemoveFromTeam/" + iTTID,
+            type: "POST",
+            success: function(iData){ DoneDidDelete(iData); }
+            });
+        }
+
+    function DoneDidDelete(iData)
+        {
+        $("#xTR_M" + iData).remove();
+        }
 </script>
 
 {if empty($MyTeams)}
@@ -38,21 +57,33 @@
                             <td>{$xTeam->playersPerTeam}</td>
                         </tr>
                     {/if}
-                    {if}
+                    {foreach $xTeam->Members as $xMember}
                         <tr>
                             <td class="DataLabel">Members:</td>
                             <td>
-                                <table>
+                                <table width="100%" class="DG" border="1">
                                     <thead>
-                                        <th></th>
+                                        <th>Handle</th>
+                                        <th>&nbsp;</th>
                                     </thead>
                                     <tbody>
-                                        
+                                        <tr id="xTR_M{$xMember->TTID}">
+                                            <td>{$xMember->handle}</td>
+                                            <td>
+                                                {if !empty($xMember->IsCaptain)}<img src="/images/Captain.png" title="Captain" />{/if}
+                                                {if !empty($xTeam->IAmTeamCaptain)}<a href="Javascript:RemoveFromTeam('{$xMember->TTID}');"><img src="/images/Delete.png" border="0" title="Remove this Gamer from my Team" /></a>{/if}
+                                                {/if}
+                                            </td>
+                                        </tr>
                                     </tbody>
                                 </table>
                             </td>
                         </tr>
-                    {/if}
+                    {foreachelse}
+                        <tr>
+                            <td colspan="2">Honk... Something just ain't right!</td>
+                        </tr>
+                    {/foreach}
                 </table>
             </div>
         {/foreach}

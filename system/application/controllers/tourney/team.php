@@ -38,6 +38,15 @@ class Team extends ApplicationController
             $this->GoodToGo("Successfully added as a freelance player.");
         }
 
+    function RemoveFromTeam($iTTID)
+        {
+        $this->load->model("tourney_gamer");
+
+        $this->tourney_gamer->delete(array("TTID" => $iTTID));
+
+        echo($iTTID);
+        }
+
     function NewTeam($iTourneyID)
         {
         $this->load->model("tourney");

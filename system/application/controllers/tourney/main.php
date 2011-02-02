@@ -37,7 +37,7 @@ class Main extends ApplicationController
 
             $xOpen = strtotime($xI_Tourn->registrationOpensAt);
             $xClos = strtotime($xI_Tourn->registrationClosesAt);
-            $xI_Tourn->ReggyAt = $this->tourney->BuildRegistrationDates($xOpen, $iClos);
+            $xI_Tourn->ReggyAt = $this->tourney->BuildRegistrationDates($xOpen, $xClos);
 
             if ( $this->isLoggedIn === false )
                 {

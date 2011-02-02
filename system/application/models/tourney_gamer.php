@@ -11,18 +11,21 @@ class tourney_gamer extends SFModel
         $this->primaryKeyName = "TTID";
         }
 
-    function GetMyTourneys($iTeamOnly = false)
+    function GetMyTourneys($iTourneyType)
         {
-        if ( $iTeamOnly === true )
-            $xTeamFilt = " AND tourneys.tourneyType = 1";
-        else
+        if ( empty($iTourneyType) )
             $xTeamFilt = "";
+        else
+            $xTeamFilt = " AND tourneys.tourneyType = " . $iTourneyType;
 
         $xSQL = "SELECT tourney_gamers.*,
                         tourneys.tourneyType,
                         tourneys.description,
                         tourneys.endsAt,
                         tourneys.beginsAt,
+                        tourneys.playersPerTeam,
+                        tourneys.registrationOpensAt,
+                        tourneys.registrationClosesAt,
                         tourneys.sponsoredBy,
                         IF(tourneys.name IS NULL, games.name, tourneys.name) AS showName,
                         games.short_name,
@@ -57,5 +60,4 @@ class tourney_gamer extends SFModel
 
         return 2;
         }
-
     }

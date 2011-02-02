@@ -104,3 +104,14 @@
     border: 2px solid #990000;
     background-color: #ffff66;
     }
+
+
+.DG table
+    {
+    border-collapse: collapse;
+    }
+
+.DG thead
+    {
+    font-weight: bold;
+    }

@@ -67,10 +67,18 @@ class Tourney extends SFModel
         if ( empty($iBegAt) )
             return null;
 
-        $xDate = date("n/j/Y @ g:i A", $xOpen);
+        if ( !is_numeric($iBegAt) )
+            $iBegAt = strtotime($iBegAt);
+
+        $xDate = date("n/j/Y @ g:i A", $iBegAt);
 
         if ( !empty($iEndAt) )
+            {
+            if ( !is_numeric($iEndAt) )
+                $iEndAt = strtotime($iEndAt);
+
             $xDate .= " - " . date("n/j/Y @ g:i A", $iEndAt);
+            }
 
         return $xDate;
         }
