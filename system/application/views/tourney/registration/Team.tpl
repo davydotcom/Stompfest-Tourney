@@ -1,6 +1,7 @@
 {extends file="layouts/application.tpl"}
 
 {block name=title}Stompfest Tournament: Team Based{/block}
+
 {block name=main_content}
     <script>
         function DoWhat()
@@ -43,26 +44,34 @@
                     <td class="DataLabel">Current # of Team:</td>
                     <td>{$NumTeams}</td>
                 </tr>
-                <tr>
-                    <td class="DataLabel">I want to:</td>
-                    <td>
-                        <select id="xDoWhat" name="xDoWhat" onchange="Javascript:DoWhat();">
-                            {if $NumTeams != 0}
-                                <option value="T">Join an existing Team</option>
-                            {/if}
-                                <option value="N">Create a new Team</option>
-                                <option value="L">Freelance (looking for a Team)</option>
-                        </select>
-                        <br />
-                        {if $NumTeams != 0}
+                {if $Options == 0}
+                    <input type="hidden" id="xDoWhat" name="xDoWhat" value="T" />
+                {else}
+                    <tr>
+                        <td class="DataLabel">I want to:</td>
+                        <td>
+                            <select id="xDoWhat" name="xDoWhat" onchange="Javascript:DoWhat();">
+                                {if $NumTeams != 0}
+                                    <option value="T">Join an existing Team</option>
+                                {/if}
+                                    <option value="N">Create a new Team</option>
+                                    <option value="L">Freelance (looking for a Team)</option>
+                            </select>
+                        </td>
+                    </tr>
+                {/if}
+                {if $NumTeams != 0}
+                    <tr id="xTR_Teams">
+                        <td class="DataLabel">{if $Options == 0}Teams:{else}&nbsp;{/if}</td>
+                        <td>
                             <select id="teamID" name="teamID">
                                 {foreach $Teams as $xTeam}
                                     <option value="{$xTeam->teamID}">{$xTeam->teamName}</option>
                                 {/foreach}
                             </select>
-                        {/if}
-                    </td>
-                </tr>
+                        </td>
+                    </tr>
+                {/if}
                 <tr><td colspan="2"><hr /></td></tr>
                 <tr>
                     <td colspan="2" align="center">

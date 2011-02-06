@@ -9,6 +9,8 @@ class MyTourney extends ApplicationController
    		parent::__construct();
 
         $this->requireUser();
+
+        require_once(APPPATH . "/controllers/tourney/helpers.php");
         }
 
     function index()

@@ -66,8 +66,5 @@
         </tr>
     {/if}
 {else}
-you're duplicating logic from the tourneyAcco... need to combine!!!!!!!!!!
-
-
-    <input type="button" value="Cancel Registration" title="Cancel: No longer looking for a Team" onclick="location.href='/profile/myTourney/dropOut/{$xTourn->tourneyID}'" class="MyButton" />
+    {OutCancel}
 {/if}

@@ -100,6 +100,8 @@
 {if empty($MyTourneys)}
     <div class="GamerNoTourney">You are not registered for any tournaments.</div>
 {else}
+    {include file="components/cancelReg.tpl"}
+
     <div id="xAccMain">
         {foreach $MyTourneys as $xTourn}
             <h3><a href="#">{$xTourn->showName}</a></h3>

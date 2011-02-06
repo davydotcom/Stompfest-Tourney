@@ -7,6 +7,8 @@ class Main extends ApplicationController
     function  __construct()
         {
    		parent::__construct();
+
+        require_once(APPPATH . "/controllers/tourney/helpers.php");
         }
 
     function index()
@@ -88,6 +90,29 @@ class Main extends ApplicationController
         $this->mysmarty->view("tourney/main/index", array("Tourneys" => $xTourn));
         }
 
+    function FoundTeam($iTourneyID)
+        {
+        $this->load->model("tourney");
+
+        $xTourn = $this->tourney->GetFullTourney($iTourneyID);
+        if ( empty($xTourn) )
+            {
+            $this->index();
+            return;
+            }
+
+        $this->load->model("tourney_team");
+
+        $xA_Teams = $this->tourney_team->GetTeams($iTourneyID);
+
+        $xA_Data = array("Teams" => $xA_Teams,
+                         "Options" => 0,
+                         "Tourney" => $xTourn,
+                         "NumTeams" => sizeof($xA_Teams));
+
+        $this->mysmarty->view("/tourney/registration/Team", $xA_Data);
+        }
+
     function register($iTourneyID)
         {
         $this->load->model("tourney");
@@ -115,6 +140,7 @@ class Main extends ApplicationController
                 $xA_Teams = $this->tourney_team->GetTeams($iTourneyID);
 
                 $xA_Data = array("Teams" => $xA_Teams,
+                                 "Options" => 1,
                                  "Tourney" => $xTourn,
                                  "NumTeams" => sizeof($xA_Teams));
 

@@ -26,11 +26,28 @@ class Team extends ApplicationController
         {
         $this->load->model("tourney_gamer");
 
-        $xA_Dude = array("teamID" => $_POST["teamID"],
-                         "userID" => $this->currentUser->userID,
-                         "tourneyID" => $_POST["tourneyID"]);
+        $xA_Dude = array("userID" => $this->currentUser->userID,
+                         "tourneyID" => $_POST["tourneyID"],
+                         "lookingForTeam" => 1);
 
-        $xDude = $this->tourney_gamer->create($xA_Dude);
+        $this->tourney_gamer->where($xA_Dude);
+
+        $xDude = $this->tourney_gamer->first();
+        if ( empty($xDude) )
+            {
+            $xA_Dude = array("teamID" => $_POST["teamID"],
+                             "userID" => $this->currentUser->userID,
+                             "tourneyID" => $_POST["tourneyID"]);
+
+            $xDude = $this->tourney_gamer->create($xA_Dude);
+            }
+        else
+            {
+            $xA_Dude = array("teamID" => $_POST["teamID"],
+                             "lookingForTeam" => 0);
+
+            $xDude = $this->tourney_gamer->update($xDude->TTID, $xA_Dude);
+            }
 
         if ( empty($xDude) )
             $this->Honk("Failed to join team.");
