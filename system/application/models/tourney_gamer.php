@@ -28,7 +28,14 @@ class tourney_gamer extends SFModel
                         games.description AS gameDesc,
                         games.photo_file_name,
                         games.genre,
-                        tourney_teams.*
+                        tourney_teams.teamID,
+                        tourney_teams.teamName,
+                        tourney_teams.teamURL,
+                        tourney_teams.teamIcon,
+                        tourney_teams.captainID,
+                        tourney_teams.locked,
+                        tourney_teams.readyForMatch,
+                        tourney_teams.currentTier
                    FROM tourney_gamers
              INNER JOIN tourneys ON tourneys.tourneyID = tourney_gamers.tourneyID
               LEFT JOIN tourney_teams ON tourney_teams.teamID = tourney_gamers.teamID

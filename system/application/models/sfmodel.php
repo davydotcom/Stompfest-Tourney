@@ -88,10 +88,12 @@ class SFModel extends Model
         {
         if ( empty($attributes) || empty($id) )
             return false;
+
         foreach ( $this->protectedAttributes as $value )
             {
             unset($attributes[$value]);
             }
+
         $this->db->where($this->primaryKeyName, $id);
         $this->db->update($this->tableName, $attributes);
 
@@ -135,8 +137,10 @@ class SFModel extends Model
         $this->db->count_all_results($this->tableName);
         }
 
-    function first()
+    function first($iWhere = null)
         {
+        $this->where($iWhere);
+
         $query = $this->db->get($this->tableName, 1, 0);
         if ( $query->num_rows == 0 )
             return null;

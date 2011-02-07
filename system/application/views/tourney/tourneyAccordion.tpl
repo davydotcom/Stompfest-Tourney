@@ -66,9 +66,9 @@ $(function()
                             {/if}
                             {if $xTourney->Next == "L"}
                                 {if $xTourney->NumTeams > 0}
-                                    <input type="button" class="MyButton" value="I found a team" onclick="location.href='/tourney/main/FoundTeam/{$xTourney->tourneyID}'" title="I found a team, let me see the list" />
+                                    {OutFoundTeam tourneyID={$xTourney->tourneyID}}
                                 {/if}
-                                <input type="button" class="MyButton" value="Create a new Team" onclick="location.href='/tourney/team/NewTeam/{$xTourney->tourneyID}'" title="Create a new team" />
+                                {OutNewTeam tourneyID={$xTourney->tourneyID}}
                             {/if}
                             {if $xTourney->Next == "O"}
                                 <input type="button" class="MyButton" value="Register" onclick="location.href='/tourney/main/register/{$xTourney->tourneyID}'" title="Register for this Tournament" />

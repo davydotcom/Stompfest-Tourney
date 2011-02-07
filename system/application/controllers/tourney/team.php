@@ -55,6 +55,10 @@ class Team extends ApplicationController
             $this->GoodToGo("Successfully added to team.");
         }
 
+    /**
+     * This is from an AJAX call.
+     * @param int $iTTID
+     */
     function RemoveTeamMember($iTTID)
         {
         $this->load->model("tourney_gamer");
@@ -103,20 +107,35 @@ class Team extends ApplicationController
         $xTeamID = $this->tourney_team->create($xA_Team);
         if ( empty($xTeamID) )
             {
-            $this->Honk("Error saving Team information!.");
+            $this->Honk("Error saving Team information!");
             return;
             }
 
-        $xA_Dude = array("tourneyID" => $xA_Team["tourneyID"],
-                         "teamID" => $xTeamID,
-                         "userID" => $this->currentUser->userID);
+        $xA_Dude = array("userID" => $this->currentUser->userID,
+                         "tourneyID" => $xA_Team["tourneyID"],
+                         "lookingForTeam" => 1);
 
-        $xDude = $this->tourney_gamer->create($xA_Dude);
+        $xDude = $this->tourney_gamer->first($xA_Dude);
+        if ( empty($xDude) )
+            {
+            $xA_Dude = array("tourneyID" => $xA_Team["tourneyID"],
+                             "teamID" => $xTeamID,
+                             "userID" => $this->currentUser->userID);
+
+            $xDude = $this->tourney_gamer->create($xA_Dude);
+            }
+        else
+            {
+            $xA_Dude = array("teamID" => $xTeamID,
+                             "lookingForTeam" => 0);
+
+            $xDude = $this->tourney_gamer->update($xDude->TTID, $xA_Dude);
+            }
 
         if ( empty($xDude) )
             $this->Honk("Failed to place Gamer on Team");
-
-        $this->GoodToGo("Team successfully created and registered for the Tournament.");
+        else
+            $this->GoodToGo("Team successfully created and registered for the Tournament.");
         }
 
     function Honk($iMessage)

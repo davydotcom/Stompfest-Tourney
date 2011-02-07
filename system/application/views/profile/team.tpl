@@ -39,7 +39,7 @@
                             <td>
                                 {if $xMember->IsCaptain == 1}
                                     <img src="/images/Captain.png" title="Captain" />
-                                    {if $xTourn->IAmTeamCaptain == 1}
+                                    {if $xTourn->IAmTeamCaptain == 1 && sizeof($xTourn->Members) > 1}
                                         <input type="radio" id="xRB_M0" name="xRG_Cap" value="0" checked>
                                     {/if}
                                 {/if}
@@ -66,5 +66,11 @@
         </tr>
     {/if}
 {else}
-    {OutCancel}
+    <tr>
+        <td colspan="2" align="center">
+            {OutCancel}
+            {OutFoundTeam tourneyID=$xTourn->tourneyID}
+            {OutNewTeam tourneyID={$xTourn->tourneyID}}
+        </td>
+    </tr>
 {/if}
