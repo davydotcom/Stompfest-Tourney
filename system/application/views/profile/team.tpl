@@ -48,7 +48,7 @@
                                     <input type="radio" id="xRB_M{$xMember->userID}" name="xRG_Cap" value="{$xMember->userID}">
                                     <label for="xRB_M{$xMember->userID}">Make team captain</label>
                                 {/if}
-                                {if $xMember->ThisIsMe == 1}
+                                {if $xMember->ThisIsMe == 1 && $xMember->IsCaptain == 0}
                                     <a href="Javascript:RemoveMe('{$xMember->TTID}');"><img src="/images/Delete.png" border="0" title="Remove me from this Team" /></a>
                                 {/if}
                             </td>

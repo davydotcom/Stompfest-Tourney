@@ -63,13 +63,15 @@
 
     function SaveTeam()
         {
-        var xData = "tourneyID=%I%&teamID=%T%&teamName=%N%&teamURL=%U%&Captain=%C%";
+        var xData = "tourneyID=%I%&teamID=%T%&teamName=%N%&teamURL=%U%";
 
-        xData = xData.replace("%C%", $("input:radio[name=xRG_Cap]:checked").val());
         xData = xData.replace("%I%", $("#tourneyID").val());
         xData = xData.replace("%N%", $("#teamName").val());
         xData = xData.replace("%T%", $("#teamID").val());
         xData = xData.replace("%U%", $("#teamURL").val());
+
+        if ( $("#xRG_Cap").length > 0 )
+            xData = xData + "&Captain=" + $("input:radio[name=xRG_Cap]:checked").val();
 
         $.ajax(
             {
