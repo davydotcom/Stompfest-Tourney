@@ -61,14 +61,14 @@
         $("#xTR_M" + iData).remove();
         }
 
-    function SaveTeam()
+    function SaveTeam(iTourneyID)
         {
         var xData = "tourneyID=%I%&teamID=%T%&teamName=%N%&teamURL=%U%";
 
-        xData = xData.replace("%I%", $("#tourneyID").val());
-        xData = xData.replace("%N%", $("#teamName").val());
-        xData = xData.replace("%T%", $("#teamID").val());
-        xData = xData.replace("%U%", $("#teamURL").val());
+        xData = xData.replace("%I%", $("#tourneyID_" + iTourneyID).val());
+        xData = xData.replace("%N%", $("#teamName_" + iTourneyID).val());
+        xData = xData.replace("%T%", $("#teamID_" + iTourneyID).val());
+        xData = xData.replace("%U%", $("#teamURL_" + iTourneyID).val());
 
         if ( $("#xRG_Cap").length > 0 )
             xData = xData + "&Captain=" + $("input:radio[name=xRG_Cap]:checked").val();
@@ -108,8 +108,8 @@
         {foreach $MyTourneys as $xTourn}
             <h3><a href="#">{$xTourn->showName}</a></h3>
             <div>
-                <form method="POST">
-                    <input type="hidden" id="tourneyID" name="tourneyID" value="{$xTourn->tourneyID}" />
+                <form id="xF_T{$xTourn->tourneyID}" name="xF_T{$xTourn->tourneyID}" method="POST" action="Javascript:SaveTeam('{$xTourn->tourneyID}');">
+                    <input type="hidden" id="tourneyID_{$xTourn->tourneyID}" name="tourneyID_{$xTourn->tourneyID}" value="{$xTourn->tourneyID}" />
 
                     <table width="100%">
                         {if !empty($xTourn->ReggyAt)}

@@ -1,10 +1,10 @@
 {if $xTourn->lookingForTeam == 0}
-    <input type="hidden" id="teamID" name="teamID" value="{$xTourn->teamID}" />
+    <input type="hidden" id="teamID_{$xTourn->tourneyID}" name="teamID_{$xTourn->tourneyID}" value="{$xTourn->teamID}" />
     <tr>
         <td class="DataLabel">Team Name:</td>
         <td>
             {if $xTourn->IAmTeamCaptain == 1 && $xTourn->locked == 0}
-                <input type="text" id="teamName" name="teamName" value="{$xTourn->teamName}" maxlength="50" size="50" />
+                <input type="text" id="teamName_{$xTourn->tourneyID}" name="teamName_{$xTourn->tourneyID}" value="{$xTourn->teamName}" maxlength="50" size="50" />
             {else}
                 {$xTourn->teamName}
             {/if}
@@ -14,7 +14,7 @@
         <td class="DataLabel">Team URL:</td>
         <td>
             {if $xTourn->IAmTeamCaptain == 1 && $xTourn->locked == 0}
-                <input type="text" id="teamURL" name="teamURL" value="{$xTourn->teamURL}" maxlength="125" size="50" />
+                <input type="text" id="teamURL_{$xTourn->tourneyID}" name="teamURL_{$xTourn->tourneyID}" value="{$xTourn->teamURL}" maxlength="125" size="50" />
             {else}
                 {if empty($xTourn->teamURL)}
                     &nbsp;
@@ -40,12 +40,12 @@
                                 {if $xMember->IsCaptain == 1}
                                     <img src="/images/Captain.png" title="Captain" />
                                     {if $xTourn->IAmTeamCaptain == 1 && sizeof($xTourn->Members) > 1}
-                                        <input type="radio" id="xRB_M0" name="xRG_Cap" value="0" checked>
+                                        <input type="radio" id="xRB_M0" name="xRG_Cap_{$xTourn->tourneyID}" value="0" checked>
                                     {/if}
                                 {/if}
                                 {if $xTourn->IAmTeamCaptain == 1 && $xMember->IsCaptain == 0}
                                     <a href="Javascript:RemoveTeamMember('{$xMember->TTID}');"><img src="/images/Delete.png" border="0" title="Remove this Gamer from my Team" /></a>
-                                    <input type="radio" id="xRB_M{$xMember->userID}" name="xRG_Cap" value="{$xMember->userID}">
+                                    <input type="radio" id="xRB_M{$xMember->userID}" name="xRG_Cap_{$xTourn->tourneyID}" value="{$xMember->userID}">
                                     <label for="xRB_M{$xMember->userID}">Make team captain</label>
                                 {/if}
                                 {if $xMember->ThisIsMe == 1 && $xMember->IsCaptain == 0}
@@ -61,16 +61,21 @@
     {if $xTourn->IAmTeamCaptain == 1 && $xTourn->locked == 0}
         <tr>
             <td colspan="2" align="center">
-                <input type="button" value="Save" title="Save my changes" onclick="Javascript:SaveTeam();" class="MyButton" />
+                {OutDisband  teamID=$xTourn->teamID}
+                <input type="submit" value="Save" title="Save my changes" class="MyButton" />
             </td>
         </tr>
     {/if}
 {else}
     <tr>
+        <td class="DataLabel">Comments:</td>
+        <td><textarea cols="50" rows="5">{$xTourn->comments}</textarea></td>
+    </tr>
+    <tr>
         <td colspan="2" align="center">
             {OutCancel}
             {OutFoundTeam tourneyID=$xTourn->tourneyID}
-            {OutNewTeam tourneyID={$xTourn->tourneyID}}
+            {OutNewTeam tourneyID=$xTourn->tourneyID}
         </td>
     </tr>
 {/if}

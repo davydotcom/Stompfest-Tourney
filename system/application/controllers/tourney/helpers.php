@@ -2,6 +2,7 @@
 
 $this->mysmarty->registerPlugin("function", "OutID", "OutID");
 $this->mysmarty->registerPlugin("function", "OutCancel", "OutCancel");
+$this->mysmarty->registerPlugin("function", "OutDisband", "OutDisband");
 $this->mysmarty->registerPlugin("function", "OutNewTeam", "OutNewTeam");
 $this->mysmarty->registerPlugin("function", "OutFoundTeam", "OutFoundTeam");
 
@@ -32,4 +33,12 @@ function OutNewTeam($iParams, $smarty)
         return "";
 
     return sprintf('<input type="button" class="MyButton" value="Create a new Team" onclick="location.href=\'/tourney/team/NewTeam/%s\'" title="Create a new team" />', $iParams["tourneyID"]);
+    }
+
+function OutDisband($iParams, $smarty)
+    {
+    if ( empty($iParams["teamID"]) )
+        return "";
+
+    return sprintf('<input type="button" value="Disband Team" title="Disband this team" onclick="Javascript:ConfirmDisband(\'%s\');" class="MyButton" />', $iParams["teamID"]);
     }

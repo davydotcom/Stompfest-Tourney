@@ -33,12 +33,6 @@ $(function()
                         <td>{$xTourney->ReggyAt}</td>
                     </tr>
                 {/if}
-                {if !empty($xTourney->description)}
-                    <tr>
-                        <td class="DataLabel">Description:</td>
-                        <td class="TourneyListDesc">{$xTourney->description}</td>
-                    </tr>
-                {/if}
                 {if !empty($xTourney->maxTeams)}
                     <tr>
                         <td class="DataLabel">Max # of Teams:</td>
@@ -55,6 +49,12 @@ $(function()
                     <tr>
                         <td class="DataLabel">Internet based competitors:</td>
                         <td><b>Yes</b></td>
+                    </tr>
+                {/if}
+                {if !empty($xTourney->description)}
+                    <tr>
+                        <td class="DataLabel">Description:</td>
+                        <td class="TourneyListDesc">{$xTourney->description}</td>
                     </tr>
                 {/if}
                 {if !empty($xTourney->Next)}

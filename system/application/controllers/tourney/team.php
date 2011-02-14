@@ -84,6 +84,7 @@ class Team extends ApplicationController
 
         $xA_Dude = array("teamID" => 0,
                          "userID" => $this->currentUser->userID,
+                         "comments" => $_POST["comments"],
                          "tourneyID" => $_POST["tourneyID"],
                          "lookingForTeam" => 1);
 
@@ -209,5 +210,16 @@ class Team extends ApplicationController
             echo("CAP");
         else
             echo("GOOD");
+        }
+
+    function Disband($iTeamID)
+        {
+        $this->load->model("tourney_team");
+        $this->load->model("tourney_gamer");
+
+        $this->tourney_team->delete(array("teamID" => $iTeamID));
+        $this->tourney_gamer->delete(array("teamID" => $iTeamID));
+
+        redirect("/tourney/main");
         }
     }

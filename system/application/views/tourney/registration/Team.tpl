@@ -4,10 +4,16 @@
 
 {block name=main_content}
     <script>
+        $(function()
+            {
+            $("#xTR_Comm").hide();
+            });
+
         function DoWhat()
             {
             var xWhat = $("#xDoWhat").val();
             var xTeam = $("#teamID");
+            var xComm = $("#xTR_Comm");
 
             if ( xTeam == undefined )
                 return;
@@ -16,6 +22,11 @@
                 xTeam.show();
             else
                 xTeam.hide();
+
+            if ( xWhat == "L" )
+                xComm.show();
+            else
+                xComm.hide();
             }
     </script>
 
@@ -72,6 +83,10 @@
                         </td>
                     </tr>
                 {/if}
+                <tr id="xTR_Comm">
+                    <td class="DataLabel">Comment:</td>
+                    <td><textarea id="comments" name="comments" cols="50" rows="5"></textarea></td>
+                </tr>
                 <tr><td colspan="2"><hr /></td></tr>
                 <tr>
                     <td colspan="2" align="center">

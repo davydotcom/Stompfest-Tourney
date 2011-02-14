@@ -13,9 +13,19 @@ class tourney_team extends SFModel
 
     function GetTeams($iTourneyID)
         {
-        $this->where(array("eventID" => $this->session->eventID, "tourneyID" => $iTourneyID));
+        $xSQL = "SELECT *
+                   FROM tourney_teams
+             INNER JOIN tourneys ON tourneys.tourneyID = tourney_teams.tourneyID
+                  WHERE tourney_teams.eventID = ? AND
+                        tourney_teams.tourneyID = ? AND
+                        (tourneys.playersPerTeam = 0 OR
+                         (SELECT COUNT(*) FROM tourney_gamers WHERE tourney_gamers.teamID = tourney_teams.teamID) < tourneys.playersPerTeam)";
 
-        return $this->find();
+        $xQuery = $this->db->query($xSQL, array($this->session->eventID, $iTourneyID));
+        if ( $xQuery->num_rows == 0 )
+            return null;
+
+        return $xQuery->result();
         }
 
     function TeamExists($iTourneyID, $iTeamName, $iTeamID = 0)
