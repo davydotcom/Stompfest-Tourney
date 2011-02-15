@@ -58,4 +58,17 @@ class MyTourney extends ApplicationController
 
         $this->tourney_gamer->delete(array("tourneyID" => $iTourneyID, "userID" => $this->currentUser.userID));
         }
+
+    /**
+     * This is used in an AJAX call
+     */
+    function SaveLooking()
+        {
+        $this->load->model("tourney_gamer");
+
+        if ( $this->tourney_gamer->update($_POST["TTID"], array("comments" => $_POST["Comment"])) )
+            echo("GOOD");
+        else
+            echo("Failed to update Gamer record");
+        }
     }

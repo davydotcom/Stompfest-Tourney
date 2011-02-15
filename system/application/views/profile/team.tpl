@@ -69,8 +69,12 @@
 {else}
     <tr>
         <td class="DataLabel">Comments:</td>
-        <td><textarea cols="50" rows="5">{$xTourn->comments}</textarea></td>
+        <td><textarea id="xIN_Comm_{$xTourn->tourneyID}" name="xIN_Comm_{$xTourn->tourneyID}" cols="60" rows="6">{$xTourn->comments}</textarea></td>
     </tr>
+    <tr>
+        <td colspan="2" align="right"><input type="button" value="Save" title="Save my changes" class="MyButton" onclick="Javascript:SaveLooking('{$xTourn->tourneyID}');" /></td>
+    </tr>
+    <tr><td colspan="2"><hr /></td></tr>
     <tr>
         <td colspan="2" align="center">
             {OutCancel}

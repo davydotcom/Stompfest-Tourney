@@ -97,6 +97,33 @@
         else
             alert(iData);
         }
+
+    function SaveLooking(iTourneyID)
+        {
+        var xData = "TTID=%TID%&Comment=%COM%";
+
+        xData = xData.replace("%TID%", $("#TTID_" + iTourneyID).val());
+        xData = xData.replace("%COM%", $("#xIN_Comm_" + iTourneyID).val())
+
+        $.ajax(
+            {
+            url: "/profile/myTourney/SaveLooking",
+            data: xData,
+            type: "POST",
+            success: function(iData){ LookingBeSaved(iData); }
+            });
+        }
+
+    function LookingBeSaved(iData)
+        {
+        //  TODO: Make a fancy popup balloon
+
+        if ( iData == "GOOD" )
+            alert("Team data has been updated");
+        else
+            alert(iData);
+        }
+
 </script>
 
 {if empty($MyTourneys)}
@@ -109,6 +136,7 @@
             <h3><a href="#">{$xTourn->showName}</a></h3>
             <div>
                 <form id="xF_T{$xTourn->tourneyID}" name="xF_T{$xTourn->tourneyID}" method="POST" action="Javascript:SaveTeam('{$xTourn->tourneyID}');">
+                    <input type="hidden" id="TTID_{$xTourn->tourneyID}" name="TTID_{$xTourn->tourneyID}" value="{$xTourn->TTID}" />
                     <input type="hidden" id="tourneyID_{$xTourn->tourneyID}" name="tourneyID_{$xTourn->tourneyID}" value="{$xTourn->tourneyID}" />
 
                     <table width="100%">
