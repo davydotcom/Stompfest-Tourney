@@ -77,7 +77,7 @@
     <tr><td colspan="2"><hr /></td></tr>
     <tr>
         <td colspan="2" align="center">
-            {OutCancel}
+            {OutCancel TTID=$xTourn->TTID}
             {OutFoundTeam tourneyID=$xTourn->tourneyID}
             {OutNewTeam tourneyID=$xTourn->tourneyID}
         </td>

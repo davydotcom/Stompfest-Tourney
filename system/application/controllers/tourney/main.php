@@ -149,11 +149,11 @@ class Main extends ApplicationController
             }
         }
 
-    function cancelReggy($iTourneyID)
+    function cancelReggy($iTTID)
         {
         $this->load->model("tourney_gamer");
 
-        $this->tourney_gamer->delete(array("tourneyID" => $iTourneyID, "userID" => $this->currentUser->userID));
+        $this->tourney_gamer->delete(array("TTID" => $iTTID));
 
         $this->session->set_flashdata("notice", "Your registration has been canceled");
 

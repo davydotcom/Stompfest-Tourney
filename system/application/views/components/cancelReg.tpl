@@ -1,5 +1,5 @@
 <script>
-var xTeamID;
+var xID;
 
 $(function()
     {
@@ -34,28 +34,28 @@ $(function()
         });
     });
 
-function ConfirmCancel()
+function ConfirmCancel(iTTID)
     {
+    xID = iTTID;
+
     $("#xConCancel").dialog("open");
     }
 
 function ConfirmDisband(iTeamID)
     {
-    xTeamID = iTeamID;
+    xID = iTeamID;
 
     $("#xDisbandTeam").dialog("open");
     }
 
 function Disband()
     {
-alert(xTeamID);
-
-    window.location.href = '/tourney/team/Disband/' + xTeamID;
+    window.location.href = '/tourney/team/Disband/' + xID;
     }
 
 function CancelReg()
     {
-    window.location.href = '/tourney/main/cancelReggy/' + $("#TourneyID").val();
+    window.location.href = '/tourney/main/cancelReggy/' + xID;
     }
 
 function NeverMind()

@@ -14,9 +14,12 @@ function OutID($iParams, $smarty)
     return sprintf('<input type="hidden" id="TourneyID" name="TourneyID" value="%s" />', $iParams["tourneyID"]);
     }
 
-function OutCancel($smarty)
+function OutCancel($iParams, $smarty)
     {
-    return sprintf('<input type="button" class="MyButton" value="Cancel Registration" onclick="javascript:ConfirmCancel();" title="Cancel my register for this Tournament" />');
+    if ( empty($iParams["TTID"]) )
+        return "";
+
+    return sprintf('<input type="button" class="MyButton" value="Cancel Registration" onclick="javascript:ConfirmCancel(\'%s\');" title="Cancel my register for this Tournament" />', $iParams["TTID"]);
     }
 
 function OutFoundTeam($iParams, $smarty)
