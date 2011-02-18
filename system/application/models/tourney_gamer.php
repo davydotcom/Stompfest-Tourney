@@ -13,6 +13,7 @@ class tourney_gamer extends SFModel
 
     function GetMyTourneys()
         {
+        //  Build a list of Team-based Tourneys
         $xA_Tourn = null;
         $xSQL = "SELECT tourney_gamers.*,
                         tourneys.tourneyType,
@@ -47,6 +48,7 @@ class tourney_gamer extends SFModel
         if ( $xQuery->num_rows != 0 )
             $xA_Tourn = $xQuery->result();
 
+        //  Get all other Tourneys
         $xSQL = "SELECT tourney_gamers.*,
                         tourneys.tourneyType,
                         tourneys.description,
@@ -89,5 +91,15 @@ class tourney_gamer extends SFModel
             return 1;
 
         return 2;
+        }
+
+    function GamersAreLookingForTeam($iTourneyID)
+        {
+        return $this->CanFind(array("tourneyID" => $iTourneyID, "lookingForTeam" => 1));
+        }
+
+    function GetGamersLooking($iTourneyID)
+        {
+        return $this->find(array("tourneyID" => $iTourneyID, "lookingForTeam" => 1));
         }
     }

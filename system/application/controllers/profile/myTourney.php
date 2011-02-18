@@ -29,6 +29,18 @@ class MyTourney extends ApplicationController
                     {
                     $xI_Tourn->Members = $this->tourney_team->TeamMembers($xI_Tourn->teamID);
                     $xI_Tourn->IAmTeamCaptain = ($xI_Tourn->captainID == $this->currentUser->userID);
+
+                    if ( $xI_Tourn->IAmTeamCaptain &&
+                         !empty($xI_Tourn->playersPerTeam) &&
+                         sizeof($xI_Tourn->Members) < $xI_Tourn->playersPerTeam &&
+                         $this->tourney_gamer->GamersAreLookingForTeam($xA_Tourn->tourneyID) )
+                        {
+                        $xI_Tourn->ShowLooking = true;
+                        }
+                    else
+                        {
+                        $xI_Tourn->ShowLooking = false;
+                        }
                     }
 
                 $xI_Tourn->ReggyAt = $this->tourney->BuildRegistrationDates($xI_Tourn->registrationOpensAt, $xI_Tourn->registrationClosesAt);

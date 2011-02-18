@@ -15,6 +15,7 @@
         <td>
             {if $xTourn->IAmTeamCaptain == 1 && $xTourn->locked == 0}
                 <input type="text" id="teamURL_{$xTourn->tourneyID}" name="teamURL_{$xTourn->tourneyID}" value="{$xTourn->teamURL}" maxlength="125" size="50" />
+                <input type="submit" value="Save" title="Save my changes" class="MyButton" />
             {else}
                 {if empty($xTourn->teamURL)}
                     &nbsp;
@@ -62,7 +63,10 @@
         <tr>
             <td colspan="2" align="center">
                 {OutDisband  teamID=$xTourn->teamID}
-                <input type="submit" value="Save" title="Save my changes" class="MyButton" />
+
+                {if $xTourn->playersPerTeam < sizeof($xTourn->Members)}
+                    <input type="button" value="Pickup Player(s)" title="Pick up Gamers who are looking for a team" class="MyButton" />
+                {/if}
             </td>
         </tr>
     {/if}
