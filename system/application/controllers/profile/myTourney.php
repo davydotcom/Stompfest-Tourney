@@ -33,7 +33,7 @@ class MyTourney extends ApplicationController
                     if ( $xI_Tourn->IAmTeamCaptain &&
                          !empty($xI_Tourn->playersPerTeam) &&
                          sizeof($xI_Tourn->Members) < $xI_Tourn->playersPerTeam &&
-                         $this->tourney_gamer->GamersAreLookingForTeam($xA_Tourn->tourneyID) )
+                         $this->tourney_gamer->GamersAreLookingForTeam($xI_Tourn->tourneyID) )
                         {
                         $xI_Tourn->ShowLooking = true;
                         }

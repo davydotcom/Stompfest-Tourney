@@ -12,6 +12,9 @@ class Main extends ApplicationController
 
     function index()
         {
+        $this->load->model("user_news");
+        $this->currentUser->News = $this->user_news->GetMyNews();
+
         $this->mysmarty->assign("UserData", $this->currentUser);
         $this->mysmarty->view('/profile/index');
         }

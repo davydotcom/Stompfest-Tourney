@@ -64,7 +64,7 @@
             <td colspan="2" align="center">
                 {OutDisband  teamID=$xTourn->teamID}
 
-                {if $xTourn->playersPerTeam < sizeof($xTourn->Members)}
+                {if $xTourn->ShowLooking}
                     <input type="button" value="Pickup Player(s)" title="Pick up Gamers who are looking for a team" class="MyButton" />
                 {/if}
             </td>
