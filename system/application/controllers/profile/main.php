@@ -16,7 +16,7 @@ class Main extends ApplicationController
         $this->currentUser->News = $this->user_news->GetMyNews();
 
         $this->mysmarty->assign("UserData", $this->currentUser);
-        $this->mysmarty->view('/profile/index');
+        $this->mysmarty->view("/profile/index");
         }
 
     function view()
@@ -43,5 +43,19 @@ class Main extends ApplicationController
             $this->session->set_flashdata('error', 'Error saving User information!.');
             $this->edit($id);
             }
+        }
+
+    /**
+     * This is used for an AJAX call
+     * 
+     * @param int $iNewsID
+     */
+    function deleteNews($iNewsID)
+        {
+        $this->load->model("user_news");
+
+        $this->user_news->DeleteItem($iNewsID);
+
+        echo($iNewsID);
         }
     }

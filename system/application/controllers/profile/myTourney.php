@@ -58,7 +58,18 @@ class MyTourney extends ApplicationController
      */
     function RemoveMe($iTTID)
         {
+        $this->load->model("user_news");
         $this->load->model("tourney_gamer");
+
+        $xTG = $this->tourney_gamer->first(array("TTID" => $iTTID));
+        if ( !empty($xTG) )
+            {
+            if ( $xTG->teamID == 0 )
+                $this->user_news->AddNews($this->currentUser->userID, "%TOUR%: No longer looking for a Team.", $xTG->tourneyID);
+            else
+                $this->user_news->AddNews($this->currentUser->userID, "%TOUR%: Drop out Team <b>%TEAM%</b>.", $xTG->tourneyID, $xTG->teamID);
+            }
+
         $this->tourney_gamer->delete(array("TTID" => $iTTID));
 
         echo("GOOD");
@@ -68,7 +79,7 @@ class MyTourney extends ApplicationController
         {
         $this->load->model("tourney_gamer");
 
-        $this->tourney_gamer->delete(array("tourneyID" => $iTourneyID, "userID" => $this->currentUser.userID));
+        $this->tourney_gamer->delete(array("tourneyID" => $iTourneyID, "userID" => $this->currentUser->userID));
         }
 
     /**

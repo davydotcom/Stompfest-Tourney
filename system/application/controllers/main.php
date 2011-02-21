@@ -11,6 +11,6 @@ class Main extends ApplicationController
 
     function index()
         {
-            $this->mysmarty->view('main/index');
+        $this->mysmarty->view('main/index');
         }
     }

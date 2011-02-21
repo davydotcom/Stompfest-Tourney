@@ -65,4 +65,13 @@ class tourney_team extends SFModel
         {
         return $this->CanFind(array("teamID" => $iTeamID, "captainID" => $this->currentUser->userID));
         }
+
+    function GetTeamName($iTeamID)
+        {
+        $xTeam = $this->first(array("teamID" => $iTeamID));
+        if ( empty($xTeam) )
+            return "";
+
+        return $xTeam->teamName;
+        }
     }
