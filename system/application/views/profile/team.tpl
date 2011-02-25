@@ -62,7 +62,7 @@
     {if $xTourn->IAmTeamCaptain == 1 && $xTourn->locked == 0}
         <tr>
             <td colspan="2" align="center">
-                {OutDisband  teamID=$xTourn->teamID}
+                {OutDisband tourneyID=$xTourn->tourneyID}
 
                 {if $xTourn->ShowLooking}
                     <input type="button" value="Pickup Player(s)" title="Pick up Gamers who are looking for a team" class="MyButton" />
@@ -81,7 +81,7 @@
     <tr><td colspan="2"><hr /></td></tr>
     <tr>
         <td colspan="2" align="center">
-            {OutCancel TTID=$xTourn->TTID}
+            {OutCancel tourneyID=$xTourn->tourneyID}
             {OutFoundTeam tourneyID=$xTourn->tourneyID}
             {OutNewTeam tourneyID=$xTourn->tourneyID}
         </td>

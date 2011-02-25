@@ -65,9 +65,9 @@ class MyTourney extends ApplicationController
         if ( !empty($xTG) )
             {
             if ( $xTG->teamID == 0 )
-                $this->user_news->AddNews($this->currentUser->userID, "%TOUR%: No longer looking for a Team.", $xTG->tourneyID);
+                $this->user_news->AddNews($this->currentUser->userID, "!TOUR!: No longer looking for a Team.", $xTG->tourneyID);
             else
-                $this->user_news->AddNews($this->currentUser->userID, "%TOUR%: Drop out Team <b>%TEAM%</b>.", $xTG->tourneyID, $xTG->teamID);
+                $this->user_news->AddNews($this->currentUser->userID, "!TOUR!: Drop out Team <b>!TEAM!</b>.", $xTG->tourneyID, $xTG->teamID);
             }
 
         $this->tourney_gamer->delete(array("TTID" => $iTTID));

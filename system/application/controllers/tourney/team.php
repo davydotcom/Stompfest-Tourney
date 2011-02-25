@@ -54,9 +54,9 @@ class Team extends ApplicationController
             return;
             }
 
-        $xMess = sprintf("%TOUR%: %s <small>(%s)</small> has joined team <b>%TEAM%</b>.", $this->currentUser->handle, $this->currentUser->userID);
+        $xMess = sprintf("!TOUR!: %s <small>(%s)</small> has joined team <b>!TEAM!</b>.", $this->currentUser->handle, $this->currentUser->userID);
         $this->user_news->AddNews($xTeam->captainID, $xMess, $_POST["tourneyID"], $_POST["teamID"]);
-        $this->user_news->AddNews($this->currentUser->userID, "%TOUR%: Joined team <b>%TEAM%</b>.", $_POST["tourneyID"], $_POST["teamID"]);
+        $this->user_news->AddNews($this->currentUser->userID, "!TOUR!: Joined team <b>!TEAM!</b>.", $_POST["tourneyID"], $_POST["teamID"]);
 
         $this->GoodToGo("Successfully added to team.");
         }
@@ -73,7 +73,7 @@ class Team extends ApplicationController
         $xTG = $this->tourney_gamer->first(array("TTID" => $iTTID));
         if ( !empty($xTG) )
             {
-            $this->user_news->AddNews($xTG->userID, "%TOUR%: You have been removed from <b>%TEAM%</b>.", $xTG->tourneyID, $xTG->teamID);
+            $this->user_news->AddNews($xTG->userID, "!TOUR!: You have been removed from <b>!TEAM!</b>.", $xTG->tourneyID, $xTG->teamID);
 
             $this->tourney_gamer->delete(array("TTID" => $iTTID));
             }
@@ -111,7 +111,7 @@ class Team extends ApplicationController
 
         $this->load->model("user_news");
 
-        $this->user_news->AddNews($this->currentUser->userID, "%TOUR%: Marked as looking for a team", $_POST["tourneyID"]);
+        $this->user_news->AddNews($this->currentUser->userID, "!TOUR!: Marked as looking for a team", $_POST["tourneyID"]);
         $this->GoodToGo("Successfully added as a freelance player.");
         }
 
@@ -159,7 +159,7 @@ class Team extends ApplicationController
             }
         else
             {
-            $this->user_news->AddNews($this->currentUser->userID, sprintf("%TOUR%: Team created: %s.", $xA_Team["teamName"]), $xA_Team["tourneyID"]);
+            $this->user_news->AddNews($this->currentUser->userID, sprintf("!TOUR!: Team created: %s.", $xA_Team["teamName"]), $xA_Team["tourneyID"]);
             $this->GoodToGo("Team successfully created and registered for the Tournament.");
             }
         }
@@ -234,7 +234,7 @@ class Team extends ApplicationController
 
         if ( $xCapChanged )
             {
-            $this->user_news->AddNews($xA_Ass["captainID"], sprintf("%TOUR%: You've been made team captain of <b>%s</b>.", $_POST["teamName"]), $_POST["tourneyID"]);
+            $this->user_news->AddNews($xA_Ass["captainID"], sprintf("!TOUR!: You've been made team captain of <b>%s</b>.", $_POST["teamName"]), $_POST["tourneyID"]);
 
             echo("CAP");
             }
@@ -244,13 +244,13 @@ class Team extends ApplicationController
             }
         }
 
-    function Disband($iTeamID)
+    function Disband($itourneyID, $iTeamID)
         {
         $this->load->model("user_news");
         $this->load->model("tourney_team");
         $this->load->model("tourney_gamer");
 
-        $this->user_news->AddNews($this->currentUser->userID, sprintf("Disbanded team <b>%s</b>.", $this->tourney_team->GetTeamName($iTeamID)));
+        $this->user_news->AddNews($this->currentUser->userID, "!TOUR!: Disbanded team <b>%s</b>.", $itourneyID, $iTeamID);
 
         $this->tourney_team->delete(array("teamID" => $iTeamID));
         $this->tourney_gamer->delete(array("teamID" => $iTeamID));

@@ -34,23 +34,30 @@ $(function()
         });
     });
 
-function ConfirmCancel(iTTID)
+function ConfirmCancel(iTourneyID)
     {
-    xID = iTTID;
+    xID = iTourneyID;
 
     $("#xConCancel").dialog("open");
     }
 
-function ConfirmDisband(iTeamID)
+function ConfirmDisband(iTourneyID)
     {
-    xID = iTeamID;
+    xID = iTourneyID;
 
     $("#xDisbandTeam").dialog("open");
     }
 
 function Disband()
     {
-    window.location.href = '/tourney/team/Disband/' + xID;
+    var xTeam = $("#teamID_" + xID).val();
+    var xTour = $("#tourneyID_" + xID).val();
+
+var xTemp = '/tourney/team/Disband/' + xTour + "/" + xTeam;
+
+alert(xTemp);
+
+    window.location.href = xTemp;
     }
 
 function CancelReg()

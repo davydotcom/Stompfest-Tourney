@@ -28,7 +28,7 @@ class User_News extends SFModel
 
     function AddNews($iToUserID, $iMessage, $iTourneyID = null, $iTeam = null)
         {
-        if ( !empty($iTourneyID) && strpos($iMessage, "%TOUR%") !== false )
+        if ( !empty($iTourneyID) && strpos($iMessage, "!TOUR!") !== false )
             {
             $xSQL = "SELECT IF(tourneys.name IS NULL, games.name, tourneys.name) AS showName,
                        FROM tourneys
@@ -37,20 +37,20 @@ class User_News extends SFModel
 
             $xQuery = $this->db->query($xSQL, array($iTourneyID));
             if ( $xQuery->num_rows == 0 )
-                $iMessage = str_replace("%TOUR%", "", $iMessage);
+                $iMessage = str_replace("!TOUR!", "", $iMessage);
             else
-                $iMessage = str_replace("%TOUR%", $xQuery->row()->showName, $iMessage);
+                $iMessage = str_replace("!TOUR!", $xQuery->row()->showName, $iMessage);
             }
 
-        if  ( !empty($iTeamID) && strpos($iMessage, "%TEAM%") !== false )
+        if  ( !empty($iTeamID) && strpos($iMessage, "!TEAM!") !== false )
             {
             $xSQL = "SELECT teamName FROM tourney_teams WHERE teamID = ?";
             $xQuery = $this->db->query($xSQL, array($iTeamID));
 
             if ( $xQuery->num_rows == 0 )
-                $iMessage = str_replace("%TEAM%", "", $iMessage);
+                $iMessage = str_replace("!TEAM!", "", $iMessage);
             else
-                $iMessage = str_replace("%TEAM%", $xQuery->row()->teamName, $iMessage);
+                $iMessage = str_replace("!TEAM!", $xQuery->row()->teamName, $iMessage);
             }
 
         return $this->create(array("userID" => $iToUserID, "message" => $iMessage));
