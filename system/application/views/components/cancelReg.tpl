@@ -62,7 +62,9 @@ alert(xTemp);
 
 function CancelReg()
     {
-    window.location.href = '/tourney/main/cancelReggy/' + xID;
+    var xTTID = $("#TTID_" + xID).val();
+
+    window.location.href = "/tourney/main/cancelReggy/" + $xID + "/" + xTTID;
     }
 
 function NeverMind()

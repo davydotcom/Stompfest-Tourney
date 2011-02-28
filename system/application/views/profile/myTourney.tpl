@@ -10,12 +10,65 @@
 <script>
 	$(function()
         {
+        $("#xPickupPlayers").dialog(
+            {
+            modal: true,
+            width: 500,
+            hide: "Fold",
+            show: "Fold",
+            autoOpen: false,
+            resizable: false,
+            buttons:
+                {
+                "Close": DontInvite,
+                "Invite Players": InvitePlayers
+                }
+            });
+
         $("#xAccMain").accordion(
             {
 			collapsible: true,
             active: false
             });
         });
+
+    function PickupPlayers(iTourneyID)
+        {
+        $.ajax(
+            {
+            url: "/tourney/team/GetPickupPlayers/" + iTourneyID,
+            type: "POST",
+            success: function(iData){ DoneGotsPickPlayas(iData); }
+            });
+        }
+
+    function DoneGotsPickPlayas(iData)
+        {
+        $("#xTE_PickupPlayers").find("tr:gt(0)").remove();
+        $("#xTE_PickupPlayers").append(iData);
+
+        $("#xPickupPlayers").dialog("open");
+        }
+
+    function DontInvite()
+        {
+        $("#xPickupPlayers").dialog("close");
+        }
+
+    function InvitePlayers()
+        {
+        $.ajax(
+            {
+            url: "/tourney/team/InvitePlayers",
+            type: "POST",
+            success: function(iData){ DoneDideInvites(iData); }
+            });
+        }
+
+    function DoneDideInvites(iData)
+        {
+        alert(iData);
+        }
 
     function RemoveMe(iTTID)
         {
@@ -63,6 +116,7 @@
 
     function SaveTeam(iTourneyID)
         {
+        var xCap = "xRG_Cap_" + iTourneyID;
         var xData = "tourneyID=%I%&teamID=%T%&teamName=%N%&teamURL=%U%";
 
         xData = xData.replace("%I%", $("#tourneyID_" + iTourneyID).val());
@@ -70,8 +124,10 @@
         xData = xData.replace("%T%", $("#teamID_" + iTourneyID).val());
         xData = xData.replace("%U%", $("#teamURL_" + iTourneyID).val());
 
-        if ( $("#xRG_Cap").length > 0 )
-            xData = xData + "&Captain=" + $("input:radio[name=xRG_Cap]:checked").val();
+        xCap = $("input[name='xRG_Cap_" + iTourneyID + "']:checked").val();
+
+        if ( xCap != 0 )
+            xData = xData + "&Captain=" + xCap;
 
         $.ajax(
             {
@@ -130,6 +186,18 @@
     <div class="GamerNoTourney">You are not registered for any tournaments.</div>
 {else}
     {include file="components/cancelReg.tpl"}
+
+    <div id="xPickupPlayers" name="xPickupPlayers" title="Stompfest Tournament">
+        <table id="xTE_PickupPlayers" name="xT_PickupPlayers" width="100%" class="DG" border="1">
+            <thead>
+                <tr>
+                    <th>Invite</th>
+                    <th>Handle</th>
+                    <th>Comment</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
 
     <div id="xAccMain">
         {foreach $MyTourneys as $xTourn}

@@ -100,6 +100,18 @@ class tourney_gamer extends SFModel
 
     function GetGamersLooking($iTourneyID)
         {
-        return $this->find(array("tourneyID" => $iTourneyID, "lookingForTeam" => 1));
+        $xSQL = "SELECT tourney_gamers.TTID,
+                        tourney_gamers.comments,
+                        users.handle
+                   FROM tourney_gamers
+             INNER JOIN users ON users.userID = tourney_gamers.userID
+                  WHERE tourney_gamers.tourneyID = ? AND
+                        tourney_gamers.lookingForTeam = 1";
+
+        $xQuery = $this->db->query($xSQL, array($iTourneyID));
+        if ( $xQuery->num_rows == 0 )
+            return null;
+
+        return $xQuery->result();
         }
     }

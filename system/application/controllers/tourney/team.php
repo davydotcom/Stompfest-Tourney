@@ -25,6 +25,7 @@ class Team extends ApplicationController
     function JoinTeam()
         {
         $this->load->model("user_news");
+        $this->load->model("tourney_team");
         $this->load->model("tourney_gamer");
 
         $xA_Dude = array("userID" => $this->currentUser->userID,
@@ -54,8 +55,14 @@ class Team extends ApplicationController
             return;
             }
 
-        $xMess = sprintf("!TOUR!: %s <small>(%s)</small> has joined team <b>!TEAM!</b>.", $this->currentUser->handle, $this->currentUser->userID);
-        $this->user_news->AddNews($xTeam->captainID, $xMess, $_POST["tourneyID"], $_POST["teamID"]);
+        $xTeam = $this->tourney_team->first(array("teamID" => $_POST["teamID"]));
+
+        if ( !empty($xTeam->captainID) )
+            {
+            $xMess = sprintf("!TOUR!: %s <small>(%s)</small> has joined team <b>!TEAM!</b>.", $this->currentUser->handle, $this->currentUser->userID);
+            $this->user_news->AddNews($xTeam->captainID, $xMess, $_POST["tourneyID"], $_POST["teamID"]);
+            }
+
         $this->user_news->AddNews($this->currentUser->userID, "!TOUR!: Joined team <b>!TEAM!</b>.", $_POST["tourneyID"], $_POST["teamID"]);
 
         $this->GoodToGo("Successfully added to team.");
@@ -73,7 +80,7 @@ class Team extends ApplicationController
         $xTG = $this->tourney_gamer->first(array("TTID" => $iTTID));
         if ( !empty($xTG) )
             {
-            $this->user_news->AddNews($xTG->userID, "!TOUR!: You have been removed from <b>!TEAM!</b>.", $xTG->tourneyID, $xTG->teamID);
+            $this->user_news->AddNews($xTG->userID, "!TOUR!: You have been removed from team <b>!TEAM!</b>.", $xTG->tourneyID, $xTG->teamID);
 
             $this->tourney_gamer->delete(array("TTID" => $iTTID));
             }
@@ -159,7 +166,7 @@ class Team extends ApplicationController
             }
         else
             {
-            $this->user_news->AddNews($this->currentUser->userID, sprintf("!TOUR!: Team created: %s.", $xA_Team["teamName"]), $xA_Team["tourneyID"]);
+            $this->user_news->AddNews($this->currentUser->userID, sprintf("!TOUR!: Team created: <b>%s</b>.", $xA_Team["teamName"]), $xA_Team["tourneyID"]);
             $this->GoodToGo("Team successfully created and registered for the Tournament.");
             }
         }
@@ -234,6 +241,7 @@ class Team extends ApplicationController
 
         if ( $xCapChanged )
             {
+            $this->user_news->AddNews($this->currentUser->userID, sprintf("!TOUR!: Removed yourself as team captain of <b>%s</b>.", $_POST["teamName"]), $_POST["tourneyID"]);
             $this->user_news->AddNews($xA_Ass["captainID"], sprintf("!TOUR!: You've been made team captain of <b>%s</b>.", $_POST["teamName"]), $_POST["tourneyID"]);
 
             echo("CAP");
@@ -244,17 +252,48 @@ class Team extends ApplicationController
             }
         }
 
-    function Disband($itourneyID, $iTeamID)
+    function Disband($iTourneyID, $iTeamID)
         {
         $this->load->model("user_news");
         $this->load->model("tourney_team");
         $this->load->model("tourney_gamer");
 
-        $this->user_news->AddNews($this->currentUser->userID, "!TOUR!: Disbanded team <b>%s</b>.", $itourneyID, $iTeamID);
+        $this->user_news->AddNews($this->currentUser->userID, "!TOUR!: Disbanded team <b>%s</b>.", $iTourneyID, $iTeamID);
 
         $this->tourney_team->delete(array("teamID" => $iTeamID));
         $this->tourney_gamer->delete(array("teamID" => $iTeamID));
 
         redirect("/tourney/main");
         }
+
+    function GetPickupPlayers($iTourneyID)
+        {
+        $this->load->model("tourney_gamer");
+
+        $xLookers = $this->tourney_gamer->GetGamersLooking($iTourneyID);
+        if ( empty($xLookers) )
+            {
+            echo("");
+            return;
+            }
+
+        $xList = "";
+        $xTemp = '<tr valign="top"><td align="center"><input id="xPUDude_%TTID%" name="xPUDude_%TTID%" type="checkbox" title="Invite \'%HAND%\' to my team" value="%HAND%" /></td><td><b><label for="xPUDude_%TTID%">%HAND%</label></b></td><td><textarea cols="50">%COMM%</textarea></td></tr>';
+
+        foreach ( $xLookers as $xDude )
+            {
+            $xNew = str_replace("%TTID%", $xDude->TTID, $xTemp);
+            $xNew = str_replace("%COMM%", $xDude->comments, $xNew);
+
+            $xList .= str_replace("%HAND%", $xDude->handle, $xNew);
+            }
+
+        echo($xList);
+        }
+
+    function InvitePlayers()
+        {
+echo(var_dump($_POST));
+        }
+
     }

@@ -30,7 +30,7 @@
         {foreach $UserData->News as $xNews}
             <tr id="xTR_New{$xNews->newsID}">
                 <td><span class="NewsListAt">{$xNews->sentAt}:</span> {$xNews->message}</td>
-                <td width="20"><img src="/images/Delete.png" title="Delete" onclick="Javascript:DeleteNews('{$xNews->newsID}')" class="ImageLink" /></td>
+                <td width="18"><img src="/images/Delete.png" title="Delete" onclick="Javascript:DeleteNews('{$xNews->newsID}')" class="ImageLink" /></td>
             </tr>
         {/foreach}
     </table>

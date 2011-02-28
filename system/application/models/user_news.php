@@ -26,11 +26,11 @@ class User_News extends SFModel
         return $xQuery->result();
         }   
 
-    function AddNews($iToUserID, $iMessage, $iTourneyID = null, $iTeam = null)
+    function AddNews($iToUserID, $iMessage, $iTourneyID = null, $iTeamID = null)
         {
         if ( !empty($iTourneyID) && strpos($iMessage, "!TOUR!") !== false )
             {
-            $xSQL = "SELECT IF(tourneys.name IS NULL, games.name, tourneys.name) AS showName,
+            $xSQL = "SELECT IF(tourneys.name IS NULL, games.name, tourneys.name) AS showName
                        FROM tourneys
                  INNER JOIN games ON games.gameID = tourneys.gameID
                       WHERE tourneys.tourneyID = ?";
@@ -44,8 +44,7 @@ class User_News extends SFModel
 
         if  ( !empty($iTeamID) && strpos($iMessage, "!TEAM!") !== false )
             {
-            $xSQL = "SELECT teamName FROM tourney_teams WHERE teamID = ?";
-            $xQuery = $this->db->query($xSQL, array($iTeamID));
+            $xQuery = $this->db->query("SELECT teamName FROM tourney_teams WHERE teamID = ?", array($iTeamID));
 
             if ( $xQuery->num_rows == 0 )
                 $iMessage = str_replace("!TEAM!", "", $iMessage);

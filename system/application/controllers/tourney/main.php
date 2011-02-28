@@ -149,15 +149,16 @@ class Main extends ApplicationController
             }
         }
 
-    function cancelReggy($iTTID)
+    function cancelReggy($iTourneyID, $iTTID)
         {
+        $this->load->model("user_news");
         $this->load->model("tourney_gamer");
 
+        $this->user_news->AddNews($this->currentUser->userID, "!TOUR!: Canceled registration", $iTourneyID);
         $this->tourney_gamer->delete(array("TTID" => $iTTID));
 
         $this->session->set_flashdata("notice", "Your registration has been canceled");
 
-        $this->mysmarty->assign("UserData", $this->currentUser);
-        $this->mysmarty->view("/profile/index");
+        redirect("/profile/main");
         }
     }
