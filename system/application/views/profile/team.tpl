@@ -67,12 +67,47 @@
                 {OutDisband tourneyID=$xTourn->tourneyID}
 
                 {if $xTourn->ShowLooking}
-                <input type="button" value="Pickup Player(s)" title="Pick up Gamers who are looking for a team" class="MyButton" onclick="Javascript:PickupPlayers('{$xTourn->tourneyID}');" />
+                    <input type="button" value="Pickup Player(s)" title="Pick up Gamers who are looking for a team" class="MyButton" onclick="Javascript:PickupPlayers('{$xTourn->tourneyID}');" />
                 {/if}
             </td>
         </tr>
     {/if}
 {else}
+    {if !empty($xTourn->Invites)}
+        <tr>
+            <td class="DataLabel">Team Invites:</td>
+            <td>
+                <tr>
+                    <table width="100%" class="DG" border="1">
+                        <thead>
+                            <th>Team</th>
+                            <th>Captain</th>
+                            <th>&nbsp;</th>
+                        </thead>
+                        <tbody>
+                        {foreach $xTourn->Invites as $xI_Invite}
+                            <tr id="xTR_Invite{$xI_Invite->inviteID}">
+                                {if empty($xI_Invite->teamURL)}
+                                    <td>{$xI_Invite->teamName}</td>
+                                {else}
+                                    <td><a href="{$xI_Invite->teamURL}" target="_blank">{$xI_Invite->teamName}</a></td>
+                                {/if}
+                                <td>{$xI_Invite->handle}</td>
+                                <td>
+                                    <a href="Javascript:InviteAccept('{$xI_Invite->tourneyID}', '{$xI_Invite->teamID}');">Accept</a>
+                                    <a href="Javascript:InviteDecline('{$xI_Invite->tourneyID}', '{$xI_Invite->teamID}');">Decline</a>
+                                </td>
+                            </tr>
+                        {/foreach}
+                        </tbody>
+                    </table>
+                </tr>
+            </td>
+        </tr>
+    {/if}
+    <tr>
+        <td colspan="2">You are looking for a team.  Here you can leave a message for Team captains who might want you to join their team.</td>
+    </tr>
     <tr>
         <td class="DataLabel">Comments:</td>
         <td><textarea id="xIN_Comm_{$xTourn->tourneyID}" name="xIN_Comm_{$xTourn->tourneyID}" cols="60" rows="6">{$xTourn->comments}</textarea></td>

@@ -18,6 +18,7 @@ class MyTourney extends ApplicationController
         $this->load->model("tourney");
         $this->load->model("tourney_team");
         $this->load->model("tourney_gamer");
+        $this->load->model("tourney_invite");
 
         $xA_Tourn = $this->tourney_gamer->GetMyTourneys();
 
@@ -27,6 +28,7 @@ class MyTourney extends ApplicationController
                 {
                 if ( $xI_Tourn->tourneyType == 1 )
                     {
+                    $xI_Tourn->Invites = $this->tourney_invite->GetMyInvites($xI_Tourn->tourneyID);
                     $xI_Tourn->Members = $this->tourney_team->TeamMembers($xI_Tourn->teamID);
                     $xI_Tourn->IAmTeamCaptain = ($xI_Tourn->captainID == $this->currentUser->userID);
 

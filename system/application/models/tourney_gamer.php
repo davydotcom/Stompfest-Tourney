@@ -81,9 +81,7 @@ class tourney_gamer extends SFModel
         if ( $this->isLoggedIn === false )
             return 0;
 
-        $this->where(array("tourneyID" => $iTourneyID, "userID" => $this->currentUser->userID));
-        $xDude = $this->first();
-
+        $xDude = $this->first(array("tourneyID" => $iTourneyID, "userID" => $this->currentUser->userID));
         if ( empty($xDude) )
             return 0;
 
@@ -95,18 +93,35 @@ class tourney_gamer extends SFModel
 
     function GamersAreLookingForTeam($iTourneyID)
         {
-        return $this->CanFind(array("tourneyID" => $iTourneyID, "lookingForTeam" => 1));
+        $xSQL = "SELECT *
+                   FROM tourney_gamers
+                  WHERE tourney_gamers.lookingForTeam = 1 AND
+                        tourney_gamers.tourneyID = ? AND
+                        NOT EXISTS(SELECT *
+                                     FROM tourney_invites
+                                    WHERE tourney_invites.userID = tourney_gamers.userID AND
+                                          tourney_invites.tourneyID = tourney_gamers.tourneyID)
+                  LIMIT 1";
+
+        $xQuery = $this->db->query($xSQL, array($iTourneyID));
+
+        return ($xQuery->num_rows != 0);
         }
 
     function GetGamersLooking($iTourneyID)
         {
         $xSQL = "SELECT tourney_gamers.TTID,
                         tourney_gamers.comments,
-                        users.handle
+                        users.handle,
+                        users.userID
                    FROM tourney_gamers
              INNER JOIN users ON users.userID = tourney_gamers.userID
                   WHERE tourney_gamers.tourneyID = ? AND
-                        tourney_gamers.lookingForTeam = 1";
+                        tourney_gamers.lookingForTeam = 1 AND
+                        NOT EXISTS(SELECT *
+                                     FROM tourney_invites
+                                    WHERE tourney_invites.userID = tourney_gamers.userID AND
+                                          tourney_invites.tourneyID = tourney_gamers.tourneyID)";
 
         $xQuery = $this->db->query($xSQL, array($iTourneyID));
         if ( $xQuery->num_rows == 0 )

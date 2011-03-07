@@ -27,6 +27,7 @@ class Team extends ApplicationController
         $this->load->model("user_news");
         $this->load->model("tourney_team");
         $this->load->model("tourney_gamer");
+        $this->load->model("tourney_invite");
 
         $xA_Dude = array("userID" => $this->currentUser->userID,
                          "tourneyID" => $_POST["tourneyID"],
@@ -64,6 +65,7 @@ class Team extends ApplicationController
             }
 
         $this->user_news->AddNews($this->currentUser->userID, "!TOUR!: Joined team <b>!TEAM!</b>.", $_POST["tourneyID"], $_POST["teamID"]);
+        $this->touney_invite->delete(array("tourneyID" => $_POST["tourneyID"], "userID" => $this->currentUser->userID));
 
         $this->GoodToGo("Successfully added to team.");
         }
@@ -278,22 +280,45 @@ class Team extends ApplicationController
             }
 
         $xList = "";
-        $xTemp = '<tr valign="top"><td align="center"><input id="xPUDude_%TTID%" name="xPUDude_%TTID%" type="checkbox" title="Invite \'%HAND%\' to my team" value="%HAND%" /></td><td><b><label for="xPUDude_%TTID%">%HAND%</label></b></td><td><textarea cols="50">%COMM%</textarea></td></tr>';
+        $xTemp = '<tr valign="top"><td align="center"><input id="xPUDude_%USERID%" name="xPUDude_%USERID%" type="checkbox" title="Invite \'%HAND%\' to my team" value="%HAND%" /></td><td><b><label for="xPUDude_%USERID%">%HAND%</label></b></td><td><textarea cols="50" readonly="readonly">%COMM%</textarea></td></tr>';
+        $xA_UID = array();
 
         foreach ( $xLookers as $xDude )
             {
-            $xNew = str_replace("%TTID%", $xDude->TTID, $xTemp);
-            $xNew = str_replace("%COMM%", $xDude->comments, $xNew);
+            $xNew = str_replace("%COMM%", $xDude->comments, $xTemp);
+            $xNew = str_replace("%USERID%", $xDude->userID, $xNew);
+            $xA_UID[] = $xDude->userID;
 
             $xList .= str_replace("%HAND%", $xDude->handle, $xNew);
             }
 
-        echo($xList);
+        $xDude = new stdClass();
+        $xDude->Data = $xA_UID;
+        $xDude->HTML =  $xList;
+        $xDude->tourneyID = $iTourneyID;
+
+        echo(json_encode($xDude));
         }
 
     function InvitePlayers()
         {
-echo(var_dump($_POST));
+        $this->load->model("user_news");
+        $this->load->model("tourney_invite");
+
+        $xTeamID = $_POST["xTeamID"];
+        $xA_Picks = split(",", $_POST["xPicks"]);
+        $xTourneyID = $_POST["xTourneyID"];
+
+        foreach ( $xA_Picks as $xUserID )
+            {
+            $this->user_news->AddNews($xUserID, "!TOUR!: You have been invited to join Team <b>!TEAM!</b>.", $xTourneyID, $xTeamID);
+            $this->tourney_invite->create(array("tourneyID" => $xTourneyID, "userID" => $xUserID, "teamID" => $xTeamID));
+            }
+
+        echo("GOOD");
         }
 
+    function InviteAccept($iTourneyID, $iTeamID)
+        {
+        }
     }

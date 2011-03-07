@@ -8,6 +8,9 @@
 
 {block name=main_content}
 <script>
+    var xA_UserID;
+    var xTourneyID;
+
 	$(function()
         {
         $("#xPickupPlayers").dialog(
@@ -20,7 +23,7 @@
             resizable: false,
             buttons:
                 {
-                "Close": DontInvite,
+                "Close": CloseInvite,
                 "Invite Players": InvitePlayers
                 }
             });
@@ -44,30 +47,55 @@
 
     function DoneGotsPickPlayas(iData)
         {
+        var xDude = jQuery.parseJSON(iData);
+
+        xA_UserID = xDude.Data;
+        xTourneyID = xDude.tourneyID;
+
         $("#xTE_PickupPlayers").find("tr:gt(0)").remove();
-        $("#xTE_PickupPlayers").append(iData);
+        $("#xTE_PickupPlayers").append(xDude.HTML);
 
         $("#xPickupPlayers").dialog("open");
         }
 
-    function DontInvite()
+    function CloseInvite()
         {
         $("#xPickupPlayers").dialog("close");
         }
 
     function InvitePlayers()
         {
+        var xA_Pick = new Array();
+        var xTeamID = $("#teamID_" + xTourneyID).val();
+
+        for ( xlp = 0; xlp < xA_UserID.length; xlp++ )
+            {
+            if ( $("#xPUDude_" + xA_UserID[xlp]).attr("checked") == true )
+                xA_Pick.push(xA_UserID[xlp]);
+            }
+
+        if ( xA_Pick.length == 0 )
+            {
+            alert("You must select at least one player to invite");
+            return;
+            }
+
         $.ajax(
             {
             url: "/tourney/team/InvitePlayers",
+            data: "xPicks=" + xA_Pick + "&xTeamID=" + xTeamID + "&xTourneyID=" + xTourneyID,
             type: "POST",
-            success: function(iData){ DoneDideInvites(iData); }
+            success: function(iData){ DoneDidInvites(iData); }
             });
         }
 
-    function DoneDideInvites(iData)
+    function DoneDidInvites(iData)
         {
-        alert(iData);
+        if ( iData == "GOOD" )
+            {
+            alert("The selected players have been invited to your team.");
+            CloseInvite();
+            }
         }
 
     function RemoveMe(iTTID)
@@ -180,6 +208,16 @@
             alert(iData);
         }
 
+    function InviteAccept(iTourneyID, iTeam)
+        {
+        $.ajax(
+            {
+            url: "/tourney/team/JoinTeam",
+            data: "tourneyID=" + iTourneyID + "&teamID=" + iTeam,
+            type: "POST",
+            success: function(){ window.location.href = "/profile/main"; }
+            });
+        }
 </script>
 
 {if empty($MyTourneys)}
@@ -188,7 +226,7 @@
     {include file="components/cancelReg.tpl"}
 
     <div id="xPickupPlayers" name="xPickupPlayers" title="Stompfest Tournament">
-        <table id="xTE_PickupPlayers" name="xT_PickupPlayers" width="100%" class="DG" border="1">
+        <table id="xTE_PickupPlayers" name="xTE_PickupPlayers" width="100%" class="DG" border="1">
             <thead>
                 <tr>
                     <th>Invite</th>
