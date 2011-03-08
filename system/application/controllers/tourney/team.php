@@ -318,7 +318,21 @@ class Team extends ApplicationController
         echo("GOOD");
         }
 
-    function InviteAccept($iTourneyID, $iTeamID)
+    function InviteDecline()
         {
+        $this->load->model("tourney_team");
+        $this->load->model("tourney_invite");
+
+        $xTeam = $this->tourney_team->first(array("teamID" => $_POST["teamID"]));
+
+        if ( !empty($xTeam->captainID) )
+            {
+            $xMess = sprintf("!TOUR!: <span title='%s'>%s</span> has declined to join your team <b>!TEAM!</b>.", $this->currentUser->userID, $this->currentUser->handle);
+            $this->user_news->AddNews($xTeam->captainID, $xMess, $_POST["tourneyID"], $_POST["teamID"]);
+            }
+
+        $this->tourney_invite->delete(array("tourneyID" => $_POST["tourneyID"], "userID" => $this->currentUser->userID, "teamID" => $_POST["teamID"]));
+
+        $this->user_news->AddNews($this->currentUser->userID, "!TOUR!: You have decline to join Team <b>!TEAM!</b>.", $_POST["tourneyID"], $_POST["teamID"]);
         }
     }

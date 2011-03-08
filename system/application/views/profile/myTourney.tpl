@@ -218,6 +218,17 @@
             success: function(){ window.location.href = "/profile/main"; }
             });
         }
+
+    function InviteDecline(iTourneyID, iTeam)
+        {
+        $.ajax(
+            {
+            url: "/tourney/team/InviteDecline",
+            data: "tourneyID=" + iTourneyID + "&teamID=" + iTeam,
+            type: "POST",
+            success: function(){ window.location.href = "/profile/main"; }
+            });
+        }
 </script>
 
 {if empty($MyTourneys)}
