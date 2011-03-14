@@ -43,16 +43,16 @@
 </p>
 
 <p><label for="registrationOpensAt">Registration Opens At</label><br/>
-            <input name="registrationOpensAt" type="text" widget='calendar' size="15" value="{$tourney->registrationOpensAt|default:""}"/>
+            <input name="registrationOpensAt" type="text" widget='calendar' size="25" value="{$tourney->registrationOpensAt|default:""}"/>
 </p>
 
 <p><label for="registrationClosesAt">Registration Closes At</label><br/>
-            <input name="registrationClosesAt" type="text" widget='calendar' size="15" value="{$tourney->registrationClosesAt|default:""}"/>
+            <input name="registrationClosesAt" type="text" widget='calendar' size="25" value="{$tourney->registrationClosesAt|default:""}"/>
 </p>
 
 <p><label for="beginsAt">Begins At</label><br/>
-            <input name="beginsAt" type="text" widget='calendar' size="15" value="{$tourney->beginsAt|default:""}"/>
+            <input name="beginsAt" type="text" widget='calendar' size="25" value="{$tourney->beginsAt|default:""}"/>
 </p>
 <p><label for="endsAt">Ends At</label><br/>
-            <input name="endsAt" type="text" widget='calendar' size="15" value="{$tourney->endsAt|default:""}"/>
+            <input name="endsAt" type="text" widget='calendar' size="25" value="{$tourney->endsAt|default:""}"/>
 </p>

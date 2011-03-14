@@ -18,7 +18,7 @@
             <th>Name</th>
             <th>Game</th>
             <th>Type</th>
-            <th>Time</th>
+            <th>Start Time</th>
             <th></th>
             </tr>
         </thead>
@@ -30,6 +30,7 @@
                 <td><a href="tourneys/show/{$tourney->tourneyID}">{$tourney->name}</a></td>
                 <td>{$tourney->game->name}</td>
                 <td>{if $tourney->tourneyType == 0}Free for All{elseif $tourney->tourneyType == 1}Team Based{else}1 vs. 1{/if}</td>
+                <td>{$tourney->beginsAt}</td>
                 <td><a href="tourneys/edit/{$tourney->tourneyID}">edit</a> | <a href="tourneys/destroy/{$tourney->tourneyID}" data-confirm="Are you sure you wish to remove this tournament from the server?">remove</a></td>
             </tr>
     {/foreach}

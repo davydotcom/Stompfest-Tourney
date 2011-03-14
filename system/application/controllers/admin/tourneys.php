@@ -18,20 +18,23 @@ class Tourneys extends AdminApplicationController
         $this->load->model('game');
         $tourneys = $this->tourney->find();
         $game_ids = array();
-        foreach($tourneys as $tourney)
+        foreach ($tourneys as $tourney)
         {
             $game_ids[] = $tourney->gameID;
         }
-        $this->game->db->where_in('gameID',$game_ids);
-        $games = $this->game->find();
-
-        foreach($tourneys as $tourney)
+        if (!empty($game_ids))
         {
-            foreach($games as $game)
+            $this->game->db->where_in('gameID', $game_ids);
+            $games = $this->game->find();
+
+            foreach ($tourneys as $tourney)
             {
-                if($game->gameID == $tourney->gameID)
+                foreach ($games as $game)
                 {
-                    $tourney->game = $game;
+                    if ($game->gameID == $tourney->gameID)
+                    {
+                        $tourney->game = $game;
+                    }
                 }
             }
         }
@@ -51,13 +54,13 @@ class Tourneys extends AdminApplicationController
     {
         $this->load->model('game');
         $games = $this->game->where(array('active' => '1'))->find();
-        $this->mysmarty->view('admin/tourneys/add',array('games' => $games));
+        $this->mysmarty->view('admin/tourneys/add', array('games' => $games));
     }
 
     function create()
     {
         $this->load->model('tourney');
-        
+
         if ($this->tourney->create($_POST))
         {
             $this->session->set_flashdata('notice', 'New Tourney Record Created!');
@@ -71,15 +74,15 @@ class Tourneys extends AdminApplicationController
             //$this->add();
         }
     }
-    
+
     function edit($id)
     {
         $this->load_model_or_fail($id);
-                $this->load->model('game');
+        $this->load->model('game');
 
         $games = $this->game->where(array('active' => '1'))->find();
 
-        $this->mysmarty->view('admin/tourneys/edit', array('tourney' => $this->currentTourney,'games' => $games));
+        $this->mysmarty->view('admin/tourneys/edit', array('tourney' => $this->currentTourney, 'games' => $games));
     }
 
     function update($id)
@@ -94,8 +97,7 @@ class Tourneys extends AdminApplicationController
         } else
         {
             $this->session->set_flashdata('error', 'Error saving tournament information!.');
-            redirect("/admin/tourneys/edit/" . $id );
-
+            redirect("/admin/tourneys/edit/" . $id);
         }
     }
 
@@ -129,7 +131,5 @@ class Tourneys extends AdminApplicationController
 
         return true;
     }
-
-    
 
 }
