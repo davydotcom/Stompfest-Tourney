@@ -41,10 +41,10 @@ class Tourneys extends AdminApplicationController
     function show($id)
     {
         $this->load_model_or_fail($id);
-        $this->load->model('game_gamer_info');
+        $this->load->model('game');
+        $this->currentTourney->game = $this->game->findByID($this->currentTourney->gameID);
 
-        $gamer_infos = $this->game_gamer_info->where(array('gameID' => $this->currentGame->gameID))->find();
-        $this->mysmarty->view('admin/games/show', array('game' => $this->currentGame,'gamer_infos' => $gamer_infos));
+        $this->mysmarty->view('admin/tourneys/show', array('tourney' => $this->currentTourney));
     }
 
     function add()
@@ -75,22 +75,27 @@ class Tourneys extends AdminApplicationController
     function edit($id)
     {
         $this->load_model_or_fail($id);
+                $this->load->model('game');
 
-        $this->mysmarty->view('admin/games/edit', array('game' => $this->currentGame));
+        $games = $this->game->where(array('active' => '1'))->find();
+
+        $this->mysmarty->view('admin/tourneys/edit', array('tourney' => $this->currentTourney,'games' => $games));
     }
 
     function update($id)
     {
         $this->load_model_or_fail($id);
         $_POST['description'] = trim($_POST['description']);
-        if ($this->game->update($this->currentGame->gameID, $_POST))
+        $_POST['matchInstructions'] = trim($_POST['matchInstructions']);
+        if ($this->tourney->update($this->currentTourney->tourneyID, $_POST))
         {
-            $this->session->set_flashdata('notice', 'Game information successfully saved.');
-            redirect("/admin/games");
+            $this->session->set_flashdata('notice', 'Tournament information successfully saved.');
+            redirect("/admin/tourneys");
         } else
         {
-            $this->session->set_flashdata('error', 'Error saving game information!.');
-            $this->edit($id);
+            $this->session->set_flashdata('error', 'Error saving tournament information!.');
+            redirect("/admin/tourneys/edit/" . $id );
+
         }
     }
 
@@ -98,9 +103,9 @@ class Tourneys extends AdminApplicationController
     {
         $this->load_model_or_fail($id);
 
-        $this->game->delete(array('gameID' => $this->currentGame->gameID));
-        $this->session->set_flashdata('notice', 'Game Removed!');
-        redirect("/admin/games");
+        $this->tourney->delete(array('tourneyID' => $this->currentTourney->tourneyID));
+        $this->session->set_flashdata('notice', 'Tournament Removed!');
+        redirect("/admin/tourneys");
     }
 
     protected function load_model_or_fail($id=null)
