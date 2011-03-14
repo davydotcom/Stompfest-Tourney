@@ -9,6 +9,8 @@ class User extends SFModel
         parent::__construct();
 
         $this->primaryKeyName = "userID";
+        $this->required('handle');
+        $this->required('barcode');
         }
 
     function Exists()
