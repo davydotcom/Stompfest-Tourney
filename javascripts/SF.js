@@ -35,6 +35,17 @@ function setupCheckboxes()
         $(hb).insertAfter(cb);
     });
 }
+function setupDataMethods()
+{
+    $('a[data-confirm]').bind('click',function(ev) {
+        if(!confirm($(this).attr('data-confirm')))
+        {
+            ev.preventDefault();
+            return false;
+        }
+    });
+}
+
 function checkBoxChanged(ev)
 {
     var cb = $(this);
@@ -52,6 +63,7 @@ function checkBoxChanged(ev)
 $(document).ready(function(){
     $('.flash').delay(5000).fadeOut('slow');
     setupCheckboxes();
+    setupDataMethods();
 });
 
 function ErrorShow(iWho, iMessage)
