@@ -29,7 +29,7 @@
                 <td>{$game->short_name}</td>
                 <td><a href="games/show/{$game->gameID}">{$game->name}</a></td>
                 <td>{$game->genre}</td>
-                <td>Active</td>
+                <td>{if $game->active == 1}Active{else}Inactive{/if}</td>
                 <td><a href="games/edit/{$game->gameID}">edit</a> | <a href="games/destroy/{$game->gameID}">remove</a></td>
             </tr>
         <p></p>

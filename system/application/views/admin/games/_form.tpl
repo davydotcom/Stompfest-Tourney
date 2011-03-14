@@ -14,7 +14,6 @@
             <textarea name="description" cols="40" rows="5">{$game->description|default:""}</textarea>
 </p>
 
-<p><label for="active">Active</label>
-            
-
+<p><label for="active">Active?</label>
+    <input name="active" type="checkbox" value="{$game->active|default:"0"}"/>
 </p>
