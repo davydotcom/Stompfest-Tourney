@@ -17,7 +17,7 @@ class AdminApplicationController extends ApplicationController
         if (empty($this->currentUser))
         {
             $this->session->set_flashdata('error', 'You must be logged in to view this section!');
-            redirect("/login");
+            redirect("/login/main");
             return false;
         }
         if(!$this->currentUser->is_super_admin)

@@ -53,18 +53,14 @@ function Disband()
     var xTeam = $("#teamID_" + xID).val();
     var xTour = $("#tourneyID_" + xID).val();
 
-var xTemp = '/tourney/team/Disband/' + xTour + "/" + xTeam;
-
-alert(xTemp);
-
-    window.location.href = xTemp;
+    window.location.href = "/tourney/team/Disband/" + xTour + "/" + xTeam;;
     }
 
 function CancelReg()
     {
     var xTTID = $("#TTID_" + xID).val();
 
-    window.location.href = "/tourney/main/cancelReggy/" + $xID + "/" + xTTID;
+    window.location.href = "/tourney/main/cancelReggy/" + xID + "/" + xTTID;
     }
 
 function NeverMind()

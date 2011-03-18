@@ -1,5 +1,6 @@
 <?php
 require_once(APPPATH . "/controllers/application.php");
+
 class Main extends ApplicationController
     {
     function  __construct()
@@ -11,6 +12,6 @@ class Main extends ApplicationController
 
     function index()
         {
-        $this->mysmarty->view('main/index');
+        $this->mysmarty->view('/main/index');
         }
     }

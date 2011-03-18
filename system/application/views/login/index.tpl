@@ -1,10 +1,13 @@
-
 {extends file="layouts/application.tpl"}
+
 {block name=title}Stompfest Tournament: Login{/block}
+
 {block name=main_content}
     <h2>Login</h2>
     <hr />
-    <form action="/login/validate" method="post">
+
+    <div id="left_navigation">
+    <form action="/login/main/validate" method="post">
     <table>
         <tr>
             <td class="DataLabel">Handle:</td>
@@ -22,4 +25,5 @@
         </tr>
     </table>
     </form>
+    </div>
 {/block}

@@ -13,9 +13,9 @@
         <div id="header">
             <ul id="user_navigation">
                 {if $isLoggedIn == true}
-                <li><a href="/login/destroy">Logout</a></li>
+                    <li><a href="/login/main/destroy">Logout</a></li>
                 {else}
-                <li><a href="/login">Login</a></li>
+                    <li><a href="/login/main">Login</a></li>
                 {/if}
             </ul>
             <h1>Stompfest <span class="smaller_header">Administrator</span></h1>

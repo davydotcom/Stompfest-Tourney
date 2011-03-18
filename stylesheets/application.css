@@ -427,9 +427,14 @@ label
     font-weight: bold;
 }
 
-.NewsList tr
+.NewsList tbody tr
     {
     border-bottom-style: solid, 1px, #990000;
+    }
+
+.NewsList tbody tr:hover
+    {
+    background: #e3a1a1;
     }
 
 .NewsListAt
