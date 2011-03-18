@@ -161,7 +161,7 @@ class SFModel extends Model
 
         $xDude = $this->first();
 
-        return!empty($xDude);
+        return !empty($xDude);
     }
 
     public static function pluralize($string)

@@ -3,7 +3,7 @@
 {block name=title}Stompfest Tournament | {$UserData.handle}{/block}
 
 {block name=main_content_right}
-    {include file="profile/links.tpl" xPage="Edit"}
+    {include file="/profile/links.tpl" xPage="Edit"}
 {/block}
 
 {block name=main_content}
@@ -30,6 +30,8 @@
 
 </script>
 
+{include file="/components/password.tpl" xShowCurrent="true"}
+
 <form method="post" action="/profile/main/update">
     <table class="DataDisplay">
         <tr>
@@ -39,6 +41,9 @@
         <tr>
             <td class="DataLabel">Barcode:</td>
             <td>{$UserData.barcode}</td>
+        </tr>
+        <tr>
+            <td colspan="2"><input type="button" title="Set my password" value="Reset Password" class="MyButton" onclick="Javascript:GetPassword();" /></td>
         </tr>
         <tr>
             <td class="DataLabel">Tournament Notification:</td>

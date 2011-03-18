@@ -13,41 +13,27 @@ class User extends SFModel
         $this->required('barcode');
         }
 
-    function Exists()
+    function Exists($iHandle, $iBarcode)
         {
-        $this->db->where("Handle", $this->input->post("xHandle"));
-        $this->db->where("Barcode", $this->input->post("xBarcode"));
+        $xDude = $this->first(array("Handle" => $iHandle, "Barcode" => $iBarcode));
+        if ( $xDude == null )
+            return null;
 
-        $xQuery = $this->db->get("users");
-
-        if ( $xQuery->num_rows == 1 )
-            {
-            $result = $xQuery->row(0);
-
-            return $result->userID;
-            }
-
-        return null;
+        return $xDude->userID;
         }
 
     function findByUserID($iUserID)
         {
-        $this->db->where("userID", $iUserID);
+        $xDude = $this->first(array("userID" => $iUserID));
+        if ( $xDude == null )
+            return null;
 
-        $xQuery = $this->db->get("users");
-        if ( $xQuery->num_rows == 1 )
-            {
-            $xUser = $xQuery->row();
+        $this->db->where("captainID", $iUserID);
+        $this->db->from("tourney_teams");
 
-            $this->db->where("captainID", $iUserID);
-            $this->db->from("tourney_teams");
+        $xDude->IAmCaptain = ($this->db->count_all_results() != 0);
 
-            $xUser->IAmCaptain = ($this->db->count_all_results() != 0);
-
-            return $xUser;
-            }
-
-        return null;
+        return $xDude;
         }
 
     }

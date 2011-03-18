@@ -18,13 +18,12 @@ class Main extends ApplicationController
         {
         $this->load->model("User");
 
-        $userID = $this->User->Exists();
+        $userID = $this->User->Exists($this->input->post("xCurrHandle"), $this->input->post("xPass"));
 
         if ( empty($userID) )
             {
             $this->session->set_flashdata('error', 'Invalid username / barcode combination!');
             redirect("/login/main");
-//			$this->index();
             }
         else
             {
@@ -34,6 +33,17 @@ class Main extends ApplicationController
             $this->session->set_flashdata('notice', 'Login Successful!');
             redirect("/");
             }
+        }
+
+    function create()
+        {
+        $this->load->model("User");
+
+        $xHandle = $this->input->post("xNewHandle");
+        //$this->input->post("xPass")
+
+//        if ( $this->User->CanFind(array("handle" => $xHandle, "password" => null)) )
+
         }
 
     function destroy()

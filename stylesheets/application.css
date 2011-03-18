@@ -429,7 +429,7 @@ label
 
 .NewsList tbody tr
     {
-    border-bottom-style: solid, 1px, #990000;
+    border-bottom-style: solid 1px #990000;
     }
 
 .NewsList tbody tr:hover
@@ -440,4 +440,47 @@ label
 .NewsListAt
     {
     font-size: 10px;
+    }
+
+.GroupBox
+    {
+    color: #fff;
+    background:#900;
+    background: #900 -webkit-gradient(linear, left top, 100% 0%, from(#B64E4E), to(#990000)) ;
+    padding: 5px 0px 5px 5px;
+
+    margin-top: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    -moz-box-shadow: 3px 3px 10px #000;
+    -webkit-box-shadow: -3px 3px 10px #000;
+    box-shadow: 3px 3px 10px #000;
+}
+
+.LoginMain
+    {
+    position: relative;
+    }
+
+.LoginCurrent
+    {
+    top: 0px;
+    left: 5px;
+    width: 240px;
+    position: absolute;
+    }
+
+.LoginNew
+    {
+    right: 5px;
+    width: 240px;
+    position: absolute;
+    }
+
+.LoginTitle
+    {
+    font-size: 1.25em;
+    font-weight: bold;
+    text-align: center;
     }
