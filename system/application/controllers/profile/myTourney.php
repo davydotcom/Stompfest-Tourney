@@ -15,42 +15,7 @@ class MyTourney extends ApplicationController
 
     function index()
         {
-        $this->load->model("tourney");
-        $this->load->model("tourney_team");
-        $this->load->model("tourney_gamer");
-        $this->load->model("tourney_invite");
-
-        $xA_Tourn = $this->tourney_gamer->GetMyTourneys();
-
-        if ( !empty($xA_Tourn) )
-            {
-            foreach ( $xA_Tourn as &$xI_Tourn )
-                {
-                if ( $xI_Tourn->tourneyType == 1 )
-                    {
-                    $xI_Tourn->Invites = $this->tourney_invite->GetMyInvites($xI_Tourn->tourneyID);
-                    $xI_Tourn->Members = $this->tourney_team->TeamMembers($xI_Tourn->teamID);
-                    $xI_Tourn->IAmTeamCaptain = ($xI_Tourn->captainID == $this->currentUser->userID);
-
-                    if ( $xI_Tourn->IAmTeamCaptain &&
-                         !empty($xI_Tourn->playersPerTeam) &&
-                         sizeof($xI_Tourn->Members) < $xI_Tourn->playersPerTeam &&
-                         $this->tourney_gamer->GamersAreLookingForTeam($xI_Tourn->tourneyID) )
-                        {
-                        $xI_Tourn->ShowLooking = true;
-                        }
-                    else
-                        {
-                        $xI_Tourn->ShowLooking = false;
-                        }
-                    }
-
-                $xI_Tourn->ReggyAt = $this->tourney->BuildRegistrationDates($xI_Tourn->registrationOpensAt, $xI_Tourn->registrationClosesAt);
-                }
-            }
-
-        $this->mysmarty->assign("MyTourneys", $xA_Tourn);
-        $this->mysmarty->view("/profile/myTourney");
+        redirect("/tourney/main/index/true");
         }
 
     /**

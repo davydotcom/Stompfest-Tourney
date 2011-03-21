@@ -13,8 +13,8 @@ $(function()
         resizable: false,
         buttons:
             {
-            "Close": NeverMind,
-            "Disband this Team": Disband
+            "Close": RegClose,
+            "Disband this Team": RegDisbandTeam
             }
         });
 
@@ -28,8 +28,8 @@ $(function()
         resizable: false,
         buttons:
             {
-            "Close": NeverMind,
-            "Cancel my Registration": CancelReg
+            "Close": RegClose,
+            "Cancel my Registration": RegCancel
             }
         });
     });
@@ -48,7 +48,7 @@ function ConfirmDisband(iTourneyID)
     $("#xDisbandTeam").dialog("open");
     }
 
-function Disband()
+function RegDisbandTeam()
     {
     var xTeam = $("#teamID_" + xID).val();
     var xTour = $("#tourneyID_" + xID).val();
@@ -56,20 +56,19 @@ function Disband()
     window.location.href = "/tourney/team/Disband/" + xTour + "/" + xTeam;;
     }
 
-function CancelReg()
+function RegCancel()
     {
     var xTTID = $("#TTID_" + xID).val();
 
     window.location.href = "/tourney/main/cancelReggy/" + xID + "/" + xTTID;
     }
 
-function NeverMind()
+function RegClose()
     {
     $("#xConCancel").dialog("close");
     $("#xDisbandTeam").dialog("close");
     }
 </script>
-
 
 <div id="xDisbandTeam" name="xDisbandTeam" title="Stompfest Tournament">
     <span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span>Are you sure you want to disband this team?

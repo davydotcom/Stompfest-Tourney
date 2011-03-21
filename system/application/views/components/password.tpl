@@ -1,4 +1,5 @@
 <script>
+var xPassCallBack;
 
 $(function()
     {
@@ -12,32 +13,67 @@ $(function()
         resizable: false,
         buttons:
             {
-            "Close": NoPassword,
-            "Save Password": SavePassword
+            "Close": PasswordClose,
+            "Save Password": PasswordSave
             }
         });
     });
 
-    function GetPassword()
+function PasswordGet(iCallBack)
+    {
+    xPassCallBack = iCallBack;
+
+    $("#xIN_PasswordNew").val("");
+    $("#xIN_PasswordConfirm").val("");
+    $("#xIN_PasswordCurrent").val("");
+
+    $("#xDI_Password").dialog("open");
+    }
+
+function PasswordClose()
+    {
+    $("#xDI_Password").dialog("close");
+    }
+
+function PasswordSave()
+    {
+    var xPass = $("#xIN_PasswordNew").val();
+    var xConf = $("#xIN_PasswordConfirm").val();
+    var xCurr = $("#xIN_PasswordCurrent").val();
+
+    if ( xConf != xPass )
         {
-        $("#xDI_Password").dialog("open");
+        alert("Password and confirmation password do not match");
+        return;
         }
 
-    function NoPassword()
+    $.ajax(
         {
-        $("#xDI_Password").dialog("close");
+        url: "/profile/main/savePassword",
+        data: "xCurr=" + xCurr + "&xPass=" + xPass,
+        type: "POST",
+        success: function(iData){ PasswordBack(iData); }
+        });
+    }
+
+function PasswordBack(iData)
+    {
+    if ( iData == "GOOD" )
+        {
+        NoPassword();
+
+        xPassCallBack.call();
+        return;
         }
 
-    function SavePassword()
-        {
-        alert("AJAX stuff here");
-        }
+    alert(iData);
+    }
+
 </script>
 
-<div id="xDI_Password" name="xDI_Password" title="Stompfest Tournament">
-    <span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span>
+<div id="xDI_Password" title="Stompfest Tournament">
     <table>
-        {if $xShowCurrent}
+        {if $xShowCurrent === true}
             <tr>
                 <td class="DataLabel">Current Password:</td>
                 <td><input type="password" id="xIN_PasswordCurrent" name="xIN_PasswordCurrent"></td>

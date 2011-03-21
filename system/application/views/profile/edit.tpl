@@ -8,6 +8,11 @@
 
 {block name=main_content}
 <script>
+    $(function()
+        {
+        $("#cellNumber").mask("(999) 999-9999");
+        });
+
     function AbleNotify()
         {
         var xCell = $("#xTB_NoteSMS:checked").val();
@@ -17,17 +22,6 @@
         $("#cellNumber").attr("disabled", xCell == undefined);
         $("#cellCarrier").attr("disabled", xCell == undefined);
         }
-
-    function SetupStuff()
-        {
-        jQuery(function($)
-            {
-            $("#cellNumber").mask("(999) 999-9999");
-            });
-        }
-
-    $(document).ready(SetupStuff());
-
 </script>
 
 {include file="/components/password.tpl" xShowCurrent="true"}
@@ -43,7 +37,7 @@
             <td>{$UserData.barcode}</td>
         </tr>
         <tr>
-            <td colspan="2"><input type="button" title="Set my password" value="Reset Password" class="MyButton" onclick="Javascript:GetPassword();" /></td>
+            <td colspan="2"><input type="button" title="Set my password" value="Reset Password" class="MyButton" onclick="Javascript:PasswordGet();" /></td>
         </tr>
         <tr>
             <td class="DataLabel">Tournament Notification:</td>

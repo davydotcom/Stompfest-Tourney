@@ -1,5 +1,4 @@
 {if $xTourn->lookingForTeam == 0}
-    <input type="hidden" id="teamID_{$xTourn->tourneyID}" name="teamID_{$xTourn->tourneyID}" value="{$xTourn->teamID}" />
     <tr>
         <td class="DataLabel">Team Name:</td>
         <td>

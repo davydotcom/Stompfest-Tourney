@@ -65,7 +65,7 @@ class Team extends ApplicationController
             }
 
         $this->user_news->AddNews($this->currentUser->userID, "!TOUR!: Joined team <b>!TEAM!</b>.", $_POST["tourneyID"], $_POST["teamID"]);
-        $this->touney_invite->delete(array("tourneyID" => $_POST["tourneyID"], "userID" => $this->currentUser->userID));
+        $this->tourney_invite->delete(array("tourneyID" => $_POST["tourneyID"], "userID" => $this->currentUser->userID));
 
         $this->GoodToGo("Successfully added to team.");
         }

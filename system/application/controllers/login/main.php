@@ -14,36 +14,52 @@ class Main extends ApplicationController
         $this->mysmarty->view("/login/index");
         }
 
+    /***
+     * AJAX call
+     */
     function validate()
         {
-        $this->load->model("User");
+        $this->load->model("user");
 
-        $userID = $this->User->Exists($this->input->post("xCurrHandle"), $this->input->post("xPass"));
+        $xPass = $this->input->post("xPass");
+        $xHandle = $this->input->post("xHandle");
 
-        if ( empty($userID) )
+        $xDude = $this->user->first(array("handle" => $xHandle, "password" => $xPass));
+        if ( empty($xDude) )
             {
-            $this->session->set_flashdata('error', 'Invalid username / barcode combination!');
-            redirect("/login/main");
+            echo("Invalid Username/Password combination!");
+            return;
             }
-        else
-            {
-            $xData = array("userID" => $userID, "IsLoggedIn" => true);
 
-            $this->session->set_userdata($xData);
-            $this->session->set_flashdata('notice', 'Login Successful!');
-            redirect("/");
-            }
+        $this->session->set_userdata(array("userID" => $xDude->userID, "IsLoggedIn" => true));
+
+        echo("GOOD");
         }
 
+    /***
+     * AJAX call
+     */
     function create()
         {
-        $this->load->model("User");
+        $this->load->model("user");
 
-        $xHandle = $this->input->post("xNewHandle");
-        //$this->input->post("xPass")
+        $xBar = $this->input->post("xBar");
+        $xHandle = $this->input->post("xHandle");
 
-//        if ( $this->User->CanFind(array("handle" => $xHandle, "password" => null)) )
+        $xDude = $this->user->first(array("handle" => $xHandle, "barcode" => $xBar));
+        if ( $xDude == null )
+            {
+            echo("Invalid username / barcode combination! --- $xBar -- $xHandle");
+            return;
+            }
 
+        if ( !empty($xDude->password) )
+            {
+            echo("User already exists.");
+            return;
+            }
+
+        echo("GOOD");
         }
 
     function destroy()

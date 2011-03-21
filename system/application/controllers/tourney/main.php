@@ -11,83 +11,143 @@ class Main extends ApplicationController
         require_once(APPPATH . "/controllers/tourney/helpers.php");
         }
 
-    function index()
+    function index($iMineOnly = false)
+        {
+        $this->load->model("tourney");
+
+        $xType = null;
+        $xA_Tourn = array();
+
+        if ( Core::GetBool($this->isLoggedIn) )
+            {
+            $this->load->model("tourney_team");
+            $this->load->model("tourney_gamer");
+
+            $xA_Mine = $this->tourney_gamer->GetMyTourneys();
+            if ( !empty($xA_Mine) )
+                {
+                $this->load->model("tourney_invite");
+
+                foreach ( $xA_Mine as $xI_Mine )
+                    {
+                    if ( $xI_Mine->tourneyType == 1 )
+                        {
+                        $xI_Mine->Invites = $this->tourney_invite->GetMyInvites($xI_Mine->tourneyID);
+                        $xI_Mine->Members = $this->tourney_team->TeamMembers($xI_Mine->teamID);
+                        $xI_Mine->IAmTeamCaptain = ($xI_Mine->captainID == $this->currentUser->userID);
+
+                        if ( $xI_Mine->IAmTeamCaptain &&
+                             !empty($xI_Mine->playersPerTeam) &&
+                             sizeof($xI_Mine->Members) < $xI_Mine->playersPerTeam &&
+                             $this->tourney_gamer->GamersAreLookingForTeam($xI_Mine->tourneyID) )
+                            {
+                            $xI_Mine->ShowLooking = true;
+                            }
+                        else
+                            {
+                            $xI_Mine->ShowLooking = false;
+                            }
+                        }
+
+                    $xI_Mine->ReggyAt = $this->tourney->BuildRegistrationDates($xI_Mine->registrationOpensAt, $xI_Mine->registrationClosesAt);
+
+                    $xA_Tourn[$xI_Mine->tourneyID] = $xI_Mine;
+                    }
+                }
+
+            $this->mysmarty->assign("UserData", $this->currentUser);
+            }
+
+        if ( !Core::GetBool($iMineOnly) )
+            {
+            $xA_All = $this->tourney->GetList();
+
+            foreach ( $xA_All as $xI_All )
+                {
+                if ( array_key_exists($xI_All->tourneyID, $xA_Tourn) )
+                    continue;
+
+                $xI_All->ReggyAt = $this->tourney->BuildRegistrationDates($xI_All->registrationOpensAt, $xI_All->registrationClosesAt);
+                $xA_Tourn[] = $xI_All;
+                }
+            }
+
+        if ( Core::GetBool($iMineOnly) && Core::GetBool($this->isLoggedIn) )
+            $xType = "User";
+        else
+            $xType = "Tourn";
+
+        $this->mysmarty->assign("ListType", $xType);
+        $this->mysmarty->assign("Tourneys", array_values($xA_Tourn));
+        $this->mysmarty->view("/tourney/main/index");
+        }
+
+    function view($iTourneyID)
         {
         $this->load->model("tourney");
         $this->load->model("tourney_gamer");
 
-        $xNow = time();
-        $xTourn = $this->tourney->GetList();
+        $xTourney = $this->tourney->GetFullTourney($iTourneyID);
 
-        foreach ( $xTourn as &$xI_Tourn )
+        $xOpen = strtotime($xTourney->registrationOpensAt);
+        $xClos = strtotime($xTourney->registrationClosesAt);
+        $xTourney->Status = "";
+        $xTourney->ReggyAt = $this->tourney->BuildRegistrationDates($xOpen, $xClos);
+
+        switch ( $xTourney->tourneyType )
             {
-            switch ( $xI_Tourn->tourneyType )
-                {
-                case 0:
-                    $xI_Tourn->Type = "Free For All";
-                    break;
+            case 0:
+                $xTourney->Type = "Free For All";
+                break;
 
-                case 1:
-                    $xI_Tourn->Type = "Team Based";
-                    $xI_Tourn->NumTeams = $this->tourney->TeamsRegistered($xI_Tourn->tourneyID);
-                    break;
+            case 1:
+                $xTourney->Type = "Team Based";
+                $xTourney->NumTeams = $this->tourney->TeamsRegistered($xTourney->tourneyID);
+                break;
 
-                case 2:
-                    $xI_Tourn->Type = "1 vs 1";
-                    break;
-                }
+            case 2:
+                $xTourney->Type = "1 vs 1";
+                break;
+            }
 
-            $xOpen = strtotime($xI_Tourn->registrationOpensAt);
-            $xClos = strtotime($xI_Tourn->registrationClosesAt);
-            $xI_Tourn->ReggyAt = $this->tourney->BuildRegistrationDates($xOpen, $xClos);
-
-            if ( $this->isLoggedIn === false )
-                {
-                $xI_Tourn->Status = "";
-                continue;
-                }
-
-            $xMyStat = $this->tourney_gamer->IAmRegistered($xI_Tourn->tourneyID);
+        if ( $this->isLoggedIn === true )
+            {
+            $xMyStat = $this->tourney_gamer->IAmRegistered($iTourneyID);
+            $xNow = time();
 
             if ( !empty($xMyStat) )
                 {
                 if ( $xMyStat == 1 )
                     {
-                    $xI_Tourn->Next = "R";
-                    $xI_Tourn->Status = "Registered";
+                    $xTourney->Next = "R";
+                    $xTourney->Status = "Registered";
                     }
                 else
                     {
-                    $xI_Tourn->Next = "L";
-                    $xI_Tourn->Status = "Looking for a Team";
+                    $xTourney->Next = "L";
+                    $xTourney->Status = "Looking for a Team";
                     }
-
-                continue;
                 }
 
-            if ( $xNow < $xOpen )
+            if ( $xTourney->Status == "" && $xNow < $xOpen )
+                $xTourney->Status = "Opens at " . date("n/j/Y @ g:i A", $xOpen);
+
+            if ( $xTourney->Status == "" && $xNow > $xClos )
+                $xTourney->Status = "Closed";
+
+            if ( $xTourney->Status == "" && !empty($xTourney->maxTeams) && $xTourney->NumTeams >= $xTourney->maxTeams )
+                $xTourney->Status = "<b>Full</b>";
+
+            if ( $xTourney->Status == "" )
                 {
-                $xI_Tourn->Status = "Opens at " . date("n/j/Y @ g:i A", $xOpen);
-                continue;
+                $xTourney->Status->Next = "O";
+                $xTourney->Status->Status = "Open";
                 }
-
-            if ( $xNow > $xClos )
-                {
-                $xI_Tourn->Status = "Closed";
-                continue;
-                }
-
-            if ( !empty($xI_Tourn->maxTeams) && $xI_Tourn->NumTeams >= $xI_Tourn->maxTeams )
-                {
-                $xI_Tourn->Status = "<b>Full</b>";
-                continue;
-                }
-
-            $xI_Tourn->Next = "O";
-            $xI_Tourn->Status = "Open";
             }
 
-        $this->mysmarty->view("tourney/main/index", array("Tourneys" => $xTourn));
+        $this->mysmarty->assign("xTourney", $xTourney);
+
+        return $this->mysmarty->view("/tourney/components/tourney");
         }
 
     function FoundTeam($iTourneyID)

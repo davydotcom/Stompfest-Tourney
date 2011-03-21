@@ -1,5 +1,7 @@
 <?php
 
+require_once(APPPATH . "/libraries/Core.php");
+
 class ApplicationController extends Controller
     {
     function __construct()
