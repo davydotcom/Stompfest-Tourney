@@ -18,4 +18,9 @@ class Core
 
         return false;
         }
+
+    public static function OutDiag($iWhat)
+        {
+        echo(sprintf("<br /><b><font size='24'>-->%s<--</font></b><br />", $iWhat));
+        }
     }

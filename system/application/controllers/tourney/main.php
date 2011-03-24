@@ -112,8 +112,8 @@ class Main extends ApplicationController
 
         if ( $this->isLoggedIn === true )
             {
-            $xMyStat = $this->tourney_gamer->IAmRegistered($iTourneyID);
             $xNow = time();
+            $xMyStat = $this->tourney_gamer->IAmRegistered($iTourneyID);
 
             if ( !empty($xMyStat) )
                 {
@@ -140,8 +140,8 @@ class Main extends ApplicationController
 
             if ( $xTourney->Status == "" )
                 {
-                $xTourney->Status->Next = "O";
-                $xTourney->Status->Status = "Open";
+                $xTourney->Next = "O";
+                $xTourney->Status = "Open";
                 }
             }
 
