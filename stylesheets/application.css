@@ -456,7 +456,7 @@ label
     -moz-box-shadow: 3px 3px 10px #000;
     -webkit-box-shadow: -3px 3px 10px #000;
     box-shadow: 3px 3px 10px #000;
-}
+    }
 
 .LoginMain
     {
@@ -483,4 +483,23 @@ label
     font-size: 1.25em;
     font-weight: bold;
     text-align: center;
+    }
+
+.TourneyRegShow
+    {
+    position: relative;
+    }
+
+.TourneyRegPic
+    {
+    top: 0px;
+    left: 5px;
+    position: absolute;
+    }
+
+.TourneyRegData
+    {
+    top: 0px;
+    left: 70px;
+    position: absolute;
     }

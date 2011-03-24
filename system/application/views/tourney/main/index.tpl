@@ -163,13 +163,13 @@
         <hr />
         {if empty($Tourneys)}
             <div class="GamerNoTourney">You are not registered for any tournaments.</div>
-        {else}
-            {include file="/tourney/components/cancelReg.tpl"}
-
-            {if $UserData->IAmCaptain}
-                {include file="/tourney/components/pickupPlayers.tpl"}
-            {/if}
         {/if}
+    {/if}
+
+    {include file="/tourney/components/cancelReg.tpl"}
+
+    {if $UserData->IAmCaptain}
+        {include file="/tourney/components/pickupPlayers.tpl"}
     {/if}
 
     {foreach $Tourneys as $xTourney}
