@@ -14,6 +14,8 @@
 <p><label for="eMail">E-mail</label><br/>
            <input name="eMail" type="text" size="75" value="{$user->eMail|default:""}"/>
 </p>
+
+
 <p><label for="is_super_admin">Super Administrator?</label>
     <input name="is_super_admin" type="checkbox" value="{$user->is_super_admin|default:"0"}"/>
 </p>

@@ -40,6 +40,19 @@ class Users extends AdminApplicationController
 
         if ($this->user->create($_POST))
         {
+
+            $config['upload_path'] = './uploads/avatars/';
+            $config['allowed_types'] = 'png|jpg|gif|swf';
+            $config['max_size'] = '100000';
+            $this->load->library('upload', $config);
+            if($this->upload->do_upload()) {
+                $data['upload_data'] = $this->upload->data();
+            }
+            else
+            {
+                $errors = $this->upload_display_errors;
+                $this->session->set_flashdata('error', 'Unable to upload image!:<br/>' . $errors);
+            }
             $this->session->set_flashdata('notice', 'New user Record Created!');
             redirect("/admin/users");
         } else

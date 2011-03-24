@@ -11,7 +11,7 @@
 |	http://example.com/
 |
 */
-$config['base_url']	= "http://sftourney.redwindsw.com";
+$config['base_url']	= "http://sftourney.redwindsw.com/";
 
 /*
 |--------------------------------------------------------------------------
