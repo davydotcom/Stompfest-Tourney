@@ -13,14 +13,11 @@ class Tourney extends SFModel
 
     function GetList()
         {
-        $xSQL = "SELECT games.description AS gameDesc,
-                        games.short_name,
-                        games.genre,
-                        games.parentGameID,
-                        games.photo_file_name,
-                        games.active,
-                        IF(tourneys.name IS NULL, games.name, tourneys.name) AS showName,
-                        tourneys.*
+        $xSQL = "SELECT IF(tourneys.name IS NULL, games.name, tourneys.name) AS ShowName,
+                        tourneys.tourneyID,
+                        tourneys.registrationOpensAt,
+                        tourneys.registrationClosesAt,
+                        games.photo_file_name
                    FROM tourneys
              INNER JOIN games ON games.gameID = tourneys.gameID
                   WHERE tourneys.eventID = ? AND

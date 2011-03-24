@@ -1,8 +1,9 @@
 <?php
 
+require_once(APPPATH . "/libraries/Core.php");
+
 class ApplicationController extends Controller
     {
-
     function __construct()
         {
         parent::Controller();
@@ -25,7 +26,7 @@ class ApplicationController extends Controller
         {
         if ( empty($this->currentUser) )
             {
-            redirect("/login");
+            redirect("/login/main");
 
             return false;
             }

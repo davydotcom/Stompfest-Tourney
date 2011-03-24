@@ -26,7 +26,7 @@
 
     <h2>{$UserData->handle}</h2>
     <hr />
-    <table width="100%" class="NewsList">
+    <table width="100%" class="NewsList" cellpadding="0" cellspacing="0">
         {foreach $UserData->News as $xNews}
             <tr id="xTR_New{$xNews->newsID}">
                 <td><span class="NewsListAt">{$xNews->sentAt}:</span> {$xNews->message}</td>

@@ -65,7 +65,7 @@ class Team extends ApplicationController
             }
 
         $this->user_news->AddNews($this->currentUser->userID, "!TOUR!: Joined team <b>!TEAM!</b>.", $_POST["tourneyID"], $_POST["teamID"]);
-        $this->touney_invite->delete(array("tourneyID" => $_POST["tourneyID"], "userID" => $this->currentUser->userID));
+        $this->tourney_invite->delete(array("tourneyID" => $_POST["tourneyID"], "userID" => $this->currentUser->userID));
 
         $this->GoodToGo("Successfully added to team.");
         }
@@ -260,7 +260,7 @@ class Team extends ApplicationController
         $this->load->model("tourney_team");
         $this->load->model("tourney_gamer");
 
-        $this->user_news->AddNews($this->currentUser->userID, "!TOUR!: Disbanded team <b>%s</b>.", $iTourneyID, $iTeamID);
+        $this->user_news->AddNews($this->currentUser->userID, "!TOUR!: Disbanded team <b>!TEAM!</b>.", $iTourneyID, $iTeamID);
 
         $this->tourney_team->delete(array("teamID" => $iTeamID));
         $this->tourney_gamer->delete(array("teamID" => $iTeamID));

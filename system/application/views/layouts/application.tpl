@@ -8,19 +8,19 @@
 		<link href="/stylesheets/application.css" media="screen" rel="stylesheet" type="text/css" />
         <link href="/stylesheets/temp.css" media="screen" rel="stylesheet" type="text/css" />
 
-        <script LANGUAGE="JavaScript" SRC="/javascripts/JQuery.js"></script>
-        <script LANGUAGE="JavaScript" SRC="/javascripts/jquery-ui.js"></script>
-        <script LANGUAGE="JavaScript" SRC="/javascripts/MaskedInput.js"></script>
-        <script LANGUAGE="JavaScript" SRC="/javascripts/SF.js"></script>
+        <script SRC="/javascripts/JQuery.js"></script>
+        <script SRC="/javascripts/jquery-ui.js"></script>
+        <script SRC="/javascripts/MaskedInput.js"></script>
+        <script SRC="/javascripts/SF.js"></script>
 	</head>
 
 	<body>
 		<div id="header">
 			<ul id="user_navigation">
                 {if $isLoggedIn == true}
-                    <li><a href="/login/destroy">Logout</a></li>
+                    <li><a href="/login/main/destroy">Logout</a></li>
                 {else}
-                    <li><a href="/login">Login</a></li>
+                    <li><a href="/login/main">Login</a></li>
                 {/if}
 			</ul>
             <h1 onclick="location.href='/'">Stompfest <span class="smaller_header">Tournament Manager</span></h1>
@@ -67,6 +67,6 @@
                     <br style="clear:both;"/>
 		</div>
 
-        <div class="Footer">Stompfest Tournament Manager was designed and written by Brad Worrell-Smith, David Estes and Ron Rebennack</div
+        <div class="Footer">Stompfest Tournament Manager was designed and written by Brad Worrell-Smith, David Estes and Ron Rebennack</div>
     </body>
 </html>

@@ -58,4 +58,30 @@ class Main extends ApplicationController
 
         echo($iNewsID);
         }
+
+    /***
+     * AJAX call
+     */
+    function savePassword()
+        {
+        $this->load->model("user");
+
+        $xPass = $this->input->post("xPass");
+
+        if ( $this->currentUser->password != null )
+            {
+            $xCurr = $this->input->post("xCurr");
+
+            if ( $xCurr != $this->currentUser->password )
+                {
+                echo("Invalid or missing password");
+                return;
+                }
+            }
+
+        $this->user->update($this->currentUser->userID, array("password" => $xPass));
+
+        echo("GOOD");
+        }
+
     }
