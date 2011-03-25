@@ -25,7 +25,7 @@ class Games extends AdminApplicationController
         $this->load->model('game_gamer_info');
         $this->load->model('game_map');
         $gamer_infos = $this->game_gamer_info->where(array('gameID' => $this->currentGame->gameID))->find();
-        $game_maps = $this->game_map->findByID($this->currentGame->gameID); 
+        $game_maps = $this->game_map->where(array('gameID' => $this->currentGame->gameID))->find(); 
         $this->mysmarty->view('admin/games/show', array('game' => $this->currentGame,'gamer_infos' => $gamer_infos,'game_maps' => $game_maps));
     }
 

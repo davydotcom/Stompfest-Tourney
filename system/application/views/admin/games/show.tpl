@@ -45,4 +45,38 @@
     </tfoot>
 </table>
 
+<h3>Game Maps</h3>
+
+<hr/>
+<a href="/admin/games/add_map/{$game->gameID}">Add Map</a>
+<table class="admin_table" cellpadding="2">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Short Name</th>
+            <th>Official</th>
+            <th>Max.</th>
+            <th>Active</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        {foreach $game_maps as $game_map}
+            <tr>
+                
+                
+                <td>{$game_map->name}</td>
+                <td>{$game_map->shortName}</td>
+
+                <td>{if $game_map->official == 1}Official{else}Unofficial{/if}</td>
+                <td>{$game_map->maxPlayers}</td>
+                <td>{if $game_map->active == 1}Yes{else}No{/if}</td>
+                <td><a href="/admin/games/edit_info/{$gamer_info->gameID}/{$gamer_info->gameGamerInfoID}">edit</a> | <a href="/admin/games/delete_info/{$gamer_info->gameGamerInfoID}">remove</a></td>
+            </tr>
+    {/foreach}
+    </tbody>
+    <tfoot>
+    </tfoot>
+</table>
+
 {/block}
