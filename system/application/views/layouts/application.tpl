@@ -45,7 +45,7 @@
 		<div id="content_wrapper" class="container_12">
 			<div id="left_navigation_wrapper" class="grid_2">
 				<ul id="left_navigation">
-					<li><a href="/" {if empty($CurrPage)}class="active"{/if}>Overview</a></li>
+					<li><a href="/" {if empty($CurrPage)}class="active"{/if}>Home</a></li>
                     {if $isLoggedIn == true}
                         <li><a href="/profile/main" {if $CurrPage == "profile"}class="active"{/if}>Profile</a></li>
                     {/if}
