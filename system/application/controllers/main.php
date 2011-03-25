@@ -14,7 +14,7 @@ class Main extends ApplicationController
         {
             $this->load->model('announcement');
             $this->load->model('user');
-            $announcements = $this->announcement->where(array('active' => 1)->find(array('order' => array('createdAt','DESC')));
+            $announcements = $this->announcement->where(array('active' => 1))->find(array('order' => array('createdAt','DESC')));
 foreach ($announcements as $announcement)
         {
             $user_ids[] = $announcement->userID;
