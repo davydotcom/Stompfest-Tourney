@@ -71,7 +71,7 @@
                 <td>{if $game_map->official == 1}Official{else}Unofficial{/if}</td>
                 <td>{$game_map->maxPlayers}</td>
                 <td>{if $game_map->active == 1}Yes{else}No{/if}</td>
-                <td><a href="/admin/games/edit_info/{$gamer_info->gameID}/{$gamer_info->gameGamerInfoID}">edit</a> | <a href="/admin/games/delete_info/{$gamer_info->gameGamerInfoID}">remove</a></td>
+                <td><a href="/admin/games/edit_map/{$game_map->gameID}/{$game_map->gameMapID}">edit</a> | <a href="/admin/games/delete_map/{$game_map->gameMapID}" data-confirm="Are you sure you wish to remove this map?">remove</a></td>
             </tr>
     {/foreach}
     </tbody>
@@ -79,4 +79,32 @@
     </tfoot>
 </table>
 
+<h3>Server Commands</h3>
+
+<hr/>
+<a href="/admin/games/add_command/{$game->gameID}">Add Server Command</a>
+<table class="admin_table" cellpadding="2">
+    <thead>
+        <tr>
+            <th>Command</th>
+            <th>Description</th>
+            
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        {foreach $game_server_commands as $game_commnad}
+            <tr>
+                
+                
+                <td>{$game_command->name}</td>
+                <td>{$game_command->description}</td>
+
+                <td><a href="/admin/games/edit_command/{$game_command->gameID}/{$game_command->gameServerCommandID}">edit</a> | <a href="/admin/games/delete_command/{$game_command->gameServerCommandID}" data-confirm="Are you sure you wish to remove this server command?">remove</a></td>
+            </tr>
+    {/foreach}
+    </tbody>
+    <tfoot>
+    </tfoot>
+</table>
 {/block}

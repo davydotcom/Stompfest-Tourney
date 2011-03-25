@@ -24,9 +24,15 @@ class Games extends AdminApplicationController
         $this->load_model_or_fail($id);
         $this->load->model('game_gamer_info');
         $this->load->model('game_map');
+        $this->load->model('game_server_command');
         $gamer_infos = $this->game_gamer_info->where(array('gameID' => $this->currentGame->gameID))->find();
+        
         $game_maps = $this->game_map->where(array('gameID' => $this->currentGame->gameID))->find(); 
-        $this->mysmarty->view('admin/games/show', array('game' => $this->currentGame,'gamer_infos' => $gamer_infos,'game_maps' => $game_maps));
+
+
+        $game_commands = $this->game_server_command->where(array('gameID' => $this->currentGame->gameID))->find(); 
+
+        $this->mysmarty->view('admin/games/show', array('game' => $this->currentGame,'gamer_infos' => $gamer_infos,'game_maps' => $game_maps,'game_server_commands' => $game_commands));
     }
 
     function add()
@@ -227,7 +233,8 @@ function update_info($id)
     function update_command($id)
     {
         $this->load_game_command_model_or_fail($id);
-        
+        $_POST['description'] = trim($_POST['description']);
+
         if ($this->game_server_command->update($this->currentGameServerCommand->gameServerCommandID, $_POST))
         {
             $this->session->set_flashdata('notice', 'Game server command information successfully saved.');
