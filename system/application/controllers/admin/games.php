@@ -167,7 +167,7 @@ function create_command($id)
 
         $this->load_game_map_model_or_fail($id);
 
-        $this->mysmarty->view('admin/games/map/edit', array('game' => $this->currentGame,'game_map' => $this->currentGameMap));
+        $this->mysmarty->view('admin/games/maps/edit', array('game' => $this->currentGame,'game_map' => $this->currentGameMap));
     }
     function edit_command($gameID,$id)
     {
@@ -175,7 +175,7 @@ function create_command($id)
 
         $this->load_game_command_model_or_fail($id);
 
-        $this->mysmarty->view('admin/games/command/edit', array('game' => $this->currentGame,'game_server_command' => $this->currentGameServerCommand));
+        $this->mysmarty->view('admin/games/commands/edit', array('game' => $this->currentGame,'game_server_command' => $this->currentGameServerCommand));
     }
     function edit($id)
     {
