@@ -56,10 +56,10 @@
 			<div id="main_content_wrapper" class="grid_10">
 				<div id="main_content">
 					<div id="main_content_left">
-						{block name=main_content}Main Content Goes Here!{/block}
+						{block name=main_content}{/block}
 					</div>
 					<div id="main_content_right">
-						{block name=main_content_right}Right Bar Content Here!{/block}
+						{block name=main_content_right}{/block}
 					</div>
                                     <br style="clear:both;"/>
 				</div>
