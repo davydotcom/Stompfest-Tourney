@@ -148,7 +148,7 @@ function create_command($id)
     function delete_map($id)
     {
          $this->load_game_map_model_or_fail($id);
-         $gameID = $this->currentGameGamerInfo->gameID;
+         $gameID = $this->currentGameMap->gameID;
          $this->game_map->delete(array('gameMapID' => $this->currentGameMap->gameMapID));
         $this->session->set_flashdata('notice', 'Game Map Removed!');
         redirect("/admin/games/show/" . $gameID);
