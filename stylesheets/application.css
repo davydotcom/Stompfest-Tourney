@@ -302,7 +302,40 @@ label
 {
     background:#efe;
 }
+/*Homepage Announcements Styling*/
+div.announcement
+{
+    width:400px;
+    background:#fff;
+    color:#000;
+    margin: 10px auto;
+    border: 1px solid #eee;
+    -moz-border-radius:5px;
+    -webkit-border-radius:5px;
+    border-radius: 5px;
+    /* For IE 5.5 - 7 */
 
+    filter: progid:DXImageTransform.Microsoft.Shadow(Strength=10, Direction=135, Color='#000000');
+    /* For IE 8 */
+    -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=10, Direction=135, Color='#000000')";
+    padding: 10px 15px;
+    /* Firefox */
+    -moz-box-shadow: 3px 3px 10px #000;
+    /* WebKit */
+    -webkit-box-shadow: -3px 3px 10px #000;
+    /* Standard */
+    box-shadow: 3px 3px 10px #000;
+}
+div.announcement span.announcement_meta
+{
+    color:#999;
+    display:block;
+}
+div.announcement span.announcement_content
+{
+    display:block;
+}
+/*Footer Styling*/
 .Footer
 {
     height:45px;
