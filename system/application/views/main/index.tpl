@@ -10,7 +10,7 @@
 {/foreach}
 	<div class="announcement">
 		<h3>{$announcement->subject}</h3>
-		<span class="announcement_meta">Posted By {$announcement->user->handle} at {$announcement->createdAt}</span>
+		<span class="announcement_meta">Posted by: {$announcement->user->handle} at {$announcement->createdAt}</span>
 		<span class="announcement_content">
 		{$announcement->content}
 		</span>

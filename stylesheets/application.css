@@ -305,7 +305,7 @@ label
 /*Homepage Announcements Styling*/
 div.announcement
 {
-    width:400px;
+    width:540px;
     background:#fff;
     color:#000;
     margin: 10px auto;
@@ -334,6 +334,10 @@ div.announcement span.announcement_meta
 div.announcement span.announcement_content
 {
     display:block;
+}
+div.announcement h3
+{
+    margin-bottom:5px;
 }
 /*Footer Styling*/
 .Footer
