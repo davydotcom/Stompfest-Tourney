@@ -17,3 +17,6 @@
 	</div>
 {/foreach}
 {/block}
+
+{block name=main_content_right}
+{/block}
