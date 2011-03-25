@@ -8,7 +8,7 @@
     <hr />
 
     <form class="sf_form" action="/admin/games/create_map/{$game->gameID}" method="post">
-        {include file="admin/games/map/_form.tpl"}
+        {include file="admin/games/maps/_form.tpl"}
 
         <input type="submit" value="Create Map."/> or <a href="/admin/games/show/{$game->gameID}">cancel</a>
     </form>
