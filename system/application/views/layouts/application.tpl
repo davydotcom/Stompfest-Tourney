@@ -63,10 +63,11 @@
 					</div>
                                     <br style="clear:both;"/>
 				</div>
+            <div class="Footer">Stompfest Tournament Manager was designed and written by Brad Worrell-Smith, David Estes and Ron Rebennack</div>
 			</div>
                     <br style="clear:both;"/>
 		</div>
 
-        <div class="Footer">Stompfest Tournament Manager was designed and written by Brad Worrell-Smith, David Estes and Ron Rebennack</div>
+        
     </body>
 </html>
