@@ -7,7 +7,7 @@
 <p>Welcome to the Stompfest Tournament manager, and to the Stompfest event for that matter! This is where you can register for tournaments throughout the event as well as get notified of event announcements.</p>
 
 {foreach $announcements as $announcement}
-{/foreach}
+
 	<div class="announcement">
 		<h3>{$announcement->subject}</h3>
 		<span class="announcement_content">
@@ -15,4 +15,5 @@
 		</span>
 		<span class="announcement_meta">Posted by: {$announcement->user->handle} at {$announcement->createdAt}</span>
 	</div>
+{/foreach}
 {/block}

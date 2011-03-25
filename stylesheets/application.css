@@ -343,14 +343,14 @@ div.announcement h3
 /*Footer Styling*/
 .Footer
 {
-    height:45px;
+  text-align:right;
   background:#C9D0B6;
    -moz-border-radius:5px;
      -webkit-border-radius:5px;
      border-radius: 5px;
-     width:960px;
+     width:950px;
    margin: 20px auto;
-   padding:10px 0px;
+   padding:10px 10px;
    font-size:13px;
       color:#333;
 
