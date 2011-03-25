@@ -305,11 +305,17 @@ label
 
 .Footer
 {
-    left: 0px;
-    bottom: 5px;
-    position: absolute;
-    font-size: 8pt;
-    color: #2a0000;
+    height:45px;
+  background:#C9D0B6;
+   -moz-border-radius:5px;
+     -webkit-border-radius:5px;
+     border-radius: 5px;
+     width:960px;
+   margin: 20px auto;
+   padding:10px 0px;
+   font-size:13px;
+      color:#333;
+
 }
 
 .DataLabel
