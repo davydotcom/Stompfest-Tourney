@@ -330,6 +330,7 @@ div.announcement span.announcement_meta
 {
     color:#999;
     display:block;
+    text-align:right;
 }
 div.announcement span.announcement_content
 {
