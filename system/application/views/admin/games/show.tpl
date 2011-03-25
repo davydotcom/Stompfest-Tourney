@@ -97,7 +97,7 @@
             <tr>
                 
                 
-                <td>{$game_command->name}</td>
+                <td>{$game_command->command}</td>
                 <td>{$game_command->description}</td>
 
                 <td><a href="/admin/games/edit_command/{$game_command->gameID}/{$game_command->gameServerCommandID}">edit</a> | <a href="/admin/games/delete_command/{$game_command->gameServerCommandID}" data-confirm="Are you sure you wish to remove this server command?">remove</a></td>
