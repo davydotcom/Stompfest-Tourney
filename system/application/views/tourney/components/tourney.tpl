@@ -49,6 +49,10 @@
                     {if $xTourney->Next == "L" || $xTourney->Next == "R"}
                         {OutID tourneyID={$xTourney->tourneyID}}
                         {OutCancel tourneyID={$xTourney->tourneyID}}
+
+                        {if $xTourney->Type == 1}
+                            {include file="/profile/team.tpl"}
+                        {/if}
                     {/if}
                     {if $xTourney->Next == "L"}
                         {if $xTourney->NumTeams > 0}
