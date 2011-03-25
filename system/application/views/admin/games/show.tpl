@@ -93,7 +93,7 @@
         </tr>
     </thead>
     <tbody>
-        {foreach $game_server_commands as $game_commnad}
+        {foreach $game_server_commands as $game_command}
             <tr>
                 
                 
