@@ -473,7 +473,9 @@ div.announcement h3
 
 .NewsList tbody tr
     {
-    border-bottom-style: solid 1px #990000;
+    border-bottom-color: #333333;
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
     }
 
 .NewsList tbody tr:hover

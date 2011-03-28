@@ -27,11 +27,13 @@
     <h2>{$UserData->handle}</h2>
     <hr />
     <table width="100%" class="NewsList" cellpadding="0" cellspacing="0">
+        <tbody>
         {foreach $UserData->News as $xNews}
             <tr id="xTR_New{$xNews->newsID}">
                 <td><span class="NewsListAt">{$xNews->sentAt}:</span> {$xNews->message}</td>
                 <td width="18"><img src="/images/Delete.png" title="Delete" onclick="Javascript:DeleteNews('{$xNews->newsID}')" class="ImageLink" /></td>
             </tr>
         {/foreach}
+        </tbody>
     </table>
 {/block}

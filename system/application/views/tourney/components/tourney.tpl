@@ -2,7 +2,7 @@
 <h3>
     <table width="100%">
         <tr>
-            <td><a href="#">{$xTourney->showName}</a></td>
+            <td><b>{$xTourney->showName}</b></td>
             <td align="right">{$xTourney->Status}</td>
         </tr>
     </table>
@@ -49,6 +49,8 @@
                     {if $xTourney->Next == "L" || $xTourney->Next == "R"}
                         {OutID tourneyID={$xTourney->tourneyID}}
                         {OutCancel tourneyID={$xTourney->tourneyID}}
+
+<br><b>Type: {$xTourney->Type} -- Look: {$xTourn->lookingForTeam} -- cap: {$xTourn->IAmTeamCaptain} -- Lock: {$xTourn->locked}</b><br>
 
                         {if $xTourney->Type == 1}
                             {include file="/profile/team.tpl"}
