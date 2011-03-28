@@ -97,16 +97,16 @@ class Main extends ApplicationController
         switch ( $xTourney->tourneyType )
             {
             case 0:
-                $xTourney->Type = "Free For All";
+                $xTourney->TypeDesc = "Free For All";
                 break;
 
             case 1:
-                $xTourney->Type = "Team Based";
                 $xTourney->NumTeams = $this->tourney->TeamsRegistered($xTourney->tourneyID);
+                $xTourney->TypeDesc = "Team Based";
                 break;
 
             case 2:
-                $xTourney->Type = "1 vs 1";
+                $xTourney->TypeDesc = "1 vs 1";
                 break;
             }
 

@@ -11,7 +11,7 @@
     <table width="100%">
         <tr>
             <td class="DataLabel">Type:</td>
-            <td>{$xTourney->Type}</td>
+            <td>{$xTourney->TypeDesc}</td>
         </tr>
         {if !empty($xTourney->ReggyAt)}
             <tr>
