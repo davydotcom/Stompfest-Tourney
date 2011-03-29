@@ -26,29 +26,8 @@ class Main extends ApplicationController
             $xA_Mine = $this->tourney_gamer->GetMyTourneys();
             if ( !empty($xA_Mine) )
                 {
-                $this->load->model("tourney_invite");
-
                 foreach ( $xA_Mine as $xI_Mine )
                     {
-                    if ( $xI_Mine->tourneyType == 1 )
-                        {
-                        $xI_Mine->Invites = $this->tourney_invite->GetMyInvites($xI_Mine->tourneyID);
-                        $xI_Mine->Members = $this->tourney_team->TeamMembers($xI_Mine->teamID);
-                        $xI_Mine->IAmTeamCaptain = ($xI_Mine->captainID == $this->currentUser->userID);
-
-                        if ( $xI_Mine->IAmTeamCaptain &&
-                             !empty($xI_Mine->playersPerTeam) &&
-                             sizeof($xI_Mine->Members) < $xI_Mine->playersPerTeam &&
-                             $this->tourney_gamer->GamersAreLookingForTeam($xI_Mine->tourneyID) )
-                            {
-                            $xI_Mine->ShowLooking = true;
-                            }
-                        else
-                            {
-                            $xI_Mine->ShowLooking = false;
-                            }
-                        }
-
                     $xI_Mine->ReggyAt = $this->tourney->BuildRegistrationDates($xI_Mine->registrationOpensAt, $xI_Mine->registrationClosesAt);
 
                     $xA_Tourn[$xI_Mine->tourneyID] = $xI_Mine;
@@ -68,9 +47,6 @@ class Main extends ApplicationController
                     continue;
 
                 $xI_All->ReggyAt = $this->tourney->BuildRegistrationDates($xI_All->registrationOpensAt, $xI_All->registrationClosesAt);
-                $xI_All->Invites = array();
-                $xI_All->Members = array();
-                $xI_All->IAmTeamCaptain = false;
                 $xA_Tourn[] = $xI_All;
                 }
             }
@@ -122,8 +98,25 @@ class Main extends ApplicationController
                 {
                 if ( $xMyStat == 1 )
                     {
+                    $this->load->model("tourney_invite");
+
                     $xTourney->Next = "R";
                     $xTourney->Status = "Registered";
+                    $xTourney->Invites = $this->tourney_invite->GetMyInvites($xTourney->tourneyID);
+                    $xTourney->Members = $this->tourney_team->TeamMembers($xTourney->teamID);
+                    $xTourney->IAmTeamCaptain = ($xTourney->captainID == $this->currentUser->userID);
+
+                    if ( $xTourney->IAmTeamCaptain &&
+                         !empty($xTourney->playersPerTeam) &&
+                         sizeof($xTourney->Members) < $xTourney->playersPerTeam &&
+                         $this->tourney_gamer->GamersAreLookingForTeam($xTourney->tourneyID) )
+                        {
+                        $xTourney->ShowLooking = true;
+                        }
+                    else
+                        {
+                        $xTourney->ShowLooking = false;
+                        }
                     }
                 else
                     {

@@ -13,67 +13,19 @@ class tourney_gamer extends SFModel
 
     function GetMyTourneys()
         {
-        //  Build a list of Team-based Tourneys
-        $xA_Tourn = null;
-        $xSQL = "SELECT tourney_gamers.*,
-                        tourneys.tourneyType,
-                        tourneys.description,
-                        tourneys.endsAt,
-                        tourneys.beginsAt,
-                        tourneys.playersPerTeam,
-                        tourneys.registrationOpensAt,
-                        tourneys.registrationClosesAt,
-                        tourneys.sponsoredBy,
+        $xSQL = "SELECT tourneys.tourneyID,
                         IF(tourneys.name IS NULL, games.name, tourneys.name) AS ShowName,
-                        games.short_name,
-                        games.description AS gameDesc,
-                        games.photo_file_name,
-                        games.genre,
-                        tourney_teams.teamID,
-                        tourney_teams.teamName,
-                        tourney_teams.teamURL,
-                        tourney_teams.teamIcon,
-                        tourney_teams.captainID,
-                        tourney_teams.locked,
-                        tourney_teams.readyForMatch,
-                        tourney_teams.currentTier
-                   FROM tourney_gamers
-             INNER JOIN tourneys ON tourneys.tourneyID = tourney_gamers.tourneyID
-              LEFT JOIN tourney_teams ON tourney_teams.teamID = tourney_gamers.teamID
-             INNER JOIN games ON games.gameID = tourneys.gameID
-                  WHERE tourney_gamers.userID = ? AND
-                        tourneys.tourneyType = 1";
-
-        $xQuery = $this->db->query($xSQL, array($this->currentUser->userID));
-        if ( $xQuery->num_rows != 0 )
-            $xA_Tourn = $xQuery->result();
-
-        //  Get all other Tourneys
-        $xSQL = "SELECT tourney_gamers.*,
-                        tourneys.tourneyType,
-                        tourneys.description,
-                        tourneys.endsAt,
-                        tourneys.beginsAt,
-                        tourneys.playersPerTeam,
-                        tourneys.registrationOpensAt,
-                        tourneys.registrationClosesAt,
-                        tourneys.sponsoredBy,
-                        IF(tourneys.name IS NULL, games.name, tourneys.name) AS ShowName,
-                        games.short_name,
-                        games.description AS gameDesc,
-                        games.photo_file_name,
-                        games.genre
+                        games.photo_file_name
                    FROM tourney_gamers
              INNER JOIN tourneys ON tourneys.tourneyID = tourney_gamers.tourneyID
              INNER JOIN games ON games.gameID = tourneys.gameID
-                  WHERE tourney_gamers.userID = ? AND
-                        tourneys.tourneyType <> 1";
+                  WHERE tourney_gamers.userID = ?";
 
         $xQuery = $this->db->query($xSQL, array($this->currentUser->userID));
-        if ( $xQuery->num_rows != 0 )
-            $xA_Tourn = array_merge($xA_Tourn, $xQuery->result());
+        if ( $xQuery->num_rows == 0 )
+            return null;
 
-        return $xA_Tourn;
+        return $xQuery->result();
         }
 
     function IAmRegistered($iTourneyID)
