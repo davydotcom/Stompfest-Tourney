@@ -56,7 +56,7 @@
 
     function SaveTeam(iTourneyID)
         {
-        var xCap = "xRG_Cap_" + iTourneyID;
+        var xCap;
         var xData = "tourneyID=%I%&teamID=%T%&teamName=%N%&teamURL=%U%";
 
         xData = xData.replace("%I%", $("#tourneyID").val());
