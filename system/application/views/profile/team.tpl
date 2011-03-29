@@ -1,4 +1,7 @@
-<div class="announcement">
+<tr>
+    <td colspan="2">
+        <div class="announcement">
+            <table>
 {if $xTourney->lookingForTeam == 0}
     <tr>
         <td class="DataLabel">Team Name:</td>
@@ -124,4 +127,8 @@
         </td>
     </tr>
 {/if}
+                </table>
+            </div>
+        </td>
+    </tr>
 </div>

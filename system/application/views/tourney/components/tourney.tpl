@@ -54,7 +54,7 @@
                         {/if}
 
                         {if $xTourney->tourneyType == 1}
-                            {include file="/profile/team.tpl"}
+                           {include file="/profile/team.tpl"}
                         {/if}
                     {/if}
                     {if $xTourney->Next == "L"}
