@@ -48,9 +48,10 @@
                 <td colspan="2" align="center">
                     {if $xTourney->Next == "L" || $xTourney->Next == "R"}
                         {OutID tourneyID={$xTourney->tourneyID}}
-                        {OutCancel tourneyID={$xTourney->tourneyID}}
 
-<br><b>Type: {$xTourney->tourneyType} -- Look: {$xTourney->lookingForTeam} -- cap: {$xTourney->IAmTeamCaptain} -- Lock: {$xTourney->locked} -- Team: {$xTourney->teamName}</b><br>
+                        {if $xTourney->tourneyType != 1 || $xTourney->IAmTeamCaptain != 1}
+                            {OutCancel tourneyID={$xTourney->tourneyID}}
+                        {/if}
 
                         {if $xTourney->tourneyType == 1}
                             {include file="/profile/team.tpl"}
