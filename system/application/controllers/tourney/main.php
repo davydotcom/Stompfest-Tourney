@@ -68,6 +68,9 @@ class Main extends ApplicationController
                     continue;
 
                 $xI_All->ReggyAt = $this->tourney->BuildRegistrationDates($xI_All->registrationOpensAt, $xI_All->registrationClosesAt);
+                $xI_All->Invites = array();
+                $xI_All->Members = array();
+                $xI_All->IAmTeamCaptain = false;
                 $xA_Tourn[] = $xI_All;
                 }
             }

@@ -50,7 +50,7 @@
                         {OutID tourneyID={$xTourney->tourneyID}}
                         {OutCancel tourneyID={$xTourney->tourneyID}}
 
-<br><b>Type: {$xTourney->tourneyType} -- Look: {$xTourn->lookingForTeam} -- cap: {$xTourn->IAmTeamCaptain} -- Lock: {$xTourn->locked}</b><br>
+<br><b>Type: {$xTourney->tourneyType} -- Look: {$xTourney->lookingForTeam} -- cap: {$xTourney->IAmTeamCaptain} -- Lock: {$xTourney->locked} -- Team: {$xTourney->teamName}</b><br>
 
                         {if $xTourney->tourneyType == 1}
                             {include file="/profile/team.tpl"}
