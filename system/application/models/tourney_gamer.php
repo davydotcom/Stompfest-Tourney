@@ -15,7 +15,9 @@ class tourney_gamer extends SFModel
         {
         $xSQL = "SELECT tourneys.tourneyID,
                         IF(tourneys.name IS NULL, games.name, tourneys.name) AS ShowName,
-                        games.photo_file_name
+                        games.photo_file_name,
+                        tourneys.registrationOpensAt,
+                        tourneys.registrationClosesAt
                    FROM tourney_gamers
              INNER JOIN tourneys ON tourneys.tourneyID = tourney_gamers.tourneyID
              INNER JOIN games ON games.gameID = tourneys.gameID
