@@ -2,6 +2,7 @@
 
 $this->mysmarty->registerPlugin("function", "OutID", "OutID");
 $this->mysmarty->registerPlugin("function", "OutCancel", "OutCancel");
+$this->mysmarty->registerPlugin("function", "OutTeamID", "OutTeamID");
 $this->mysmarty->registerPlugin("function", "OutDisband", "OutDisband");
 $this->mysmarty->registerPlugin("function", "OutNewTeam", "OutNewTeam");
 $this->mysmarty->registerPlugin("function", "OutFoundTeam", "OutFoundTeam");
@@ -12,6 +13,14 @@ function OutID($iParams, $smarty)
         return "";
 
     return sprintf('<input type="hidden" id="TourneyID" name="TourneyID" value="%s" />', $iParams["tourneyID"]);
+    }
+
+function OutTeamID($iParams, $smarty)
+    {
+    if ( empty($iParams["teamID"]) )
+        return "";
+
+    return sprintf('<input type="hidden" id="teamID" name="teamID" value="%s" />', $iParams["teamID"]);
     }
 
 function OutCancel($iParams, $smarty)

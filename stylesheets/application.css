@@ -308,7 +308,7 @@ div.announcement
     width:540px;
     background:#fff;
     color:#000;
-    margin: 4px auto;
+    margin: 10px auto;
     border: 1px solid #eee;
     -moz-border-radius:5px;
     -webkit-border-radius:5px;
@@ -338,6 +338,7 @@ div.announcement span.announcement_content
 }
 div.announcement h3
 {
+    top: 2px;
     margin-bottom:5px;
 }
 /*Footer Styling*/

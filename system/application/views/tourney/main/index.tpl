@@ -59,12 +59,12 @@
         var xCap = "xRG_Cap_" + iTourneyID;
         var xData = "tourneyID=%I%&teamID=%T%&teamName=%N%&teamURL=%U%";
 
-        xData = xData.replace("%I%", $("#tourneyID_" + iTourneyID).val());
-        xData = xData.replace("%N%", $("#teamName_" + iTourneyID).val());
-        xData = xData.replace("%T%", $("#teamID_" + iTourneyID).val());
-        xData = xData.replace("%U%", $("#teamURL_" + iTourneyID).val());
+        xData = xData.replace("%I%", $("#tourneyID").val());
+        xData = xData.replace("%N%", $("#teamName").val());
+        xData = xData.replace("%T%", $("#teamID").val());
+        xData = xData.replace("%U%", $("#teamURL").val());
 
-        xCap = $("input[name='xRG_Cap_" + iTourneyID + "']:checked").val();
+        xCap = $("input[name='xRG_Cap']:checked").val();
 
         if ( xCap != 0 )
             xData = xData + "&Captain=" + xCap;
@@ -98,8 +98,8 @@
         {
         var xData = "TTID=%TID%&Comment=%COM%";
 
-        xData = xData.replace("%TID%", $("#TTID_" + iTourneyID).val());
-        xData = xData.replace("%COM%", $("#xIN_Comm_" + iTourneyID).val())
+        xData = xData.replace("%TID%", $("#TTID").val());
+        xData = xData.replace("%COM%", $("#xIN_Comm").val())
 
         $.ajax(
             {
