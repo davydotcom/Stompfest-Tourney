@@ -337,10 +337,13 @@ div.announcement span.announcement_content
     display:block;
 }
 div.announcement h3
-{
-    top: 2px;
+    {
+    margin-top: 0px;
     margin-bottom:5px;
-}
+    background: #666 -webkit-gradient(linear, left top, left bottom, from(#c0c0c0), to(#fff)) ;
+    background: -moz-linear-gradient(top, #c0c0c0 0%, #fff 100%);
+    }
+
 /*Footer Styling*/
 .Footer
 {

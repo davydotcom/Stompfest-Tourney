@@ -68,7 +68,7 @@
         <tr><td colspan="2"><hr /></td></tr>
         <tr>
             <td colspan="2" align="center">
-                <input type="button" value="Save above Changes" title="Save my changes" class="MyButton" onclick="Javascript:SaveTeam();" />
+                <input type="button" value="Save above Changes" title="Save my changes" class="MyButton" onclick="Javascript:SaveTeam('{$xTourney->tourneyID}');" />
 
                 {OutDisband tourneyID=$xTourney->tourneyID}
 
