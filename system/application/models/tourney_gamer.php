@@ -14,7 +14,7 @@ class tourney_gamer extends SFModel
     function GetMyTourneys()
         {
         $xSQL = "SELECT tourneys.tourneyID,
-                        IF(tourneys.name IS NULL, games.name, tourneys.name) AS ShowName,
+                        IF(tourneys.name IS NULL, games.name, tourneys.name) AS showName,
                         games.photo_file_name,
                         tourneys.registrationOpensAt,
                         tourneys.registrationClosesAt

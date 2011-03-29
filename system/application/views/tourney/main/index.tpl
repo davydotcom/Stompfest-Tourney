@@ -176,7 +176,7 @@
     {foreach $Tourneys as $xTourney}
         {OutID tourneyID={$xTourney->tourneyID}}
 
-        <a href="Javascript:TourneyShow('{$xTourney->tourneyID}');"><img src="/images/Tourney/{$xTourney->photo_file_name}" title="{$xTourney->ShowName}" /></a>
+        <a href="Javascript:TourneyShow('{$xTourney->tourneyID}');"><img src="/images/Tourney/{$xTourney->photo_file_name}" title="{$xTourney->showName}" /></a>
     {/foreach}
 
     <div id="TourneyDetail"></div>

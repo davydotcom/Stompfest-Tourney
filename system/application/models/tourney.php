@@ -13,7 +13,7 @@ class Tourney extends SFModel
 
     function GetList()
         {
-        $xSQL = "SELECT IF(tourneys.name IS NULL, games.name, tourneys.name) AS ShowName,
+        $xSQL = "SELECT IF(tourneys.name IS NULL, games.name, tourneys.name) AS showName,
                         tourneys.tourneyID,
                         tourneys.registrationOpensAt,
                         tourneys.registrationClosesAt,
@@ -47,7 +47,7 @@ class Tourney extends SFModel
                             tourneys.registrationOpensAt,
                             tourneys.registrationClosesAt,
                             tourneys.sponsoredBy,
-                            IF(tourneys.name IS NULL, games.name, tourneys.name) AS ShowName,
+                            IF(tourneys.name IS NULL, games.name, tourneys.name) AS showName,
                             games.short_name,
                             games.description AS gameDesc,
                             games.photo_file_name,
@@ -78,7 +78,7 @@ class Tourney extends SFModel
                             tourneys.registrationOpensAt,
                             tourneys.registrationClosesAt,
                             tourneys.sponsoredBy,
-                            IF(tourneys.name IS NULL, games.name, tourneys.name) AS ShowName,
+                            IF(tourneys.name IS NULL, games.name, tourneys.name) AS showName,
                             games.short_name,
                             games.description AS gameDesc,
                             games.photo_file_name,
