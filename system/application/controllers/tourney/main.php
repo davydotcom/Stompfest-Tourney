@@ -98,6 +98,7 @@ class Main extends ApplicationController
                 {
                 if ( $xMyStat == 1 )
                     {
+                    $this->load->model("tourney_team");
                     $this->load->model("tourney_invite");
 
                     $xTourney->Next = "R";
