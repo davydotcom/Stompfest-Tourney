@@ -3,7 +3,7 @@
         <div class="announcement">
             <h3>Team Info</h3>
             <span class="announcement_content">
-                <table>
+                <table width="100%">
 {if $xTourney->lookingForTeam == 0}
     <tr>
         <td class="DataLabel">Team Name:</td>
