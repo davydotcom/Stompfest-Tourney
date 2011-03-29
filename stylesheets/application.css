@@ -340,8 +340,9 @@ div.announcement h3
     {
     margin-top: 0px;
     margin-bottom:5px;
-    background: -webkit-gradient(linear, 0% 100%, 50% 100%, from(#c0c0c0), to(#fff)) ;
-    background: -moz-linear-gradient(left center, #c0c0c0 0%, #fff 100%);
+    background: -webkit-gradient(linear, 0% 100%, 50% 100%, from(#c3c3c3), to(#fff)) ;
+    background: -moz-linear-gradient(left, #c3c3c3 0%, #fff 50%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#C3C3C3', endColorstr='#FFFFFF', GradientType=1);
     }
 
 /*Footer Styling*/
