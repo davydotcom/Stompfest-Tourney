@@ -340,8 +340,8 @@ div.announcement h3
     {
     margin-top: 0px;
     margin-bottom:5px;
-    background: #666 -webkit-gradient(linear, left top, left bottom, from(#c0c0c0), to(#fff)) ;
-    background: -moz-linear-gradient(top, #c0c0c0 0%, #fff 100%);
+    background: #666 -webkit-gradient(linear, left, right, from(#c0c0c0), to(#fff)) ;
+    background: -moz-linear-gradient(left, #c0c0c0 0%, #fff 100%);
     }
 
 /*Footer Styling*/
