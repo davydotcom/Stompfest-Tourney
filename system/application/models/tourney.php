@@ -72,6 +72,7 @@ class Tourney extends SFModel
                 {
                 $xSQL = "SELECT IF(tourneys.name IS NULL, games.name, tourneys.name) AS showName,
                                 tourneys.tourneyID,
+                                tourneys.tourneyType,
                                 tourneys.registrationOpensAt,
                                 tourneys.registrationClosesAt
                            FROM tourneys
