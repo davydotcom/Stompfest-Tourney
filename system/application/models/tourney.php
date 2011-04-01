@@ -13,8 +13,10 @@ class Tourney extends SFModel
 
     function GetList()
         {
-        $xSQL = "SELECT tourneys.*,
-                        IF(tourneys.name IS NULL, games.name, tourneys.name) AS showName,
+        $xSQL = "SELECT IF(tourneys.name IS NULL, games.name, tourneys.name) AS showName,
+                        tourneys.tourneyID,
+                        tourneys.registrationOpensAt,
+                        tourneys.registrationClosesAt,
                         games.photo_file_name
                    FROM tourneys
              INNER JOIN games ON games.gameID = tourneys.gameID
@@ -37,14 +39,7 @@ class Tourney extends SFModel
         if ( $xTourney->tourneyType == 1 )      //  Team based
             {
             $xSQL = "SELECT tourney_gamers.*,
-                            tourneys.tourneyType,
-                            tourneys.description,
-                            tourneys.endsAt,
-                            tourneys.beginsAt,
-                            tourneys.playersPerTeam,
-                            tourneys.registrationOpensAt,
-                            tourneys.registrationClosesAt,
-                            tourneys.sponsoredBy,
+                            tourneys.*,
                             IF(tourneys.name IS NULL, games.name, tourneys.name) AS showName,
                             games.short_name,
                             games.description AS gameDesc,
@@ -68,11 +63,8 @@ class Tourney extends SFModel
             $xQuery = $this->db->query($xSQL, array($this->currentUser->userID, $iTourneyID));
             if ( $xQuery->num_rows == 0 )
                 {
-                $xSQL = "SELECT IF(tourneys.name IS NULL, games.name, tourneys.name) AS showName,
-                                tourneys.tourneyID,
-                                tourneys.tourneyType,
-                                tourneys.registrationOpensAt,
-                                tourneys.registrationClosesAt
+                $xSQL = "SELECT tourneys.*,
+                                IF(tourneys.name IS NULL, games.name, tourneys.name) AS showName
                            FROM tourneys
                      INNER JOIN games ON games.gameID = tourneys.gameID
                           WHERE tourneys.tourneyID = ?";
