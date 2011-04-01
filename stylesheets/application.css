@@ -305,8 +305,8 @@ label
 /*Homepage Announcements Styling*/
 div.announcement
 {
-    width:540px;
-    background:#fff;
+    width: 100%;
+    background: #fff;
     color:#000;
     margin: 10px auto;
     border: 1px solid #eee;
@@ -551,4 +551,9 @@ div.announcement h3
     top: 0px;
     left: 70px;
     position: absolute;
+    }
+
+.TourneyComment
+    {
+    width: 100%;
     }

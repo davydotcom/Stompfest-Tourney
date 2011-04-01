@@ -112,7 +112,7 @@
     </tr>
     <tr>
         <td class="DataLabel">Comments:</td>
-        <td><textarea id="xIN_Comm" name="xIN_Comm" cols="60" rows="6">{$xTourney->comments}</textarea></td>
+        <td><textarea id="xIN_Comm" name="xIN_Comm" rows="6" class="TourneyComment">{$xTourney->comments}</textarea></td>
     </tr>
     <tr>
         <td colspan="2" align="right"><input type="button" value="Save" title="Save my changes" class="MyButton" onclick="Javascript:SaveLooking('{$xTourney->tourneyID}');" /></td>
