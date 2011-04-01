@@ -67,6 +67,11 @@ class Main extends ApplicationController
         $this->load->model("tourney_gamer");
 
         $xTourney = $this->tourney->GetFullTourney($iTourneyID);
+        if ( empty($xTourney) )
+            {
+            echo("Honk!");
+            return "";
+            }
 
         $xOpen = strtotime($xTourney->registrationOpensAt);
         $xClos = strtotime($xTourney->registrationClosesAt);
