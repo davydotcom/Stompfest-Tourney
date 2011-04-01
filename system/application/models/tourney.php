@@ -80,26 +80,37 @@ class Tourney extends SFModel
             return $xQuery->row();
             }
 
-        $xSQL = "SELECT tourney_gamers.*,
-                        tourneys.tourneyType,
-                        tourneys.description,
-                        tourneys.endsAt,
-                        tourneys.beginsAt,
-                        tourneys.playersPerTeam,
-                        tourneys.registrationOpensAt,
-                        tourneys.registrationClosesAt,
-                        tourneys.sponsoredBy,
+        if ( !empty($this->currentUser) )
+            {
+            $xSQL = "SELECT tourney_gamers.*,
+                            tourneys.*,
+                            IF(tourneys.name IS NULL, games.name, tourneys.name) AS showName,
+                            games.short_name,
+                            games.description AS gameDesc,
+                            games.photo_file_name,
+                            games.genre
+                       FROM tourney_gamers
+                 INNER JOIN tourneys ON tourneys.tourneyID = tourney_gamers.tourneyID
+                 INNER JOIN games ON games.gameID = tourneys.gameID
+                      WHERE tourney_gamers.userID = ? AND
+                            tourneys.tourneyID = ?";
+            $xQuery = $this->db->query($xSQL, array($this->currentUser->userID, $iTourneyID));
+            if ( $xQuery->num_rows == 0 )
+                return null;
+
+            return $xQuery->row();
+            }
+
+        $xSQL = "SELECT tourneys.*,
                         IF(tourneys.name IS NULL, games.name, tourneys.name) AS showName,
                         games.short_name,
                         games.description AS gameDesc,
                         games.photo_file_name,
                         games.genre
-                   FROM tourney_gamers
-             INNER JOIN tourneys ON tourneys.tourneyID = tourney_gamers.tourneyID
+                   FROM tourneys
              INNER JOIN games ON games.gameID = tourneys.gameID
-                  WHERE tourney_gamers.userID = ? AND
-                        tourneys.tourneyID = ?";
-        $xQuery = $this->db->query($xSQL, array($this->currentUser->userID, $iTourneyID));
+                  WHERE tourneys.tourneyID = ?";
+        $xQuery = $this->db->query($xSQL, array($iTourneyID));
         if ( $xQuery->num_rows == 0 )
             return null;
 

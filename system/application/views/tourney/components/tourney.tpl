@@ -46,22 +46,12 @@
         {if !empty($xTourney->Next)}
             <tr>
                 <td colspan="2" align="center">
-                    {if $xTourney->Next == "L" || $xTourney->Next == "R"}
-                        {OutID tourneyID={$xTourney->tourneyID}}
-
-                        {if $xTourney->tourneyType != 1 || $xTourney->IAmTeamCaptain != 1}
+                    {if $xTourney->tourneyType == 1}
+                        {include file="/profile/team.tpl"}
+                    {else}
+                        {if $xTourney->Next == "R"}
                             {OutCancel tourneyID={$xTourney->tourneyID}}
                         {/if}
-
-                        {if $xTourney->tourneyType == 1}
-                           {include file="/profile/team.tpl"}
-                        {/if}
-                    {/if}
-                    {if $xTourney->Next == "L"}
-                        {if $xTourney->NumTeams > 0}
-                            {OutFoundTeam tourneyID={$xTourney->tourneyID}}
-                        {/if}
-                        {OutNewTeam tourneyID={$xTourney->tourneyID}}
                     {/if}
                     {if $xTourney->Next == "O"}
                         <input type="button" class="MyButton" value="Register" onclick="location.href='/tourney/main/register/{$xTourney->tourneyID}'" title="Register for this Tournament" />

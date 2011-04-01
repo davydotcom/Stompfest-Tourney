@@ -103,31 +103,39 @@ class Main extends ApplicationController
                 {
                 if ( $xMyStat == 1 )
                     {
-                    $this->load->model("tourney_team");
-                    $this->load->model("tourney_invite");
-
                     $xTourney->Next = "R";
                     $xTourney->Status = "Registered";
-                    $xTourney->Invites = $this->tourney_invite->GetMyInvites($xTourney->tourneyID);
-                    $xTourney->Members = $this->tourney_team->TeamMembers($xTourney->teamID);
-                    $xTourney->IAmTeamCaptain = ($xTourney->captainID == $this->currentUser->userID);
+                    }
 
-                    if ( $xTourney->IAmTeamCaptain &&
-                         !empty($xTourney->playersPerTeam) &&
-                         sizeof($xTourney->Members) < $xTourney->playersPerTeam &&
-                         $this->tourney_gamer->GamersAreLookingForTeam($xTourney->tourneyID) )
+                if ( $xTourney->tourneyType == 1 )
+                    {
+                    if ( $xMyStat == 1 )
                         {
-                        $xTourney->ShowLooking = true;
+                        $this->load->model("tourney_team");
+                        $this->load->model("tourney_invite");
+
+                        $xTourney->Invites = $this->tourney_invite->GetMyInvites($xTourney->tourneyID);
+                        $xTourney->Members = $this->tourney_team->TeamMembers($xTourney->teamID);
+                        $xTourney->IAmTeamCaptain = ($xTourney->captainID == $this->currentUser->userID);
+
+                        if ( $xTourney->IAmTeamCaptain &&
+                             !empty($xTourney->playersPerTeam) &&
+                             sizeof($xTourney->Members) < $xTourney->playersPerTeam &&
+                             $this->tourney_gamer->GamersAreLookingForTeam($xTourney->tourneyID) )
+                            {
+                            $xTourney->ShowLooking = true;
+                            }
+                        else
+                            {
+                            $xTourney->ShowLooking = false;
+                            }
                         }
                     else
                         {
-                        $xTourney->ShowLooking = false;
+                        $xTourney->Next = "L";
+                        $xTourney->Status = "Looking for a Team";
+                        $xTourney->IAmTeamCaptain = 0;
                         }
-                    }
-                else
-                    {
-                    $xTourney->Next = "L";
-                    $xTourney->Status = "Looking for a Team";
                     }
                 }
 

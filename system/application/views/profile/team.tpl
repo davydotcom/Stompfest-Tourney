@@ -120,9 +120,15 @@
     <tr><td colspan="2"><hr /></td></tr>
     <tr>
         <td colspan="2" align="center">
-            {OutCancel tourneyID=$xTourney->tourneyID}
-            {OutFoundTeam tourneyID=$xTourney->tourneyID}
-            {OutNewTeam tourneyID=$xTourney->tourneyID}
+            {if ($xTourney->Next == "L" || $xTourney->Next == "R") && $xTourney->IAmTeamCaptain != 1}
+                {OutCancel tourneyID=$xTourney->tourneyID}
+            {/if}
+            {if $xTourney->Next == "L"}
+                {if $xTourney->NumTeams > 0}
+                    {OutFoundTeam tourneyID=$xTourney->tourneyID}
+                {/if}
+                {OutNewTeam tourneyID=$xTourney->tourneyID}
+            {/if}
         </td>
     </tr>
 {/if}
