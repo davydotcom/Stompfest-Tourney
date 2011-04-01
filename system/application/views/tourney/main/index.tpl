@@ -64,10 +64,15 @@
         xData = xData.replace("%T%", $("#teamID").val());
         xData = xData.replace("%U%", $("#teamURL").val());
 
-        xCap = $("input[name='xRG_Cap']:checked").val();
+        if ( $("xRG_Cap").length != 0 )
+            {
+            xCap = $("input[name='xRG_Cap']:checked").val();
 
-        if ( xCap != 0 )
-            xData = xData + "&Captain=" + xCap;
+            if ( xCap != 0 )
+                xData = xData + "&Captain=" + xCap;
+            }
+
+alert(xData);
 
         $.ajax(
             {

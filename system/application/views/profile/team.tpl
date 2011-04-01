@@ -34,10 +34,6 @@
         <td class="DataLabel">Members:</td>
         <td>
             <table width="100%" class="DG" border="1">
-                <thead>
-                    <th>Handle</th>
-                    <th>&nbsp;</th>
-                </thead>
                 <tbody>
                     {foreach $xTourney->Members as $xMember}
                         <tr id="xTR_M{$xMember->TTID}">
