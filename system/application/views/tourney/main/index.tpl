@@ -72,8 +72,6 @@
                 xData = xData + "&Captain=" + xCap;
             }
 
-alert(xData);
-
         $.ajax(
             {
             url: "/tourney/team/SaveChanges",
