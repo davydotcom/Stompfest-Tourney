@@ -340,26 +340,24 @@ div.announcement h3
     {
     margin-top: 0px;
     margin-bottom:5px;
-    background: -webkit-gradient(linear, 0% 100%, 50% 100%, from(#ff6666), to(#fff)) ;
-    background: -moz-linear-gradient(left, #ff6666 0%, #fff 50%);
+    background: -webkit-gradient(linear, 0% 100%, 30% 100%, from(#ff6666), to(#fff)) ;
+    background: -moz-linear-gradient(left, #ff6666 0%, #fff 30%);
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff6666', endColorstr='#FFFFFF', GradientType=1);
     }
 
-/*Footer Styling*/
 .Footer
-{
-  text-align:right;
-  background:#C9D0B6;
-   -moz-border-radius:5px;
-     -webkit-border-radius:5px;
-     border-radius: 5px;
+    {
+    text-align:right;
+    background:#C9D0B6;
+    -moz-border-radius:5px;
+    -webkit-border-radius:5px;
+    border-radius: 5px;
      
-   margin: 20px auto;
-   padding:10px 10px;
-   font-size:13px;
-      color:#333;
-
-}
+    margin: 20px auto;
+    padding:10px 10px;
+    font-size:13px;
+    color:#333;
+    }
 
 .DataLabel
 {
