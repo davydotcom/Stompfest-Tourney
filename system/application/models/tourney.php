@@ -73,8 +73,9 @@ class Tourney extends SFModel
                 $xSQL = "SELECT IF(tourneys.name IS NULL, games.name, tourneys.name) AS showName,
                                 tourneys.tourneyID,
                                 tourneys.registrationOpensAt,
-                                tourneys.registrationClosesAt,
+                                tourneys.registrationClosesAt
                            FROM tourneys
+                     INNER JOIN games ON games.gameID = tourneys.gameID
                           WHERE tourneys.tourneyID = ?";
 
                 $xQuery = $this->db->query($xSQL, array($iTourneyID));
