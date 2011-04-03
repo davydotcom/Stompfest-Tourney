@@ -116,7 +116,6 @@ class Main extends ApplicationController
                         $this->load->model("tourney_team");
                         $this->load->model("tourney_invite");
 
-                        $xTourney->Invites = $this->tourney_invite->GetMyInvites($xTourney->tourneyID);
                         $xTourney->Members = $this->tourney_team->TeamMembers($xTourney->teamID);
                         $xTourney->IAmTeamCaptain = ($xTourney->captainID == $this->currentUser->userID);
 
@@ -136,6 +135,7 @@ class Main extends ApplicationController
                         {
                         $xTourney->Next = "L";
                         $xTourney->Status = "Looking for a Team";
+                        $xTourney->Invites = $this->tourney_invite->GetMyInvites($xTourney->tourneyID);
                         $xTourney->IAmTeamCaptain = 0;
                         }
                     }

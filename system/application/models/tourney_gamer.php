@@ -28,6 +28,11 @@ class tourney_gamer extends SFModel
         return $xQuery->result();
         }
 
+        /**
+         *
+         * @param int   $iTourneyID
+         * @return int  0 = Not Registered, 1 = Registered, 2 = Looking for a team
+         */
     function IAmRegistered($iTourneyID)
         {
         if ( $this->isLoggedIn === false )

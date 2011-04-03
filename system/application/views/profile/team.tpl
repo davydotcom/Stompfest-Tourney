@@ -79,31 +79,29 @@
         <tr>
             <td class="DataLabel">Team Invites:</td>
             <td>
-                <tr>
-                    <table width="100%" class="DG" border="1">
-                        <thead>
-                            <th>Team</th>
-                            <th>Captain</th>
-                            <th>&nbsp;</th>
-                        </thead>
-                        <tbody>
-                        {foreach $xTourney->Invites as $xI_Invite}
-                            <tr id="xTR_Invite{$xI_Invite->inviteID}">
-                                {if empty($xI_Invite->teamURL)}
-                                    <td>{$xI_Invite->teamName}</td>
-                                {else}
-                                    <td><a href="{$xI_Invite->teamURL}" target="_blank">{$xI_Invite->teamName}</a></td>
-                                {/if}
-                                <td>{$xI_Invite->handle}</td>
-                                <td>
-                                    <a href="Javascript:InviteAccept('{$xI_Invite->tourneyID}', '{$xI_Invite->teamID}');">Accept</a>
-                                    <a href="Javascript:InviteDecline('{$xI_Invite->tourneyID}', '{$xI_Invite->teamID}');">Decline</a>
-                                </td>
-                            </tr>
-                        {/foreach}
-                        </tbody>
-                    </table>
-                </tr>
+                <table width="100%" class="DG" border="1">
+                    <thead>
+                        <th>Team</th>
+                        <th>Captain</th>
+                        <th>&nbsp;</th>
+                    </thead>
+                    <tbody>
+                    {foreach $xTourney->Invites as $xI_Invite}
+                        <tr id="xTR_Invite{$xI_Invite->inviteID}">
+                            {if empty($xI_Invite->teamURL)}
+                                <td>{$xI_Invite->teamName}</td>
+                            {else}
+                                <td><a href="{$xI_Invite->teamURL}" target="_blank">{$xI_Invite->teamName}</a></td>
+                            {/if}
+                            <td>{$xI_Invite->handle}</td>
+                            <td>
+                                <a href="Javascript:InviteAccept('{$xI_Invite->tourneyID}', '{$xI_Invite->teamID}');">Accept</a>
+                                <a href="Javascript:InviteDecline('{$xI_Invite->tourneyID}', '{$xI_Invite->teamID}');">Decline</a>
+                            </td>
+                        </tr>
+                    {/foreach}
+                    </tbody>
+                </table>
             </td>
         </tr>
     {/if}

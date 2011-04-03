@@ -79,7 +79,7 @@
         if ( iData == "GOOD" )
             {
             alert("The selected players have been invited to your team.");
-            CloseInvite();
+            PU_CloseInvite();
             }
         }
 </script>
