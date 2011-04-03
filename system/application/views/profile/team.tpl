@@ -100,11 +100,11 @@
                             </td>
                         </tr>
                     {/foreach}
-                        <tr><td colspan="2"><hr /></td></tr>
                     </tbody>
                 </table>
             </td>
         </tr>
+        <tr><td colspan="2"><hr /></td></tr>
     {/if}
     <tr>
         <td colspan="2">You are looking for a team.  Here you can leave a message for Team captains who might want you to join their team.</td>
