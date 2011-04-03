@@ -65,7 +65,7 @@
             return;
             }
 
-alert(xTeam);
+alert(xTeamID);
 
         $.ajax(
             {
