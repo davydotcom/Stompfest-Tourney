@@ -305,9 +305,9 @@ class Team extends ApplicationController
         $this->load->model("user_news");
         $this->load->model("tourney_invite");
 
-        $xTeamID = $_POST["xTeamID"];
-        $xA_Picks = split(",", $_POST["xPicks"]);
-        $xTourneyID = $_POST["xTourneyID"];
+        $xTeamID = $this->input->post("xTeamID");
+        $xA_Picks = split(",", $this->input->post("xPicks"));
+        $xTourneyID = $this->input->post("xTourneyID");
 
         foreach ( $xA_Picks as $xUserID )
             {
@@ -315,7 +315,8 @@ class Team extends ApplicationController
             $this->tourney_invite->create(array("tourneyID" => $xTourneyID, "userID" => $xUserID, "teamID" => $xTeamID));
             }
 
-        echo("GOOD");
+//        echo("GOOD");
+            echo($xTeamID);
         }
 
     function InviteDecline()

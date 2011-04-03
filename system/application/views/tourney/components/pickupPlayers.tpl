@@ -65,8 +65,6 @@
             return;
             }
 
-alert(xTeamID);
-
         $.ajax(
             {
             url: "/tourney/team/InvitePlayers",
@@ -83,6 +81,8 @@ alert(xTeamID);
             alert("The selected players have been invited to your team.");
             PU_CloseInvite();
             }
+        else
+            alert(iData);
         }
 </script>
 
