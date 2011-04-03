@@ -315,8 +315,7 @@ class Team extends ApplicationController
             $this->tourney_invite->create(array("tourneyID" => $xTourneyID, "userID" => $xUserID, "teamID" => $xTeamID));
             }
 
-//        echo("GOOD");
-            echo($xTeamID);
+        echo("GOOD");
         }
 
     function InviteDecline()
