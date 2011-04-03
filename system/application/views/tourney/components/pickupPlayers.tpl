@@ -65,6 +65,8 @@
             return;
             }
 
+alert(xTeam);
+
         $.ajax(
             {
             url: "/tourney/team/InvitePlayers",
