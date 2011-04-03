@@ -141,7 +141,7 @@
             url: "/tourney/team/InviteDecline",
             data: "tourneyID=" + iTourneyID + "&teamID=" + iTeam,
             type: "POST",
-            success: function(){ window.location.href = "/profile/main"; }
+            success: function(iData){ alert(iData); }
             });
         }
 
