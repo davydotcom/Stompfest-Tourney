@@ -69,7 +69,7 @@
                 {OutDisband tourneyID=$xTourney->tourneyID}
 
                 {if $xTourney->ShowLooking}
-                    <input type="button" value="Pickup Player(s)" title="Pick up Gamers who are looking for a team" class="MyButton" onclick="Javascript:PickupPlayers('{$xTourney->tourneyID}');" />
+                    <input type="button" value="Pickup Player(s)" title="Pick up Gamers who are looking for a team" class="MyButton" onclick="Javascript:PU_PickupPlayers('{$xTourney->tourneyID}');" />
                 {/if}
             </td>
         </tr>
