@@ -323,16 +323,16 @@ class Team extends ApplicationController
         $this->load->model("tourney_team");
         $this->load->model("tourney_invite");
 
-        $xTeam = $this->tourney_team->first(array("teamID" => $_POST["teamID"]));
+        $xTeam = $this->tourney_team->first(array("teamID" => $this->input->post("teamID")));
 
         if ( !empty($xTeam->captainID) )
             {
             $xMess = sprintf("!TOUR!: <span title='%s'>%s</span> has declined to join your team <b>!TEAM!</b>.", $this->currentUser->userID, $this->currentUser->handle);
-            $this->user_news->AddNews($xTeam->captainID, $xMess, $_POST["tourneyID"], $_POST["teamID"]);
+            $this->user_news->AddNews($xTeam->captainID, $xMess, $this->input->post("tourneyID"), $this->input->post("teamID"));
             }
 
-        $this->tourney_invite->delete(array("tourneyID" => $_POST["tourneyID"], "userID" => $this->currentUser->userID, "teamID" => $_POST["teamID"]));
+        $this->tourney_invite->delete(array("tourneyID" => $this->input->post("tourneyID"), "userID" => $this->currentUser->userID, "teamID" => $this->input->post("teamID")));
 
-        $this->user_news->AddNews($this->currentUser->userID, "!TOUR!: You have decline to join Team <b>!TEAM!</b>.", $_POST["tourneyID"], $_POST["teamID"]);
+        $this->user_news->AddNews($this->currentUser->userID, "!TOUR!: You have decline to join Team <b>!TEAM!</b>.", $this->input->post("tourneyID"), $this->input->post("teamID"));
         }
     }

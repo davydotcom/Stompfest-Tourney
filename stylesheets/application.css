@@ -470,9 +470,10 @@ div.announcement h3
 }
 
 .DG thead
-{
+    {
     font-weight: bold;
-}
+    background-color: #cccccc;
+    }
 
 .NewsList tbody tr
     {

@@ -83,7 +83,7 @@
                     <thead>
                         <th>Team</th>
                         <th>Captain</th>
-                        <th>&nbsp;</th>
+                        <th>Action</th>
                     </thead>
                     <tbody>
                     {foreach $xTourney->Invites as $xI_Invite}
