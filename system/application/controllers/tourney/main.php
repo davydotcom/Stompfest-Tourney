@@ -58,6 +58,8 @@ class Main extends ApplicationController
 
         $this->mysmarty->assign("ListType", $xType);
         $this->mysmarty->assign("Tourneys", array_values($xA_Tourn));
+        $this->mysmarty->assign("isLoggendIn", $this->isLoggedIn);
+
         $this->mysmarty->view("/tourney/main/index");
         }
 

@@ -170,10 +170,9 @@
     {/if}
 
     {include file="/tourney/components/cancelReg.tpl"}
-    {if $isLoggedIn == true}
-        {if $UserData->IAmCaptain}
-            {include file="/tourney/components/pickupPlayers.tpl"}
-        {/if}
+
+    {if $isLoggedIn == true && $UserData->IAmCaptain}
+        {include file="/tourney/components/pickupPlayers.tpl"}
     {/if}
 
     {foreach $Tourneys as $xTourney}
