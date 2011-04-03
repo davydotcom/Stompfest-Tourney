@@ -100,6 +100,7 @@
                             </td>
                         </tr>
                     {/foreach}
+                        <tr><td colspan="2"><hr /></td></tr>
                     </tbody>
                 </table>
             </td>
