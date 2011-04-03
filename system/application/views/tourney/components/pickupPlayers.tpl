@@ -51,7 +51,7 @@
     function PU_InvitePlayers()
         {
         var xA_Pick = new Array();
-        var xTeamID = $("#teamID_" + xTourneyID).val();
+        var xTeamID = $("#teamID").val();
 
         for ( xlp = 0; xlp < xA_UserID.length; xlp++ )
             {
